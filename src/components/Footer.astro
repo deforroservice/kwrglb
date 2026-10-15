@@ -1,50 +1,123 @@
 ---
-import { site, socials } from '../data/site';
+import Logo from './Logo.astro';
+import { site, socials, footerColumns } from '../data/site';
 import { url } from '../lib/url';
+import { darkCover } from '../lib/art';
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="container inner">
-    <ul>
-      <li><a href={url('contact/')}>Contact</a></li>
-      <li><a href={url('careers/')}>Careers</a></li>
-      {socials.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}
-    </ul>
-    <p>© {year} {site.name}</p>
+<footer class="footer" style={`background:${darkCover(5)}`}>
+  <div class="container top">
+    <div class="about">
+      <a class="brand" href={url()}>
+        <Logo size={30} />
+        <span>{site.name}</span>
+      </a>
+      <p>{site.tagline}</p>
+    </div>
+    {
+      footerColumns.map((col) => (
+        <div>
+          <h2 class="col-title">{col.title}</h2>
+          <ul>
+            {col.links.map((l) => (
+              <li>
+                <a href={url(l.href)}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+    <div>
+      <h2 class="col-title">Connect</h2>
+      <ul>
+        {socials.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}
+        <li><a href={`mailto:${site.email}`}>Email</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container bottom">
+    <span>© {year} {site.name}. All rights reserved.</span>
+    <span class="motto">{site.motto}</span>
   </div>
 </footer>
 
 <style>
   .footer {
     margin-top: 120px;
-    border-top: 1px solid var(--line);
-    padding: 32px 0;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 14px;
-    color: var(--muted);
+    line-height: 22px;
   }
-  .inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 32px;
-    justify-content: space-between;
+  .top {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 56px;
+    padding-bottom: 40px;
+  }
+  .about {
+    grid-column: 1 / -1;
+  }
+  @media (min-width: 900px) {
+    .top {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    .about {
+      grid-column: auto;
+    }
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .about p {
+    max-width: 32ch;
+    margin: 16px 0 0;
+  }
+  .col-title {
+    margin: 0 0 12px;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
   }
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+    display: grid;
+    gap: 6px;
   }
   a {
     text-decoration: none;
   }
-  a:hover {
-    color: var(--text);
+  ul a:hover {
+    color: var(--green);
   }
-  p {
-    margin: 0;
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 12px;
+  }
+  .motto {
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 </style>

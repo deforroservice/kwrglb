@@ -1,114 +1,134 @@
-// Placeholder content. Replace everything here with real kwrglb text.
+// Placeholder content. Replace everything here with real Kwarg Lab text.
 
 export const site = {
-  name: 'kwrglb',
-  tagline: 'A small lab for big, unfinished ideas.',
+  name: 'Kwarg Lab',
+  tagline: 'Research and technology for a more human and sustainable future.',
+  motto: 'Ideas for a brighter tomorrow',
   email: 'hello@example.com',
 };
 
 export const nav = [
+  { label: 'Research', href: 'research/' },
   { label: 'Projects', href: 'projects/' },
-  { label: 'Lab', href: 'lab/' },
-  { label: 'Careers', href: 'careers/' },
-  { label: 'Blog', href: 'blog/' },
-  { label: 'Contact', href: 'contact/' },
+  { label: 'Insights', href: 'insights/' },
+  { label: 'About', href: 'about/' },
 ];
 
 export const socials = [
-  { label: 'GitHub', href: 'https://github.com/deforroservice' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+  { label: 'GitHub', href: 'https://github.com/deforroservice' },
 ];
+
+export const footerColumns = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Research', href: 'research/' },
+      { label: 'Projects', href: 'projects/' },
+      { label: 'Insights', href: 'insights/' },
+      { label: 'About', href: 'about/' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Insights', href: 'insights/' },
+      { label: 'Careers', href: 'careers/' },
+      { label: 'Contact', href: 'contact/' },
+    ],
+  },
+];
+
+export const CATEGORIES = ['Research', 'In development', 'Funded', 'Partnership', 'Idea'] as const;
+export type Category = (typeof CATEGORIES)[number];
 
 export type Project = {
   slug: string;
   name: string;
-  tagline: string;
-  status: 'Current' | 'Graduated';
+  category: Category;
+  summary: string;
   intro: string;
   sections: { heading: string; paragraphs: string[] }[];
-  // Three colors for the generated cover art (until real photos exist).
-  palette: [string, string, string];
+  // Seed for the generated line-art cover (until real images exist).
+  seed: number;
 };
 
 const sampleSections = [
   {
-    heading: 'Placeholder: the problem',
+    heading: 'Placeholder: the challenge',
     paragraphs: [
       'Placeholder paragraph describing the problem this project tackles and why it matters now.',
-      'A second placeholder paragraph with a little more context. Keep paragraphs short so they read well on a phone.',
+      'A second placeholder paragraph with more context. Keep paragraphs short so they read well on a phone.',
     ],
   },
   {
-    heading: 'Placeholder: the approach',
-    paragraphs: ['Placeholder paragraph explaining the idea, what has been tried, and what is being built next.'],
+    heading: 'Placeholder: our approach',
+    paragraphs: ['Placeholder paragraph explaining the idea, the partners involved, and what comes next.'],
   },
 ];
 
 export const projects: Project[] = [
   {
-    slug: 'project-alpha',
-    name: 'Project Alpha',
-    tagline: 'Placeholder tagline: one line that says what the project changes',
-    status: 'Current',
-    intro: 'Placeholder intro. Two or three sentences that explain the mission of the project and who it is for. If you are interested in working together, reach out.',
+    slug: 'climate-and-sustainability',
+    name: 'Climate and Sustainability',
+    category: 'Research',
+    summary: 'Placeholder: tools and expertise for a more resilient planet.',
+    intro: 'Placeholder intro. Two or three sentences on the mission of this project and who it serves.',
     sections: sampleSections,
-    palette: ['#0f4c45', '#2fa58f', '#bfe9dc'],
+    seed: 3,
   },
   {
-    slug: 'project-beta',
-    name: 'Project Beta',
-    tagline: 'Placeholder tagline for the second project',
-    status: 'Current',
-    intro: 'Placeholder intro for Project Beta.',
+    slug: 'research-infrastructures',
+    name: 'Research Infrastructures',
+    category: 'Funded',
+    summary: 'Placeholder: support for complex, multi-partner projects.',
+    intro: 'Placeholder intro for this project.',
     sections: sampleSections,
-    palette: ['#3a1f12', '#d9733b', '#f6c89f'],
+    seed: 11,
   },
   {
-    slug: 'project-gamma',
-    name: 'Project Gamma',
-    tagline: 'Placeholder tagline for the third project',
-    status: 'Current',
-    intro: 'Placeholder intro for Project Gamma.',
+    slug: 'global-researchers',
+    name: 'Global Researchers',
+    category: 'Partnership',
+    summary: 'Placeholder: a network connecting researchers across borders.',
+    intro: 'Placeholder intro for this project.',
     sections: sampleSections,
-    palette: ['#141a3a', '#4b5bd6', '#c9d0ff'],
+    seed: 7,
   },
   {
-    slug: 'project-delta',
-    name: 'Project Delta',
-    tagline: 'Placeholder tagline for the fourth project',
-    status: 'Graduated',
-    intro: 'Placeholder intro for Project Delta.',
+    slug: 'planetary-systems-modelling',
+    name: 'Planetary Systems Modelling',
+    category: 'In development',
+    summary: 'Placeholder: open tools for a more resilient and regenerative future.',
+    intro: 'Placeholder intro for this project.',
     sections: sampleSections,
-    palette: ['#050505', '#20364f', '#e8b04a'],
+    seed: 19,
   },
   {
-    slug: 'project-epsilon',
-    name: 'Project Epsilon',
-    tagline: 'Placeholder tagline for the fifth project',
-    status: 'Graduated',
-    intro: 'Placeholder intro for Project Epsilon.',
+    slug: 'open-data-commons',
+    name: 'Open Data Commons',
+    category: 'Research',
+    summary: 'Placeholder: shared datasets that anyone can build on.',
+    intro: 'Placeholder intro for this project.',
     sections: sampleSections,
-    palette: ['#2b2350', '#8e7fd8', '#eef0f7'],
+    seed: 23,
   },
   {
-    slug: 'project-zeta',
-    name: 'Project Zeta',
-    tagline: 'Placeholder tagline for the sixth project',
-    status: 'Current',
-    intro: 'Placeholder intro for Project Zeta.',
+    slug: 'next-idea',
+    name: 'The Next Idea',
+    category: 'Idea',
+    summary: 'Placeholder: an early concept looking for partners.',
+    intro: 'Placeholder intro for this project.',
     sections: sampleSections,
-    palette: ['#5fa6c4', '#cfe7f0', '#c99a6b'],
+    seed: 31,
   },
 ];
 
-// Abstract cover art made from the project's palette. Swap for real photos later.
-export function coverStyle([a, b, c]: Project['palette']): string {
-  return [
-    `radial-gradient(60% 50% at 75% 80%, ${c} 0%, transparent 70%)`,
-    `radial-gradient(70% 60% at 20% 30%, ${b} 0%, transparent 70%)`,
-    `linear-gradient(160deg, ${a} 0%, ${b} 140%)`,
-  ].join(', ');
-}
+export const stats = [
+  { value: '12K+', label: 'Placeholder: researchers in our network' },
+  { value: '40+', label: 'Placeholder: partner institutions' },
+  { value: '€25M', label: 'Placeholder: funding secured' },
+];
 
 export type Post = {
   slug: string;
@@ -120,25 +140,32 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    slug: 'hello-world',
-    title: 'Placeholder post: why we started',
+    slug: 'turning-complexity-into-clarity',
+    title: 'Placeholder: turning complexity into clarity',
     date: '2026-10-01',
-    excerpt: 'A short teaser for the post goes here.',
+    excerpt: 'Placeholder teaser: a practical framework for human-centred systems.',
     body: [
-      'This is placeholder text for the first paragraph of a blog post.',
+      'This is placeholder text for the first paragraph of a publication.',
       'Replace it with your own writing. Each string in this list becomes one paragraph.',
     ],
   },
   {
-    slug: 'notes-from-the-lab',
-    title: 'Placeholder post: notes from the lab',
+    slug: 'notes-from-the-field',
+    title: 'Placeholder: notes from the field',
     date: '2026-09-15',
-    excerpt: 'Another short teaser.',
+    excerpt: 'Placeholder teaser for a second publication.',
+    body: ['Placeholder paragraph one.', 'Placeholder paragraph two.'],
+  },
+  {
+    slug: 'funding-playbook',
+    title: 'Placeholder: a funding playbook',
+    date: '2026-08-20',
+    excerpt: 'Placeholder teaser for a third publication.',
     body: ['Placeholder paragraph one.', 'Placeholder paragraph two.'],
   },
 ];
 
 export const jobs = [
-  { title: 'Placeholder role: Engineer', place: 'Remote', type: 'Full-time' },
-  { title: 'Placeholder role: Designer', place: 'Remote', type: 'Contract' },
+  { title: 'Placeholder role: Research Engineer', place: 'Remote', type: 'Full-time' },
+  { title: 'Placeholder role: Funding Manager', place: 'Remote', type: 'Contract' },
 ];

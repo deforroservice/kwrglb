@@ -1,68 +1,46 @@
 import { useState } from 'preact/hooks';
-import { coverStyle, type Project } from '../data/site';
-import { url } from '../lib/url';
+import { CATEGORIES, type Project } from '../data/site';
+import ProjectCard from './ProjectCard';
 
-const FILTERS = [
-  { value: 'All', label: 'All Projects' },
-  { value: 'Current', label: 'Current Projects' },
-  { value: 'Graduated', label: 'Graduated Projects' },
-];
+const TABS = ['All', ...CATEGORIES];
 
 export default function ProjectsList({ projects }: { projects: Project[] }) {
-  const [filter, setFilter] = useState('All');
-  const shown = projects.filter((p) => filter === 'All' || p.status === filter);
+  const [tab, setTab] = useState('All');
+  const shown = projects.filter((p) => tab === 'All' || p.category === tab);
 
   return (
     <div class="plist">
-      <label class="filter">
-        <span class="sr-only">Show</span>
-        <select value={filter} onChange={(e) => setFilter((e.target as HTMLSelectElement).value)}>
-          {FILTERS.map((f) => (
-            <option value={f.value}>{f.label}</option>
-          ))}
-        </select>
-      </label>
+      <div class="tabs" role="tablist" aria-label="Filter projects">
+        {TABS.map((t) => (
+          <button type="button" role="tab" aria-selected={t === tab} class={t === tab ? 'tab on' : 'tab'} onClick={() => setTab(t)}>
+            {t}
+          </button>
+        ))}
+      </div>
 
-      <ul class="cards">
+      <ul class="pcard-grid">
         {shown.map((p) => (
           <li key={p.slug}>
-            <a class="card" href={url(`projects/${p.slug}/`)} style={{ backgroundImage: coverStyle(p.palette) }}>
-              <span class="title">{p.name}</span>
-            </a>
+            <ProjectCard project={p} />
           </li>
         ))}
       </ul>
+      {shown.length === 0 && <p class="none">No projects in this category yet.</p>}
 
       <style>{`
-        .plist .filter select {
-          appearance: none; -webkit-appearance: none;
-          font: inherit; font-size: 13px; font-weight: 500; line-height: 24px;
-          padding: 0 36px 0 14px; border: 0; border-radius: 25px;
-          background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23fff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;
-          color: #fff; cursor: pointer;
+        .plist .tabs {
+          display: flex; overflow-x: auto; margin-bottom: 32px;
+          border-bottom: 1px solid var(--line); scrollbar-width: none;
         }
-        .plist .filter select option { color: #000; background: #fff; }
-        .plist .cards {
-          list-style: none; margin: 36px 0 0; padding: 0;
-          display: grid; gap: 16px; grid-template-columns: 1fr;
+        .plist .tab {
+          flex: 0 0 auto; padding: 12px 20px; border: 0; border-bottom: 2px solid transparent;
+          margin-bottom: -1px; background: transparent; cursor: pointer;
+          font: inherit; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+          color: var(--slate-teal);
         }
-        @media (min-width: 560px) { .plist .cards { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 900px) { .plist .cards { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
-        .plist .card {
-          position: relative; display: block; aspect-ratio: 345 / 439;
-          border-radius: 8px; overflow: hidden; text-decoration: none;
-          background-size: cover; background-position: center;
-          transition: transform .3s ease;
-        }
-        .plist .card::before {
-          content: ''; position: absolute; inset: 0;
-          background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 35%);
-        }
-        .plist .card:hover { transform: translateY(-4px); }
-        .plist .title {
-          position: absolute; top: 20px; left: 20px; right: 20px;
-          color: #fafafa; font-size: 20px; line-height: 22px;
-        }
+        .plist .tab:hover { color: var(--deep-teal); }
+        .plist .tab.on { color: var(--deep-teal); border-bottom-color: var(--green); font-weight: 600; }
+        .plist .none { color: var(--muted); }
       `}</style>
     </div>
   );

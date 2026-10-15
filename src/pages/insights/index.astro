@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import PostCard from '../../components/PostCard.astro';
+import { posts } from '../../data/site';
+---
+
+<Base title="Insights" description="Placeholder description of the insights page.">
+  <Hero eyebrow="Insights" title="Insights" subtitle="Placeholder: publications, frameworks and notes from our work." />
+  <section class="container">
+    <ul class="posts">
+      {posts.map((p) => <li><PostCard post={p} /></li>)}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+</style>

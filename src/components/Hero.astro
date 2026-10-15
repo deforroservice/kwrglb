@@ -1,60 +1,76 @@
 ---
+import { darkCover } from '../lib/art';
+
 interface Props {
   title: string;
   subtitle?: string;
   eyebrow?: string;
+  dark?: boolean;
+  seed?: number;
 }
-const { title, subtitle, eyebrow } = Astro.props;
+const { title, subtitle, eyebrow, dark = false, seed = 2 } = Astro.props;
 ---
 
-<section class="hero grid12">
-  <div class="span-8">
-    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1>{title}</h1>
+<section class:list={['hero', { dark }]} style={dark ? `background:${darkCover(seed)}` : undefined}>
+  <div class="grid12">
+    {eyebrow && <p class="label span-8">{eyebrow}</p>}
+    <h1 class="span-8">{title}</h1>
+    {subtitle && <p class="subtitle span-6">{subtitle}</p>}
+    <div class="span-8 extra"><slot /></div>
   </div>
-  {
-    subtitle && (
-      <p class="subtitle span-6">{subtitle}</p>
-    )
-  }
-  <div class="span-8"><slot /></div>
 </section>
 
 <style>
   .hero {
-    padding-top: 64px;
-    padding-bottom: 40px;
+    padding: 56px 0 32px;
   }
-  .eyebrow {
-    margin: 0 0 8px;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .label {
+    margin: 0 0 12px;
   }
   h1 {
     margin: 0;
-    font-size: 44px;
-    font-weight: 500;
-    line-height: 48px;
-    letter-spacing: -1px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
   }
   .subtitle {
-    margin: 24px 0 0;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 27px;
-    letter-spacing: -0.5px;
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--muted);
+  }
+  .extra:empty {
+    display: none;
+  }
+  .extra {
+    margin-top: 28px;
+  }
+  .dark {
+    padding: 72px 0 80px;
+    color: #fff;
+  }
+  .dark h1 {
+    color: #fff;
+  }
+  .dark .label {
+    color: var(--green);
+  }
+  .dark .subtitle {
+    color: rgba(255, 255, 255, 0.85);
   }
   @media (min-width: 900px) {
     .hero {
-      padding-top: 120px;
-      padding-bottom: 48px;
+      padding: 88px 0 40px;
     }
     h1 {
-      font-size: 64px;
-      line-height: 72px;
-      letter-spacing: -1.5px;
+      font-size: 80px;
+    }
+    .dark {
+      padding: 120px 0 128px;
+    }
+    .dark h1 {
+      font-size: 96px;
     }
   }
 </style>

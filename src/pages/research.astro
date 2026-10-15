@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Prose from '../components/Prose.astro';
+import { url } from '../lib/url';
+---
+
+<Base title="Research" description="Placeholder description of the research approach.">
+  <Hero eyebrow="Research" title="Our approach" subtitle="Placeholder: how ideas move from research to funded, real-world impact." />
+  <Prose>
+    <h2>Placeholder: explore</h2>
+    <p>Placeholder paragraph explaining how research questions are chosen.</p>
+    <h2>Placeholder: partner</h2>
+    <p>Placeholder paragraph explaining how consortia and institutions come together.</p>
+    <h2>Placeholder: fund</h2>
+    <p>Placeholder paragraph explaining how funding is secured and managed.</p>
+    <h2>Placeholder: deliver impact</h2>
+    <p>Placeholder paragraph explaining how results reach people and the planet.</p>
+    <p><a class="btn btn-primary" href={url('contact/')}>Work with us <span class="arrow">→</span></a></p>
+  </Prose>
+</Base>

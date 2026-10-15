@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Prose from '../components/Prose.astro';
+import { url } from '../lib/url';
+---
+
+<Base title="About" description="Placeholder description of Kwarg Lab.">
+  <Hero eyebrow="About" title="About Kwarg Lab" subtitle="Placeholder: who we are and why we exist." />
+  <Prose>
+    <p>
+      Placeholder: we are a research and innovation studio supporting consortia, institutions and researchers to secure
+      funding, develop high-impact projects, and turn big ideas into real-world solutions.
+    </p>
+    <h2>Placeholder: our values</h2>
+    <p>Placeholder paragraph about how the team works.</p>
+    <h2>Placeholder: the team</h2>
+    <p>Placeholder paragraph introducing the people behind the lab.</p>
+    <p>
+      <a class="btn btn-secondary" href={url('careers/')}>Join us</a>
+    </p>
+  </Prose>
+</Base>

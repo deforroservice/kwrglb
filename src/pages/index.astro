@@ -1,175 +1,158 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import { projects, posts, coverStyle } from '../data/site';
+import ProjectCard from '../components/ProjectCard.tsx';
+import PostCard from '../components/PostCard.astro';
+import { projects, posts, stats } from '../data/site';
 import { url } from '../lib/url';
 
-const featured = projects.filter((p) => p.status === 'Current').slice(0, 3);
-const latest = posts.slice(0, 2);
+const featured = projects.slice(0, 3);
+const latest = posts.slice(0, 3);
 ---
 
 <Base>
   <Hero
-    title="Placeholder headline about what this lab is for."
-    subtitle="Placeholder subtitle. One or two sentences that explain the mission in plain words."
+    dark
+    eyebrow="Research · Partnerships · Funding · Impact"
+    title="Bold research for a brighter tomorrow"
+    subtitle="Placeholder: we help turn research and innovation into funded, real-world solutions for people and the planet."
   >
-    <a class="pill cta" href={url('projects/')}>See our projects</a>
+    <div class="ctas">
+      <a class="btn btn-primary" href={url('research/')}>Explore our approach <span class="arrow">→</span></a>
+      <a class="btn btn-secondary btn-on-dark" href={url('projects/')}>Our projects</a>
+    </div>
   </Hero>
 
   <section class="container block">
     <div class="head">
-      <h2>Current projects</h2>
-      <a href={url('projects/')}>All projects</a>
+      <div>
+        <p class="label">Projects</p>
+        <h2>Research builds tomorrow</h2>
+      </div>
+      <a class="btn btn-tertiary" href={url('projects/')}>View projects <span class="arrow">→</span></a>
     </div>
-    <ul class="cards">
-      {
-        featured.map((p) => (
-          <li>
-            <a class="card" href={url(`projects/${p.slug}/`)} style={`background-image:${coverStyle(p.palette)}`}>
-              <span>{p.name}</span>
-            </a>
-          </li>
-        ))
-      }
+    <ul class="pcard-grid">
+      {featured.map((p) => <li><ProjectCard project={p} /></li>)}
     </ul>
   </section>
 
   <section class="band">
-    <div class="grid12">
-      <div class="span-8">
-        <h2>How we work</h2>
-        <p><strong>Explore.</strong> Placeholder text about finding a problem worth solving.</p>
-        <p><strong>Build.</strong> Placeholder text about testing the idea quickly.</p>
-        <p><strong>Graduate.</strong> Placeholder text about what happens when it works.</p>
-        <a class="pill" href={url('lab/')}>More about the lab</a>
+    <div class="container stats">
+      <div class="intro">
+        <p class="label">Our network</p>
+        <h2>Turning knowledge into real-world impact</h2>
+        <p>Placeholder: a sentence about the consortia, institutions and researchers you work with.</p>
       </div>
+      <ul>
+        {
+          stats.map((s) => (
+            <li>
+              <strong>{s.value}</strong>
+              <span>{s.label}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
   <section class="container block">
     <div class="head">
-      <h2>From the blog</h2>
-      <a href={url('blog/')}>All posts</a>
+      <div>
+        <p class="label">Insights</p>
+        <h2>Latest publications</h2>
+      </div>
+      <a class="btn btn-tertiary" href={url('insights/')}>All insights <span class="arrow">→</span></a>
     </div>
     <ul class="posts">
-      {
-        latest.map((p) => (
-          <li>
-            <time datetime={p.date}>{p.date}</time>
-            <h3><a href={url(`blog/${p.slug}/`)}>{p.title}</a></h3>
-            <p>{p.excerpt}</p>
-          </li>
-        ))
-      }
+      {latest.map((p) => <li><PostCard post={p} /></li>)}
     </ul>
   </section>
 </Base>
 
 <style>
-  .cta {
-    margin-top: 32px;
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   .block {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 72px;
   }
   .head {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 24px;
+    align-items: flex-end;
+    gap: 12px 24px;
+    margin-bottom: 28px;
+  }
+  .head .label {
+    margin: 0 0 6px;
   }
   h2 {
-    margin: 0 0 16px;
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 36px;
-    letter-spacing: -0.5px;
-  }
-  .head h2 {
     margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
   }
-  .head a {
-    font-size: 14px;
+  .band {
+    margin-top: 72px;
+    padding: 64px 0;
+    background: var(--band);
   }
-  .cards {
+  .stats {
+    display: grid;
+    gap: 32px;
+  }
+  .stats .label {
+    margin: 0 0 6px;
+  }
+  .intro p:last-child {
+    margin: 16px 0 0;
+    color: var(--muted);
+    max-width: 44ch;
+  }
+  .stats ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 16px;
-    grid-template-columns: 1fr;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-  @media (min-width: 560px) {
-    .cards {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .stats li {
+    border-left: 3px solid var(--green);
+    padding-left: 16px;
   }
-  @media (min-width: 900px) {
-    .cards {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-  }
-  .card {
-    position: relative;
+  .stats strong {
     display: block;
-    aspect-ratio: 345 / 439;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background-size: cover;
-    text-decoration: none;
+    font-family: var(--display);
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--deep-teal);
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 35%);
-  }
-  .card span {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    color: #fafafa;
-    font-size: 20px;
-    line-height: 22px;
-  }
-  .band {
-    background: var(--band);
-    padding: 64px 0;
-  }
-  .band p {
-    margin: 0 0 12px;
-  }
-  .band .pill {
-    margin-top: 16px;
+  .stats span {
+    font-size: 14px;
+    color: var(--muted);
   }
   .posts {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   }
-  .posts li {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  time {
-    font-size: 13px;
-    color: var(--muted);
-  }
-  h3 {
-    margin: 2px 0;
-    font-size: 20px;
-    font-weight: 500;
-  }
-  h3 a {
-    text-decoration: none;
-  }
-  .posts p {
-    margin: 0;
-    color: var(--muted);
+  @media (min-width: 900px) {
+    h2 {
+      font-size: 48px;
+    }
+    .stats {
+      grid-template-columns: 1fr 1.4fr;
+      align-items: center;
+    }
   }
 </style>

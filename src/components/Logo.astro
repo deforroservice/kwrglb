@@ -1,0 +1,20 @@
+---
+// Two overlapping rings, the left one filled with "globe" stripes.
+interface Props {
+  size?: number;
+  color?: string;
+}
+const { size = 36, color = 'var(--green)' } = Astro.props;
+const id = 'clip' + Math.random().toString(36).slice(2, 8);
+---
+
+<svg width={size * 1.7} height={size} viewBox="0 0 68 40" fill="none" aria-hidden="true">
+  <defs>
+    <clipPath id={id}><circle cx="20" cy="20" r="13.5" /></clipPath>
+  </defs>
+  <circle cx="20" cy="20" r="17" stroke={color} stroke-width="3.5" />
+  <circle cx="44" cy="20" r="17" stroke={color} stroke-width="3.5" />
+  <g clip-path={`url(#${id})`} stroke={color} stroke-width="2.6">
+    <path d="M4 10c8 3 24 3 32 0M4 16c8 3 24 3 32 0M4 22c8 3 24 3 32 0M4 28c8 3 24 3 32 0" />
+  </g>
+</svg>

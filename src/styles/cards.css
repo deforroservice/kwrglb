@@ -1,0 +1,72 @@
+/* Project cards (ProjectCard.tsx) and the grid that holds them */
+.pcard-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) {
+  .pcard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .pcard-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.pcard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.pcard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(30, 74, 95, 0.12);
+}
+.pcard-art {
+  display: block;
+  aspect-ratio: 4 / 3;
+}
+.pcard-body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 18px 20px 48px;
+}
+.pcard-title {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--deep-teal);
+}
+.pcard-text {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--muted);
+}
+.pcard-arrow {
+  position: absolute;
+  right: 20px;
+  bottom: 14px;
+  font-size: 20px;
+  color: var(--deep-teal);
+  transition: transform 0.15s;
+}
+.pcard:hover .pcard-arrow {
+  transform: translateX(4px);
+}

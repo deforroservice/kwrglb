@@ -1,40 +1,44 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { projects, coverStyle, site, type Project } from '../../data/site';
+import { projects, site, type Project } from '../../data/site';
+import { cardCover, darkCover } from '../../lib/art';
+import { url } from '../../lib/url';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
 }
 
 const { project } = Astro.props as { project: Project };
-const cover = coverStyle(project.palette);
 ---
 
-<Base title={project.name} description={project.tagline}>
+<Base title={project.name} description={project.summary}>
   <section class="intro">
-    <div class="grid12">
-      <h1 class="span-8">{project.name}</h1>
-      <p class="tagline span-6">{project.tagline}</p>
-      <div class="span-8">
-        <p class="label">{project.status === 'Current' ? 'Current project' : 'Graduated project'}</p>
-        <p class="lead">{project.intro}</p>
-        <a class="pill" href={`mailto:${site.email}?subject=${encodeURIComponent(project.name)}`}>Contact the team</a>
+    <div class="container layout">
+      <div class="art" style={`background:${cardCover(project.seed)}`} role="img" aria-label={`${project.name} illustration`}></div>
+      <div class="text">
+        <span class="chip" data-cat={project.category}>{project.category}</span>
+        <h1>{project.name}</h1>
+        <p class="summary">{project.summary}</p>
+        <p>{project.intro}</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(project.name)}`}>
+            Contact the team <span class="arrow">→</span>
+          </a>
+          <a class="btn btn-secondary" href={url('projects/')}>All projects</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="band" style={`background-image:${cover}`} role="img" aria-label={`${project.name} cover art`}></div>
+  <div class="band" style={`background:${darkCover(project.seed)}`} aria-hidden="true"></div>
 
   <article class="body grid12">
     {
-      project.sections.map((s, i) => (
-        <>
-          <section class="span-8">
-            <h2>{s.heading}</h2>
-            {s.paragraphs.map((p) => <p>{p}</p>)}
-          </section>
-          {i === 0 && <div class="figure" style={`background-image:${cover}`} role="img" aria-label="Placeholder image" />}
-        </>
+      project.sections.map((s) => (
+        <section class="span-7">
+          <h2>{s.heading}</h2>
+          {s.paragraphs.map((p) => <p>{p}</p>)}
+        </section>
       ))
     }
   </article>
@@ -42,69 +46,67 @@ const cover = coverStyle(project.palette);
 
 <style>
   .intro {
-    background: var(--band);
-    padding: 48px 0 64px;
+    padding: 48px 0 56px;
+  }
+  .layout {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+  }
+  .art {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
   }
   h1 {
-    margin: 0;
-    font-size: 44px;
-    font-weight: 500;
-    line-height: 48px;
-    letter-spacing: -1px;
-  }
-  .tagline {
-    margin: 20px 0 0;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 27px;
-    letter-spacing: -0.5px;
-  }
-  .label {
-    margin: 24px 0 4px;
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    margin: 16px 0 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 0.95;
     text-transform: uppercase;
+  }
+  .summary {
+    margin: 16px 0 8px;
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--slate-teal);
+  }
+  .text > p:not(.summary) {
+    margin: 0;
     color: var(--muted);
   }
-  .lead {
-    margin: 0 0 24px;
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
   }
   .band {
-    height: clamp(240px, 40vw, 520px);
-    background-size: cover;
-    background-position: center;
+    height: clamp(180px, 28vw, 380px);
   }
   .body {
-    padding-top: 64px;
+    padding-top: 40px;
   }
   h2 {
-    margin: 32px 0 16px;
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 36px;
-    letter-spacing: -0.5px;
+    margin: 40px 0 12px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.05;
+    text-transform: uppercase;
   }
   .body p {
     margin: 0 0 16px;
   }
-  .figure {
-    margin: 48px 0 16px;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius);
-    background-size: cover;
-    background-position: center;
-  }
   @media (min-width: 900px) {
     .intro {
-      padding: 96px 0 96px;
+      padding: 80px 0;
+    }
+    .layout {
+      grid-template-columns: 1fr 1.1fr;
+      gap: 56px;
     }
     h1 {
-      font-size: 64px;
-      line-height: 72px;
-      letter-spacing: -1.5px;
-    }
-    .body {
-      padding-top: 96px;
+      font-size: 72px;
     }
   }
 </style>

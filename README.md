@@ -1,11 +1,11 @@
-# kwrglb
+# Kwarg Lab website
 
 Website built with [Astro](https://astro.build) + [Preact](https://preactjs.com) islands.
-All text is placeholder for now; project cover art is generated from each project's `palette` until real photos are added.
+All text is placeholder for now; project images are generated line art (`src/lib/art.ts`) until real images are added.
 
 ## Change the text
 
-Almost everything lives in **`src/data/site.ts`**: site name, menu, projects, blog posts, jobs.
+Almost everything lives in **`src/data/site.ts`**: site name, menu, projects, insights, stats, jobs.
 Edit it right here on GitHub (pencil icon) and commit.
 
 | Page | File |
@@ -13,12 +13,14 @@ Edit it right here on GitHub (pencil icon) and commit.
 | Home | `src/pages/index.astro` |
 | Projects | `src/pages/projects.astro` (cards + filter: `src/components/ProjectsList.tsx`) |
 | One project | `src/pages/projects/[slug].astro` (text comes from `src/data/site.ts`) |
-| Lab | `src/pages/lab.astro` |
+| Research | `src/pages/research.astro` |
+| About | `src/pages/about.astro` |
 | Careers | `src/pages/careers.astro` |
-| Blog | `src/pages/blog/` |
+| Insights | `src/pages/insights/` |
 | Contact | `src/pages/contact.astro` |
 | Header, menu, search | `src/components/Header.astro`, `src/components/Search.tsx` |
-| Colors and fonts | `src/styles/global.css` |
+| Colors, fonts, buttons, chips | `src/styles/global.css` |
+| Project cards | `src/components/ProjectCard.tsx`, `src/styles/cards.css` |
 
 ## Run it on your computer
 
