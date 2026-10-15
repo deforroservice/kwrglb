@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { projects, posts } from '../data/site';
+import { url } from '../lib/url';
+
+const featured = projects.filter((p) => p.status !== 'Graduated').slice(0, 3);
+const latest = posts.slice(0, 2);
+---
+
+<Base>
+  <Hero
+    eyebrow="Placeholder eyebrow"
+    title="Placeholder headline about what this lab is for."
+    subtitle="Placeholder subtitle. One or two sentences that explain the mission in plain words."
+  >
+    <div class="cta">
+      <a class="btn primary" href={url('projects/')}>See projects</a>
+      <a class="btn" href={url('contact/')}>Get in touch</a>
+    </div>
+  </Hero>
+
+  <section class="block">
+    <div class="container">
+      <div class="head">
+        <h2>Current projects</h2>
+        <a href={url('projects/')}>All projects →</a>
+      </div>
+      <ul class="cards">
+        {
+          featured.map((p) => (
+            <li>
+              <span class="status">{p.status}</span>
+              <h3>{p.name}</h3>
+              <p>{p.summary}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="block band">
+    <div class="container steps">
+      <h2>How we work</h2>
+      <ol>
+        <li><strong>Explore.</strong> Placeholder text about finding a problem worth solving.</li>
+        <li><strong>Build.</strong> Placeholder text about testing the idea quickly.</li>
+        <li><strong>Graduate.</strong> Placeholder text about what happens when it works.</li>
+      </ol>
+      <a href={url('lab/')}>More about the lab →</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <div class="head">
+        <h2>From the blog</h2>
+        <a href={url('blog/')}>All posts →</a>
+      </div>
+      <ul class="cards two">
+        {
+          latest.map((p) => (
+            <li>
+              <time datetime={p.date}>{p.date}</time>
+              <h3><a href={url(`blog/${p.slug}/`)}>{p.title}</a></h3>
+              <p>{p.excerpt}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .btn {
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+  }
+  .block {
+    padding: 48px 0;
+  }
+  .band {
+    background: var(--accent-soft);
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    letter-spacing: -0.02em;
+  }
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .cards li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .cards h3 {
+    margin: 8px 0;
+  }
+  .cards p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .status,
+  time {
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .steps ol {
+    margin: 24px 0;
+    padding-left: 20px;
+    display: grid;
+    gap: 12px;
+    max-width: 60ch;
+  }
+</style>

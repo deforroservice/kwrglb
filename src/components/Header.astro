@@ -1,0 +1,122 @@
+---
+import Search from './Search.tsx';
+import { nav, socials, site, projects, posts } from '../data/site';
+import { url } from '../lib/url';
+
+const searchItems = [
+  ...nav.map((n) => ({ title: n.label, kind: 'Page', href: url(n.href), text: '' })),
+  ...projects.map((p) => ({ title: p.name, kind: 'Project', href: url('projects/'), text: p.summary + ' ' + p.topics.join(' ') })),
+  ...posts.map((p) => ({ title: p.title, kind: 'Post', href: url(`blog/${p.slug}/`), text: p.excerpt })),
+];
+---
+
+<header class="header">
+  <div class="container bar">
+    <a class="logo" href={url()}>{site.name}</a>
+    <div class="actions">
+      <Search client:idle items={searchItems} />
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav id="site-menu" class="menu" hidden>
+  <div class="container menu-inner">
+    <ul class="pages">
+      {nav.map((n) => <li><a href={url(n.href)}>{n.label}</a></li>)}
+    </ul>
+    <ul class="small">
+      {socials.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn')!;
+  const menu = document.getElementById('site-menu')!;
+  const setOpen = (open: boolean) => {
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.querySelector('span')!.textContent = open ? 'Close' : 'Menu';
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  btn.addEventListener('click', () => setOpen(menu.hidden));
+  window.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .menu-btn {
+    font: inherit;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .menu {
+    position: fixed;
+    inset: 64px 0 0;
+    z-index: 39;
+    background: var(--bg);
+    overflow-y: auto;
+  }
+  .menu-inner {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .pages,
+  .small {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .pages a {
+    display: block;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+  .pages a:hover {
+    color: var(--accent);
+  }
+  .small {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: var(--muted);
+  }
+</style>

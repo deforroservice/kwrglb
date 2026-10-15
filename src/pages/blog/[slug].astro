@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Prose from '../../components/Prose.astro';
+import { posts, type Post } from '../../data/site';
+import { url } from '../../lib/url';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: Post };
+---
+
+<Base title={post.title} description={post.excerpt}>
+  <Hero eyebrow={post.date} title={post.title} />
+  <Prose>
+    {post.body.map((para) => <p>{para}</p>)}
+    <p><a href={url('blog/')}>← All posts</a></p>
+  </Prose>
+</Base>

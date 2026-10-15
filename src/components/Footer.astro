@@ -1,0 +1,56 @@
+---
+import { site, socials } from '../data/site';
+import { url } from '../lib/url';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container inner">
+    <div>
+      <a class="logo" href={url()}>{site.name}</a>
+      <p>{site.tagline}</p>
+    </div>
+    <ul>
+      <li><a href={url('contact/')}>Contact</a></li>
+      <li><a href={url('careers/')}>Careers</a></li>
+      {socials.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}
+    </ul>
+  </div>
+  <div class="container legal">© {year} {site.name}</div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 96px;
+    border-top: 1px solid var(--line);
+    padding: 40px 0 24px;
+    color: var(--muted);
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+  }
+  p {
+    margin: 4px 0 0;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .legal {
+    margin-top: 32px;
+    font-size: 0.85rem;
+  }
+</style>

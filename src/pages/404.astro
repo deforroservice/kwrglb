@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { url } from '../lib/url';
+---
+
+<Base title="Not found">
+  <Hero title="Page not found" subtitle="This page doesn't exist (yet).">
+    <p><a href={url()}>← Back home</a></p>
+  </Hero>
+</Base>

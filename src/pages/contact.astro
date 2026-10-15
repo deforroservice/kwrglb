@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Prose from '../components/Prose.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Contact" description="Placeholder description of how to get in touch.">
+  <Hero title="Contact" subtitle="Placeholder subtitle inviting people to write." />
+  <Prose>
+    <p>Email: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    <p>Placeholder line about response times or office location.</p>
+  </Prose>
+</Base>

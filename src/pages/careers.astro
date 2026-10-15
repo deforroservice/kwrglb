@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { jobs, site } from '../data/site';
+---
+
+<Base title="Careers" description="Placeholder description of open roles.">
+  <Hero title="Careers" subtitle="Placeholder subtitle about the kind of people the lab looks for." />
+  <section class="container">
+    <ul class="jobs">
+      {
+        jobs.map((j) => (
+          <li>
+            <h3>{j.title}</h3>
+            <span>{j.place} · {j.type}</span>
+            <a href={`mailto:${site.email}?subject=${encodeURIComponent(j.title)}`}>Apply →</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .jobs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .jobs li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  h3 {
+    margin: 0;
+    flex: 1 1 260px;
+  }
+  span {
+    color: var(--muted);
+  }
+</style>

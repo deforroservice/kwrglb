@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import { posts } from '../../data/site';
+import { url } from '../../lib/url';
+---
+
+<Base title="Blog" description="Placeholder description of the blog.">
+  <Hero title="Blog" subtitle="Placeholder subtitle about what gets written here." />
+  <section class="container">
+    <ul class="posts">
+      {
+        posts.map((p) => (
+          <li>
+            <time datetime={p.date}>{p.date}</time>
+            <h2><a href={url(`blog/${p.slug}/`)}>{p.title}</a></h2>
+            <p>{p.excerpt}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  time {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  h2 {
+    margin: 4px 0;
+    font-size: 1.4rem;
+  }
+  h2 a {
+    text-decoration: none;
+  }
+  p {
+    margin: 0;
+    color: var(--muted);
+  }
+</style>
