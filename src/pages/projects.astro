@@ -6,7 +6,10 @@ import { projects } from '../data/site';
 ---
 
 <Base title="Projects" description="Placeholder description of the projects page.">
-  <Hero title="Projects" subtitle="Placeholder subtitle. A sentence about the kinds of problems the lab works on." />
+  <Hero
+    title="Projects"
+    subtitle="Placeholder subtitle. A sentence about the projects running now, and the ones that have grown into something bigger."
+  />
   <section class="container">
     <ProjectsList client:visible projects={projects} />
   </section>

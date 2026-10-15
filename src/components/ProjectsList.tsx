@@ -1,71 +1,68 @@
-import { useMemo, useState } from 'preact/hooks';
-import type { Project } from '../data/site';
+import { useState } from 'preact/hooks';
+import { coverStyle, type Project } from '../data/site';
+import { url } from '../lib/url';
 
-const STATUSES = ['All', 'Exploring', 'Building', 'Graduated'] as const;
+const FILTERS = [
+  { value: 'All', label: 'All Projects' },
+  { value: 'Current', label: 'Current Projects' },
+  { value: 'Graduated', label: 'Graduated Projects' },
+];
 
 export default function ProjectsList({ projects }: { projects: Project[] }) {
-  const [status, setStatus] = useState<(typeof STATUSES)[number]>('All');
-  const [topic, setTopic] = useState('All');
-
-  const topics = useMemo(
-    () => ['All', ...new Set(projects.flatMap((p) => p.topics))].sort((a, b) => (a === 'All' ? -1 : b === 'All' ? 1 : a.localeCompare(b))),
-    [projects],
-  );
-
-  const shown = projects.filter(
-    (p) => (status === 'All' || p.status === status) && (topic === 'All' || p.topics.includes(topic)),
-  );
+  const [filter, setFilter] = useState('All');
+  const shown = projects.filter((p) => filter === 'All' || p.status === filter);
 
   return (
     <div class="plist">
-      <div class="filters">
-        <div class="chips" role="group" aria-label="Status">
-          {STATUSES.map((s) => (
-            <button type="button" class={s === status ? 'chip on' : 'chip'} aria-pressed={s === status} onClick={() => setStatus(s)}>
-              {s}
-            </button>
+      <label class="filter">
+        <span class="sr-only">Show</span>
+        <select value={filter} onChange={(e) => setFilter((e.target as HTMLSelectElement).value)}>
+          {FILTERS.map((f) => (
+            <option value={f.value}>{f.label}</option>
           ))}
-        </div>
-        <label class="topic">
-          <span class="sr-only">Topic</span>
-          <select value={topic} onChange={(e) => setTopic((e.target as HTMLSelectElement).value)}>
-            {topics.map((t) => (
-              <option value={t}>{t === 'All' ? 'All topics' : t}</option>
-            ))}
-          </select>
-        </label>
-      </div>
+        </select>
+      </label>
 
-      <ul class="grid">
+      <ul class="cards">
         {shown.map((p) => (
-          <li class="card" key={p.slug}>
-            <span class={'status ' + p.status.toLowerCase()}>{p.status}</span>
-            <h3>{p.name}</h3>
-            <p>{p.summary}</p>
-            <div class="tags">
-              {p.topics.map((t) => (
-                <span>{t}</span>
-              ))}
-            </div>
+          <li key={p.slug}>
+            <a class="card" href={url(`projects/${p.slug}/`)} style={{ backgroundImage: coverStyle(p.palette) }}>
+              <span class="title">{p.name}</span>
+            </a>
           </li>
         ))}
       </ul>
-      {shown.length === 0 && <p class="none">No projects match these filters.</p>}
 
       <style>{`
-        .plist .filters { display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center; margin-bottom:24px; }
-        .plist .chips { display:flex; flex-wrap:wrap; gap:8px; }
-        .plist .chip { font:inherit; font-size:.9rem; padding:6px 14px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--text); cursor:pointer; }
-        .plist .chip.on { background:var(--accent); border-color:var(--accent); color:var(--bg); }
-        .plist select { font:inherit; padding:8px 12px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--text); }
-        .plist .grid { list-style:none; margin:0; padding:0; display:grid; gap:16px; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); }
-        .plist .card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px; display:flex; flex-direction:column; gap:8px; }
-        .plist .card h3 { margin:0; font-size:1.2rem; }
-        .plist .card p { margin:0; color:var(--muted); flex:1; }
-        .plist .status { align-self:flex-start; font-size:.75rem; text-transform:uppercase; letter-spacing:.06em; padding:2px 10px; border-radius:999px; background:var(--accent-soft); color:var(--accent); }
-        .plist .tags { display:flex; flex-wrap:wrap; gap:6px; }
-        .plist .tags span { font-size:.8rem; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:1px 8px; }
-        .plist .none { color:var(--muted); }
+        .plist .filter select {
+          appearance: none; -webkit-appearance: none;
+          font: inherit; font-size: 13px; font-weight: 500; line-height: 24px;
+          padding: 0 36px 0 14px; border: 0; border-radius: 25px;
+          background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23fff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;
+          color: #fff; cursor: pointer;
+        }
+        .plist .filter select option { color: #000; background: #fff; }
+        .plist .cards {
+          list-style: none; margin: 36px 0 0; padding: 0;
+          display: grid; gap: 16px; grid-template-columns: 1fr;
+        }
+        @media (min-width: 560px) { .plist .cards { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 900px) { .plist .cards { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+        .plist .card {
+          position: relative; display: block; aspect-ratio: 345 / 439;
+          border-radius: 8px; overflow: hidden; text-decoration: none;
+          background-size: cover; background-position: center;
+          transition: transform .3s ease;
+        }
+        .plist .card::before {
+          content: ''; position: absolute; inset: 0;
+          background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 35%);
+        }
+        .plist .card:hover { transform: translateY(-4px); }
+        .plist .title {
+          position: absolute; top: 20px; left: 20px; right: 20px;
+          color: #fafafa; font-size: 20px; line-height: 22px;
+        }
       `}</style>
     </div>
   );

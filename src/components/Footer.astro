@@ -7,39 +7,28 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="container inner">
-    <div>
-      <a class="logo" href={url()}>{site.name}</a>
-      <p>{site.tagline}</p>
-    </div>
     <ul>
       <li><a href={url('contact/')}>Contact</a></li>
       <li><a href={url('careers/')}>Careers</a></li>
       {socials.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}
     </ul>
+    <p>© {year} {site.name}</p>
   </div>
-  <div class="container legal">© {year} {site.name}</div>
 </footer>
 
 <style>
   .footer {
-    margin-top: 96px;
+    margin-top: 120px;
     border-top: 1px solid var(--line);
-    padding: 40px 0 24px;
+    padding: 32px 0;
+    font-size: 14px;
     color: var(--muted);
   }
   .inner {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 16px 32px;
     justify-content: space-between;
-  }
-  .logo {
-    font-weight: 700;
-    color: var(--text);
-    text-decoration: none;
-  }
-  p {
-    margin: 4px 0 0;
   }
   ul {
     list-style: none;
@@ -47,10 +36,15 @@ const year = new Date().getFullYear();
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
   }
-  .legal {
-    margin-top: 32px;
-    font-size: 0.85rem;
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--text);
+  }
+  p {
+    margin: 0;
   }
 </style>

@@ -1,102 +1,77 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import { projects, posts } from '../data/site';
+import { projects, posts, coverStyle } from '../data/site';
 import { url } from '../lib/url';
 
-const featured = projects.filter((p) => p.status !== 'Graduated').slice(0, 3);
+const featured = projects.filter((p) => p.status === 'Current').slice(0, 3);
 const latest = posts.slice(0, 2);
 ---
 
 <Base>
   <Hero
-    eyebrow="Placeholder eyebrow"
     title="Placeholder headline about what this lab is for."
     subtitle="Placeholder subtitle. One or two sentences that explain the mission in plain words."
   >
-    <div class="cta">
-      <a class="btn primary" href={url('projects/')}>See projects</a>
-      <a class="btn" href={url('contact/')}>Get in touch</a>
-    </div>
+    <a class="pill cta" href={url('projects/')}>See our projects</a>
   </Hero>
 
-  <section class="block">
-    <div class="container">
-      <div class="head">
-        <h2>Current projects</h2>
-        <a href={url('projects/')}>All projects →</a>
+  <section class="container block">
+    <div class="head">
+      <h2>Current projects</h2>
+      <a href={url('projects/')}>All projects</a>
+    </div>
+    <ul class="cards">
+      {
+        featured.map((p) => (
+          <li>
+            <a class="card" href={url(`projects/${p.slug}/`)} style={`background-image:${coverStyle(p.palette)}`}>
+              <span>{p.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="band">
+    <div class="grid12">
+      <div class="span-8">
+        <h2>How we work</h2>
+        <p><strong>Explore.</strong> Placeholder text about finding a problem worth solving.</p>
+        <p><strong>Build.</strong> Placeholder text about testing the idea quickly.</p>
+        <p><strong>Graduate.</strong> Placeholder text about what happens when it works.</p>
+        <a class="pill" href={url('lab/')}>More about the lab</a>
       </div>
-      <ul class="cards">
-        {
-          featured.map((p) => (
-            <li>
-              <span class="status">{p.status}</span>
-              <h3>{p.name}</h3>
-              <p>{p.summary}</p>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </section>
 
-  <section class="block band">
-    <div class="container steps">
-      <h2>How we work</h2>
-      <ol>
-        <li><strong>Explore.</strong> Placeholder text about finding a problem worth solving.</li>
-        <li><strong>Build.</strong> Placeholder text about testing the idea quickly.</li>
-        <li><strong>Graduate.</strong> Placeholder text about what happens when it works.</li>
-      </ol>
-      <a href={url('lab/')}>More about the lab →</a>
+  <section class="container block">
+    <div class="head">
+      <h2>From the blog</h2>
+      <a href={url('blog/')}>All posts</a>
     </div>
-  </section>
-
-  <section class="block">
-    <div class="container">
-      <div class="head">
-        <h2>From the blog</h2>
-        <a href={url('blog/')}>All posts →</a>
-      </div>
-      <ul class="cards two">
-        {
-          latest.map((p) => (
-            <li>
-              <time datetime={p.date}>{p.date}</time>
-              <h3><a href={url(`blog/${p.slug}/`)}>{p.title}</a></h3>
-              <p>{p.excerpt}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    <ul class="posts">
+      {
+        latest.map((p) => (
+          <li>
+            <time datetime={p.date}>{p.date}</time>
+            <h3><a href={url(`blog/${p.slug}/`)}>{p.title}</a></h3>
+            <p>{p.excerpt}</p>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Base>
 
 <style>
   .cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
     margin-top: 32px;
   }
-  .btn {
-    padding: 12px 22px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .btn.primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--bg);
-  }
   .block {
-    padding: 48px 0;
-  }
-  .band {
-    background: var(--accent-soft);
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
   .head {
     display: flex;
@@ -106,9 +81,17 @@ const latest = posts.slice(0, 2);
     margin-bottom: 24px;
   }
   h2 {
+    margin: 0 0 16px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.5px;
+  }
+  .head h2 {
     margin: 0;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    letter-spacing: -0.02em;
+  }
+  .head a {
+    font-size: 14px;
   }
   .cards {
     list-style: none;
@@ -116,33 +99,77 @@ const latest = posts.slice(0, 2);
     padding: 0;
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: 1fr;
   }
-  .cards li {
-    background: var(--surface);
-    border: 1px solid var(--line);
+  @media (min-width: 560px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 900px) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+  }
+  .card {
+    position: relative;
+    display: block;
+    aspect-ratio: 345 / 439;
     border-radius: var(--radius);
-    padding: 20px;
+    overflow: hidden;
+    background-size: cover;
+    text-decoration: none;
   }
-  .cards h3 {
-    margin: 8px 0;
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 35%);
   }
-  .cards p {
+  .card span {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    color: #fafafa;
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .band {
+    background: var(--band);
+    padding: 64px 0;
+  }
+  .band p {
+    margin: 0 0 12px;
+  }
+  .band .pill {
+    margin-top: 16px;
+  }
+  .posts {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .posts li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  time {
+    font-size: 13px;
     color: var(--muted);
   }
-  .status,
-  time {
-    font-size: 0.8rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+  h3 {
+    margin: 2px 0;
+    font-size: 20px;
+    font-weight: 500;
   }
-  .steps ol {
-    margin: 24px 0;
-    padding-left: 20px;
-    display: grid;
-    gap: 12px;
-    max-width: 60ch;
+  h3 a {
+    text-decoration: none;
+  }
+  .posts p {
+    margin: 0;
+    color: var(--muted);
   }
 </style>

@@ -2,22 +2,21 @@
 // Simple text column for content pages.
 ---
 
-<section class="container prose">
-  <slot />
+<section class="grid12">
+  <div class="prose span-8">
+    <slot />
+  </div>
 </section>
 
 <style>
-  .prose {
-    max-width: 760px;
-    margin-left: 0;
-  }
   .prose :global(h2) {
-    margin: 40px 0 8px;
-    font-size: 1.6rem;
-    letter-spacing: -0.02em;
+    margin: 40px 0 16px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.5px;
   }
   .prose :global(p) {
-    color: var(--muted);
-    font-size: 1.1rem;
+    margin: 0 0 16px;
   }
 </style>

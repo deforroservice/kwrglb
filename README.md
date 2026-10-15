@@ -1,7 +1,7 @@
 # kwrglb
 
 Website built with [Astro](https://astro.build) + [Preact](https://preactjs.com) islands.
-All text is placeholder for now.
+All text is placeholder for now; project cover art is generated from each project's `palette` until real photos are added.
 
 ## Change the text
 
@@ -11,7 +11,8 @@ Edit it right here on GitHub (pencil icon) and commit.
 | Page | File |
 | --- | --- |
 | Home | `src/pages/index.astro` |
-| Projects | `src/pages/projects.astro` (list + filters: `src/components/ProjectsList.tsx`) |
+| Projects | `src/pages/projects.astro` (cards + filter: `src/components/ProjectsList.tsx`) |
+| One project | `src/pages/projects/[slug].astro` (text comes from `src/data/site.ts`) |
 | Lab | `src/pages/lab.astro` |
 | Careers | `src/pages/careers.astro` |
 | Blog | `src/pages/blog/` |

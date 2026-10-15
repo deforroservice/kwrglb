@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projects, coverStyle, site, type Project } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: Project };
+const cover = coverStyle(project.palette);
+---
+
+<Base title={project.name} description={project.tagline}>
+  <section class="intro">
+    <div class="grid12">
+      <h1 class="span-8">{project.name}</h1>
+      <p class="tagline span-6">{project.tagline}</p>
+      <div class="span-8">
+        <p class="label">{project.status === 'Current' ? 'Current project' : 'Graduated project'}</p>
+        <p class="lead">{project.intro}</p>
+        <a class="pill" href={`mailto:${site.email}?subject=${encodeURIComponent(project.name)}`}>Contact the team</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="band" style={`background-image:${cover}`} role="img" aria-label={`${project.name} cover art`}></div>
+
+  <article class="body grid12">
+    {
+      project.sections.map((s, i) => (
+        <>
+          <section class="span-8">
+            <h2>{s.heading}</h2>
+            {s.paragraphs.map((p) => <p>{p}</p>)}
+          </section>
+          {i === 0 && <div class="figure" style={`background-image:${cover}`} role="img" aria-label="Placeholder image" />}
+        </>
+      ))
+    }
+  </article>
+</Base>
+
+<style>
+  .intro {
+    background: var(--band);
+    padding: 48px 0 64px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 48px;
+    letter-spacing: -1px;
+  }
+  .tagline {
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: -0.5px;
+  }
+  .label {
+    margin: 24px 0 4px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .lead {
+    margin: 0 0 24px;
+  }
+  .band {
+    height: clamp(240px, 40vw, 520px);
+    background-size: cover;
+    background-position: center;
+  }
+  .body {
+    padding-top: 64px;
+  }
+  h2 {
+    margin: 32px 0 16px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.5px;
+  }
+  .body p {
+    margin: 0 0 16px;
+  }
+  .figure {
+    margin: 48px 0 16px;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    background-size: cover;
+    background-position: center;
+  }
+  @media (min-width: 900px) {
+    .intro {
+      padding: 96px 0 96px;
+    }
+    h1 {
+      font-size: 64px;
+      line-height: 72px;
+      letter-spacing: -1.5px;
+    }
+    .body {
+      padding-top: 96px;
+    }
+  }
+</style>

@@ -1,25 +1,22 @@
 :root {
-  --bg: #f4f1ea;
+  --bg: #fafafa;
+  --band: #f0f0f0;
   --surface: #ffffff;
-  --text: #1b1f1d;
-  --muted: #5c6460;
-  --line: #d9d4c7;
-  --accent: #1f3d36;
-  --accent-soft: #dfe8e2;
-  --radius: 14px;
-  --max: 1120px;
-  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text: #000000;
+  --muted: #5f6368;
+  --line: #dadce0;
+  --accent: #000000;
+  --accent-soft: #ececec;
+  --radius: 8px;
+  --font: 'Google Sans Flex', Arial, Helvetica, sans-serif;
+  --gutter: 30px;
+  --col-gap: 16px;
+  --max: 940px;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 900px) {
   :root {
-    --bg: #121514;
-    --surface: #1b1f1d;
-    --text: #ecebe6;
-    --muted: #a3aaa6;
-    --line: #2e3431;
-    --accent: #9fd3bf;
-    --accent-soft: #23302b;
+    --col-gap: 24px;
   }
 }
 
@@ -38,7 +35,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 27px;
 }
 
 a {
@@ -50,17 +48,45 @@ img {
   display: block;
 }
 
-.container {
+/* 12-column layout grid, centred; children pick their span with .span-* */
+.grid12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
   width: 100%;
-  max-width: var(--max);
+  max-width: calc(var(--max) + 2 * var(--gutter));
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 var(--gutter);
+}
+.grid12 > * {
+  grid-column: 1 / -1;
+}
+@media (min-width: 900px) {
+  .grid12 > .span-8 {
+    grid-column: 1 / span 8;
+  }
+  .grid12 > .span-6 {
+    grid-column: 1 / span 6;
+  }
 }
 
-@media (min-width: 720px) {
-  .container {
-    padding: 0 32px;
-  }
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.pill {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 25px;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration: none;
 }
 
 .sr-only {

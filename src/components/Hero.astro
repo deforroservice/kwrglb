@@ -7,37 +7,54 @@ interface Props {
 const { title, subtitle, eyebrow } = Astro.props;
 ---
 
-<section class="hero">
-  <div class="container">
+<section class="hero grid12">
+  <div class="span-8">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
-    {subtitle && <p class="subtitle">{subtitle}</p>}
-    <slot />
   </div>
+  {
+    subtitle && (
+      <p class="subtitle span-6">{subtitle}</p>
+    )
+  }
+  <div class="span-8"><slot /></div>
 </section>
 
 <style>
   .hero {
-    padding: 72px 0 48px;
+    padding-top: 64px;
+    padding-bottom: 40px;
   }
   .eyebrow {
-    margin: 0 0 12px;
-    font-size: 0.85rem;
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
+    color: var(--muted);
   }
   h1 {
     margin: 0;
-    font-size: clamp(2.4rem, 7vw, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.035em;
-    max-width: 18ch;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 48px;
+    letter-spacing: -1px;
   }
   .subtitle {
-    margin: 20px 0 0;
-    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-    color: var(--muted);
-    max-width: 52ch;
+    margin: 24px 0 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: -0.5px;
+  }
+  @media (min-width: 900px) {
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 48px;
+    }
+    h1 {
+      font-size: 64px;
+      line-height: 72px;
+      letter-spacing: -1.5px;
+    }
   }
 </style>
