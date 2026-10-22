@@ -8,9 +8,10 @@ function rng(seed: number) {
   };
 }
 
-type Options = { stroke: string; opacity?: number; lines?: number; width?: number; height?: number };
+// fade: lines fade in towards the bottom-right corner instead of covering the whole area.
+type Options = { stroke: string; opacity?: number; lines?: number; width?: number; height?: number; fade?: boolean };
 
-export function wavesSvg(seed: number, { stroke, opacity = 0.6, lines = 28, width = 600, height = 400 }: Options): string {
+export function wavesSvg(seed: number, { stroke, opacity = 0.6, lines = 28, width = 600, height = 400, fade = false }: Options): string {
   const r = rng(seed);
   const f1 = 0.006 + r() * 0.006;
   const f2 = 0.012 + r() * 0.01;
@@ -30,7 +31,12 @@ export function wavesSvg(seed: number, { stroke, opacity = 0.6, lines = 28, widt
     }
     paths.push(`<path d="${d}"/>`);
   }
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="${stroke}" stroke-opacity="${opacity}" stroke-width="1">${paths.join('')}</g></svg>`;
+  const paint = fade ? 'url(#f)' : stroke;
+  const defs = fade
+    ? `<defs><linearGradient id="f" gradientUnits="userSpaceOnUse" x1="${width * 0.45}" y1="${height * 0.2}" x2="${width}" y2="${height}"><stop offset="0" stop-color="${stroke}" stop-opacity="0"/><stop offset="1" stop-color="${stroke}" stop-opacity="${opacity}"/></linearGradient></defs>`
+    : '';
+  const strokeOpacity = fade ? 1 : opacity;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="${fade ? 'xMaxYMax' : 'xMidYMid'} slice">${defs}<g fill="none" stroke="${paint}" stroke-opacity="${strokeOpacity}" stroke-width="1">${paths.join('')}</g></svg>`;
 }
 
 export function wavesUrl(seed: number, opts: Options): string {
@@ -42,7 +48,7 @@ export function cardCover(seed: number): string {
   return `${wavesUrl(seed, { stroke: '#3fae86', opacity: 0.55 })} center / cover no-repeat, linear-gradient(180deg, #eef4f2, #e3ece9)`;
 }
 
-// Dark band: green lines on deep teal.
+// Dark band: faint green lines in the bottom-right corner, fading into plain deep teal.
 export function darkCover(seed: number): string {
-  return `${wavesUrl(seed, { stroke: '#6ED3A4', opacity: 0.35, lines: 40 })} right center / cover no-repeat, linear-gradient(120deg, #173b4c 0%, #1E4A5F 45%, #3F6B7A 100%)`;
+  return `${wavesUrl(seed, { stroke: '#6ED3A4', opacity: 0.4, lines: 18, width: 1200, height: 400, fade: true })} right bottom / cover no-repeat, linear-gradient(120deg, #1a4256 0%, #1E4A5F 55%, #2c5a6c 100%)`;
 }

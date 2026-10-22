@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.tsx';
 import PostCard from '../components/PostCard.astro';
-import { projects, posts, stats } from '../data/site';
+import Icon from '../components/Icon.astro';
+import { projects, posts, pillars } from '../data/site';
 import { url } from '../lib/url';
 
 const featured = projects.slice(0, 3);
@@ -18,7 +19,7 @@ const latest = posts.slice(0, 3);
     subtitle="Placeholder: we help turn research and innovation into funded, real-world solutions for people and the planet."
   >
     <div class="ctas">
-      <a class="btn btn-primary" href={url('research/')}>Explore our approach <span class="arrow">→</span></a>
+      <a class="btn btn-primary" href={url('about/')}>Explore our approach <span class="arrow">→</span></a>
       <a class="btn btn-secondary btn-on-dark" href={url('projects/')}>Our projects</a>
     </div>
   </Hero>
@@ -37,18 +38,21 @@ const latest = posts.slice(0, 3);
   </section>
 
   <section class="band">
-    <div class="container stats">
-      <div class="intro">
-        <p class="label">Our network</p>
-        <h2>Turning knowledge into real-world impact</h2>
-        <p>Placeholder: a sentence about the consortia, institutions and researchers you work with.</p>
+    <div class="container">
+      <div class="head">
+        <div>
+          <p class="label">What we do</p>
+          <h2>Turning knowledge into real-world impact</h2>
+        </div>
+        <a class="btn btn-tertiary" href={url('about/')}>About us <span class="arrow">→</span></a>
       </div>
-      <ul>
+      <ul class="pillars">
         {
-          stats.map((s) => (
+          pillars.map((p) => (
             <li>
-              <strong>{s.value}</strong>
-              <span>{s.label}</span>
+              <Icon name={p.icon} />
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
             </li>
           ))
         }
@@ -60,7 +64,7 @@ const latest = posts.slice(0, 3);
     <div class="head">
       <div>
         <p class="label">Insights</p>
-        <h2>Latest publications</h2>
+        <h2>Insights &amp; news</h2>
       </div>
       <a class="btn btn-tertiary" href={url('insights/')}>All insights <span class="arrow">→</span></a>
     </div>
@@ -77,7 +81,7 @@ const latest = posts.slice(0, 3);
     gap: 12px;
   }
   .block {
-    padding-top: 72px;
+    padding-top: 40px;
   }
   .head {
     display: flex;
@@ -85,7 +89,7 @@ const latest = posts.slice(0, 3);
     justify-content: space-between;
     align-items: flex-end;
     gap: 12px 24px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
   .head .label {
     margin: 0 0 6px;
@@ -99,43 +103,32 @@ const latest = posts.slice(0, 3);
   }
   .band {
     margin-top: 72px;
-    padding: 64px 0;
+    padding: 56px 0 64px;
     background: var(--band);
   }
-  .stats {
-    display: grid;
-    gap: 32px;
-  }
-  .stats .label {
-    margin: 0 0 6px;
-  }
-  .intro p:last-child {
-    margin: 16px 0 0;
-    color: var(--muted);
-    max-width: 44ch;
-  }
-  .stats ul {
+  .pillars {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 28px 32px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
-  .stats li {
-    border-left: 3px solid var(--green);
-    padding-left: 16px;
-  }
-  .stats strong {
-    display: block;
-    font-family: var(--display);
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1;
+  .pillars li {
+    border-top: 2px solid var(--green);
+    padding-top: 20px;
     color: var(--deep-teal);
   }
-  .stats span {
-    font-size: 14px;
+  .pillars h3 {
+    margin: 14px 0 6px;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.05;
+  }
+  .pillars p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 24px;
     color: var(--muted);
   }
   .posts {
@@ -149,10 +142,6 @@ const latest = posts.slice(0, 3);
   @media (min-width: 900px) {
     h2 {
       font-size: 48px;
-    }
-    .stats {
-      grid-template-columns: 1fr 1.4fr;
-      align-items: center;
     }
   }
 </style>

@@ -8,9 +8,10 @@ export const site = {
 };
 
 export const nav = [
-  { label: 'Research', href: 'research/' },
   { label: 'Projects', href: 'projects/' },
+  { label: 'Publications', href: 'publications/' },
   { label: 'Insights', href: 'insights/' },
+  { label: 'Partners', href: 'partners/' },
   { label: 'About', href: 'about/' },
 ];
 
@@ -23,16 +24,16 @@ export const footerColumns = [
   {
     title: 'Explore',
     links: [
-      { label: 'Research', href: 'research/' },
       { label: 'Projects', href: 'projects/' },
-      { label: 'Insights', href: 'insights/' },
-      { label: 'About', href: 'about/' },
+      { label: 'Publications', href: 'publications/' },
+      { label: 'Insights & news', href: 'insights/' },
+      { label: 'Partners', href: 'partners/' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Insights', href: 'insights/' },
+      { label: 'About', href: 'about/' },
       { label: 'Careers', href: 'careers/' },
       { label: 'Contact', href: 'contact/' },
     ],
@@ -124,10 +125,72 @@ export const projects: Project[] = [
   },
 ];
 
-export const stats = [
-  { value: '12K+', label: 'Placeholder: researchers in our network' },
-  { value: '40+', label: 'Placeholder: partner institutions' },
-  { value: '€25M', label: 'Placeholder: funding secured' },
+// "What we do" pillars on the home page. icon: research | funding | partners
+export const pillars = [
+  {
+    icon: 'research',
+    title: 'Research design',
+    text: 'Placeholder: shaping strong research questions, methods and work plans.',
+  },
+  {
+    icon: 'funding',
+    title: 'Funding & proposals',
+    text: 'Placeholder: finding the right calls and writing competitive proposals.',
+  },
+  {
+    icon: 'partners',
+    title: 'Partnerships & consortia',
+    text: 'Placeholder: bringing the right institutions and people together.',
+  },
+] as const;
+
+export type Publication = {
+  title: string;
+  authors: string;
+  venue: string;
+  year: number;
+  type: 'Article' | 'Report' | 'Chapter' | 'Dataset';
+  href?: string;
+};
+
+export const publications: Publication[] = [
+  {
+    title: 'Placeholder: title of a peer-reviewed article',
+    authors: 'Placeholder Author, Second Author',
+    venue: 'Placeholder Journal',
+    year: 2026,
+    type: 'Article',
+  },
+  {
+    title: 'Placeholder: title of a policy or technical report',
+    authors: 'Kwarg Lab',
+    venue: 'Placeholder Publisher',
+    year: 2025,
+    type: 'Report',
+  },
+  {
+    title: 'Placeholder: title of an open dataset',
+    authors: 'Placeholder Author et al.',
+    venue: 'Placeholder Repository',
+    year: 2025,
+    type: 'Dataset',
+  },
+];
+
+// Things you helped make happen that are not publications: proposals, tools, events.
+export const contributions = [
+  { title: 'Placeholder contribution', text: 'Placeholder: one or two sentences on what was done and why it mattered.' },
+  { title: 'Placeholder contribution', text: 'Placeholder: e.g. co-wrote a successful funding proposal for a consortium.' },
+  { title: 'Placeholder contribution', text: 'Placeholder: e.g. built an open tool used by partner institutions.' },
+];
+
+export const partners = [
+  { name: 'Placeholder University', type: 'University', text: 'Placeholder: what you do together.' },
+  { name: 'Placeholder Institute', type: 'Research institute', text: 'Placeholder: what you do together.' },
+  { name: 'Placeholder Foundation', type: 'Funder', text: 'Placeholder: what you do together.' },
+  { name: 'Placeholder Company', type: 'Industry', text: 'Placeholder: what you do together.' },
+  { name: 'Placeholder NGO', type: 'Non-profit', text: 'Placeholder: what you do together.' },
+  { name: 'Placeholder City', type: 'Public sector', text: 'Placeholder: what you do together.' },
 ];
 
 export type Post = {

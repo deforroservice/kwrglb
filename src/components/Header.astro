@@ -51,7 +51,7 @@ const searchItems = [
   };
   btn.addEventListener('click', () => setOpen(menu.hidden));
   window.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
-  matchMedia('(min-width: 900px)').addEventListener('change', () => setOpen(false));
+  matchMedia('(min-width: 1100px)').addEventListener('change', () => setOpen(false));
 </script>
 
 <style>
@@ -132,7 +132,7 @@ const searchItems = [
   .menu-btn[aria-expanded='true'] span:last-child {
     transform: translateY(-4px) rotate(-45deg);
   }
-  @media (min-width: 900px) {
+  @media (min-width: 1100px) {
     .inline-nav {
       display: flex;
     }

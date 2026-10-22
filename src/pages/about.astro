@@ -6,18 +6,37 @@ import { url } from '../lib/url';
 ---
 
 <Base title="About" description="Placeholder description of Kwarg Lab.">
-  <Hero eyebrow="About" title="About Kwarg Lab" subtitle="Placeholder: who we are and why we exist." />
+  <Hero eyebrow="About" title="About Kwarg Lab" subtitle="Placeholder: who we are, why we exist, and how we work." />
   <Prose>
     <p>
       Placeholder: we are a research and innovation studio supporting consortia, institutions and researchers to secure
       funding, develop high-impact projects, and turn big ideas into real-world solutions.
     </p>
-    <h2>Placeholder: our values</h2>
+
+    <h2>Our approach</h2>
+    <p><strong>Explore.</strong> Placeholder: how research questions are chosen.</p>
+    <p><strong>Partner.</strong> Placeholder: how consortia and institutions come together.</p>
+    <p><strong>Fund.</strong> Placeholder: how funding is secured and managed.</p>
+    <p><strong>Deliver impact.</strong> Placeholder: how results reach people and the planet.</p>
+
+    <h2>Our values</h2>
     <p>Placeholder paragraph about how the team works.</p>
-    <h2>Placeholder: the team</h2>
+
+    <h2>The team</h2>
     <p>Placeholder paragraph introducing the people behind the lab.</p>
-    <p>
+
+    <p class="ctas">
+      <a class="btn btn-primary" href={url('contact/')}>Work with us <span class="arrow">→</span></a>
       <a class="btn btn-secondary" href={url('careers/')}>Join us</a>
     </p>
   </Prose>
 </Base>
+
+<style>
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+</style>
