@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Prose from '../components/Prose.astro';
-import { pillars } from '../data/site';
+import { pillars, contributions } from '../data/site';
 import { url } from '../lib/url';
 ---
 
@@ -29,6 +29,12 @@ import { url } from '../lib/url';
       their contributions into one coherent proposal.
     </p>
 
+    <h2>Track record</h2>
+    <p>Selected proposals, consortia and tools we have helped bring to life.</p>
+    <ul class="track">
+      {contributions.map((c) => <li><strong>{c.title}</strong><span>{c.text}</span></li>)}
+    </ul>
+
     <p class="ctas">
       <a class="btn btn-primary" href={url('contact/')}>Get in touch <span class="arrow">→</span></a>
       <a class="btn btn-secondary" href={url('careers/')}>Careers</a>
@@ -37,6 +43,28 @@ import { url } from '../lib/url';
 </Base>
 
 <style>
+  .track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .track li {
+    display: grid;
+    gap: 4px;
+    padding: 16px 0 16px 18px;
+    border-bottom: 1px solid var(--line);
+    border-left: 3px solid var(--green);
+  }
+  .track strong {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--deep-teal);
+  }
+  .track span {
+    color: var(--muted);
+  }
   .ctas {
     display: flex;
     flex-wrap: wrap;

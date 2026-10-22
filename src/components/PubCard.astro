@@ -1,0 +1,75 @@
+---
+import type { Publication } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  pub: Publication;
+}
+const { pub } = Astro.props;
+const Tag = pub.href ? 'a' : 'div';
+---
+
+<Tag class="pub" href={pub.href} target={pub.href ? '_blank' : undefined} rel={pub.href ? 'noopener' : undefined}>
+  <span class="top">
+    <Icon name="document" size={34} />
+    <span class="year">{pub.year}</span>
+  </span>
+  <span class="topic">Publication · {pub.type}</span>
+  <span class="title">{pub.title}</span>
+  <span class="text">{pub.authors} · <em>{pub.venue}</em></span>
+  {pub.href && <span class="more">View publication <span class="arrow">→</span></span>}
+</Tag>
+
+<style>
+  .pub {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--slate-teal);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  a.pub:hover {
+    box-shadow: 0 12px 28px rgba(30, 74, 95, 0.12);
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: var(--mid-gray);
+  }
+  .year {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .topic {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate-teal);
+    margin-bottom: -6px;
+  }
+  .title {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--deep-teal);
+  }
+  .text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--muted);
+  }
+  .more {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-dark);
+  }
+</style>

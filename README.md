@@ -5,7 +5,7 @@ All text is placeholder for now; project images are generated line art (`src/lib
 
 ## Change the text
 
-Almost everything lives in **`src/data/site.ts`**: site name, menu, projects, publications, contributions, partners, insights, jobs.
+Almost everything lives in **`src/data/site.ts`**: site name, menu, projects, insights, publications, track record, partners, jobs.
 Edit it right here on GitHub (pencil icon) and commit.
 
 | Page | File |
@@ -13,11 +13,10 @@ Edit it right here on GitHub (pencil icon) and commit.
 | Home | `src/pages/index.astro` |
 | Projects | `src/pages/projects.astro` (cards + filter: `src/components/ProjectsList.tsx`) |
 | One project | `src/pages/projects/[slug].astro` (text comes from `src/data/site.ts`) |
-| Publications & key contributions | `src/pages/publications.astro` |
-| Partners | `src/pages/partners.astro` |
-| About (incl. our approach) | `src/pages/about.astro` |
+| About (approach + track record) | `src/pages/about.astro` |
+| Partners (home page section) | `src/pages/index.astro`, data in `src/data/site.ts` |
 | Careers | `src/pages/careers.astro` |
-| Insights & news | `src/pages/insights/` |
+| Insights & publications | `src/pages/insights/` |
 | Contact | `src/pages/contact.astro` |
 | Header, menu, search | `src/components/Header.astro`, `src/components/Search.tsx` |
 | Colors, fonts, buttons, chips | `src/styles/global.css` |

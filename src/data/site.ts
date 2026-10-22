@@ -11,9 +11,9 @@ export const site = {
 
 export const nav = [
   { label: 'Projects', href: 'projects/' },
-  { label: 'Publications', href: 'publications/' },
   { label: 'Insights', href: 'insights/' },
-  { label: 'Partners', href: 'partners/' },
+  // Partners live in a section on the home page.
+  { label: 'Partners', href: '#partners' },
   { label: 'About', href: 'about/' },
 ];
 
@@ -21,9 +21,8 @@ export const socials = [{ label: 'LinkedIn', href: 'https://www.linkedin.com/' }
 
 export const footerLinks = [
   { label: 'Projects', href: 'projects/' },
-  { label: 'Publications', href: 'publications/' },
-  { label: 'Insights & News', href: 'insights/' },
-  { label: 'Partners', href: 'partners/' },
+  { label: 'Insights & publications', href: 'insights/' },
+  { label: 'Partners', href: '#partners' },
   { label: 'About', href: 'about/' },
   { label: 'Careers', href: 'careers/' },
   { label: 'Contact', href: 'contact/' },
@@ -173,7 +172,12 @@ export const contributions = [
   { title: 'Placeholder contribution', text: 'Placeholder: e.g. built an open tool used by partner institutions.' },
 ];
 
-export const partners = [
+// Home page "Our partners" section. Logos are placeholders until real ones are added
+// (put files in public/partners/ and set logo: 'partners/name.svg').
+export const partnersIntro =
+  'We work with Placeholder University, Placeholder Institute, Placeholder Foundation, Placeholder Company, Placeholder NGO and Placeholder City, bringing together research, industry, funders and the public sector around shared objectives.';
+
+export const partners: { name: string; type: string; text: string; logo?: string }[] = [
   { name: 'Placeholder University', type: 'University', text: 'Placeholder: what you do together.' },
   { name: 'Placeholder Institute', type: 'Research institute', text: 'Placeholder: what you do together.' },
   { name: 'Placeholder Foundation', type: 'Funder', text: 'Placeholder: what you do together.' },
@@ -184,6 +188,7 @@ export const partners = [
 
 export type Post = {
   slug: string;
+  kind: 'Insight' | 'News';
   topic: string;
   title: string;
   date: string;
@@ -195,6 +200,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: 'finding-the-right-international-research-opportunities',
+    kind: 'Insight',
     topic: 'Funding Intelligence',
     title: 'Finding the right international research opportunities',
     date: '2026-10-01',
@@ -207,6 +213,7 @@ export const posts: Post[] = [
   },
   {
     slug: 'building-effective-research-consortia',
+    kind: 'Insight',
     topic: 'International Partnerships',
     title: 'Building effective research consortia',
     date: '2026-09-15',
@@ -219,6 +226,7 @@ export const posts: Post[] = [
   },
   {
     slug: 'from-research-concept-to-competitive-proposal',
+    kind: 'Insight',
     topic: 'Project Development',
     title: 'From research concept to competitive proposal',
     date: '2026-08-20',

@@ -2,29 +2,100 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import PostCard from '../../components/PostCard.astro';
-import { posts } from '../../data/site';
+import PubCard from '../../components/PubCard.astro';
+import { posts, publications } from '../../data/site';
+
+const TABS = ['All', 'Insights', 'News', 'Publications'];
+// Newest first across both lists; publications only have a year.
+const items = [
+  ...posts.map((p) => ({ kind: p.kind === 'News' ? 'News' : 'Insights', sort: p.date, post: p })),
+  ...publications.map((p) => ({ kind: 'Publications', sort: `${p.year}-00-00`, pub: p })),
+].sort((a, b) => b.sort.localeCompare(a.sort));
 ---
 
-<Base title="Insights & perspectives" description="Perspectives on international research collaboration, competitive funding, emerging technologies and multidisciplinary project development.">
+<Base title="Insights & publications" description="Insights, news and publications on international research collaboration, competitive funding and multidisciplinary project development.">
   <Hero
-    eyebrow="Insights & News"
-    title="Insights & perspectives"
-    subtitle="Perspectives on international research collaboration, competitive funding, emerging technologies and the practical development of multidisciplinary projects."
+    eyebrow="Insights & publications"
+    title="Insights & publications"
+    subtitle="Perspectives, news and publications on international research collaboration, competitive funding, emerging technologies and the practical development of multidisciplinary projects."
   />
   <section class="container">
-    <ul class="posts">
-      {posts.map((p) => <li><PostCard post={p} /></li>)}
+    <div class="tabs" role="tablist" aria-label="Filter">
+      {TABS.map((t, i) => <button type="button" role="tab" class="tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={t}>{t}</button>)}
+    </div>
+    <ul class="items">
+      {
+        items.map((it) => (
+          <li data-kind={it.kind}>
+            {it.post ? <PostCard post={it.post} /> : <PubCard pub={it.pub!} />}
+          </li>
+        ))
+      }
     </ul>
+    <p class="empty" hidden>Nothing here yet. Check back soon.</p>
   </section>
 </Base>
 
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tabs .tab');
+  const items = document.querySelectorAll<HTMLElement>('.items > li');
+  const empty = document.querySelector<HTMLElement>('.empty')!;
+  const show = (tab: string) => {
+    let n = 0;
+    items.forEach((li) => {
+      const on = tab === 'All' || li.dataset.kind === tab;
+      li.hidden = !on;
+      if (on) n++;
+    });
+    empty.hidden = n > 0;
+    tabs.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+  };
+  tabs.forEach((b) => b.addEventListener('click', () => show(b.dataset.tab!)));
+</script>
+
 <style>
-  .posts {
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+    scrollbar-width: none;
+  }
+  .tab {
+    flex: 0 0 auto;
+    padding: 12px 20px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--slate-teal);
+  }
+  .tab:hover {
+    color: var(--deep-teal);
+  }
+  .tab[aria-selected='true'] {
+    color: var(--deep-teal);
+    border-bottom-color: var(--green);
+    font-weight: 600;
+  }
+  .items {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .items > li[hidden] {
+    display: none;
+  }
+  .empty {
+    color: var(--muted);
   }
 </style>
