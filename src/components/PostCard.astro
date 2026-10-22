@@ -17,9 +17,10 @@ const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', m
     </svg>
     <time datetime={post.date}>{date}</time>
   </span>
+  <span class="topic">{post.topic}</span>
   <span class="title">{post.title}</span>
   <span class="text">{post.excerpt}</span>
-  <span class="more">Read publication <span class="arrow">→</span></span>
+  <span class="more">Read insight <span class="arrow">→</span></span>
 </a>
 
 <style>
@@ -48,6 +49,14 @@ const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', m
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+  .topic {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: -6px;
   }
   .title {
     font-family: var(--display);

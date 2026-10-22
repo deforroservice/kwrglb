@@ -2,32 +2,36 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Prose from '../components/Prose.astro';
+import { pillars } from '../data/site';
 import { url } from '../lib/url';
 ---
 
-<Base title="About" description="Placeholder description of Kwarg Lab.">
-  <Hero eyebrow="About" title="About Kwarg Lab" subtitle="Placeholder: who we are, why we exist, and how we work." />
+<Base title="About" description="KWARG connects scientific expertise, funding opportunities and complementary partners to build international research and innovation projects.">
+  <Hero
+    eyebrow="About"
+    title="About KWARG"
+    subtitle="We help universities, research organisations and mission-driven institutions build international partnerships and secure competitive funding for research, innovation and development projects."
+  />
   <Prose>
     <p>
-      Placeholder: we are a research and innovation studio supporting consortia, institutions and researchers to secure
-      funding, develop high-impact projects, and turn big ideas into real-world solutions.
+      KWARG works at the intersection of scientific research, technology and international development. We help
+      organisations translate their expertise and ambitions into credible collaborative projects, combining technical
+      understanding with structured project development and practical coordination.
     </p>
 
+    <h2>What we do</h2>
+    {pillars.map((p) => <p><strong>{p.title}.</strong> {p.text}</p>)}
+
     <h2>Our approach</h2>
-    <p><strong>Explore.</strong> Placeholder: how research questions are chosen.</p>
-    <p><strong>Partner.</strong> Placeholder: how consortia and institutions come together.</p>
-    <p><strong>Fund.</strong> Placeholder: how funding is secured and managed.</p>
-    <p><strong>Deliver impact.</strong> Placeholder: how results reach people and the planet.</p>
-
-    <h2>Our values</h2>
-    <p>Placeholder paragraph about how the team works.</p>
-
-    <h2>The team</h2>
-    <p>Placeholder paragraph introducing the people behind the lab.</p>
+    <p>
+      We support the full journey from initial project concept to coordinated proposal submission: finding the right
+      opportunity, shaping the scientific and technical case, bringing complementary partners together, and coordinating
+      their contributions into one coherent proposal.
+    </p>
 
     <p class="ctas">
-      <a class="btn btn-primary" href={url('contact/')}>Work with us <span class="arrow">→</span></a>
-      <a class="btn btn-secondary" href={url('careers/')}>Join us</a>
+      <a class="btn btn-primary" href={url('contact/')}>Get in touch <span class="arrow">→</span></a>
+      <a class="btn btn-secondary" href={url('careers/')}>Careers</a>
     </p>
   </Prose>
 </Base>

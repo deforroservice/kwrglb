@@ -1,9 +1,11 @@
-// Placeholder content. Replace everything here with real Kwarg Lab text.
+// Site content. Projects, publications, partners and jobs are still placeholders.
 
 export const site = {
-  name: 'Kwarg Lab',
-  tagline: 'Research and technology for a more human and sustainable future.',
-  motto: 'Ideas for a brighter tomorrow',
+  name: 'KWARG LAB',
+  slogan: 'Research. Partnerships. Funding.',
+  tagline:
+    'Advancing international research and innovation through scientific expertise, collaborative project development and lasting institutional partnerships.',
+  motto: 'Strong ideas. Meaningful partnerships. Lasting impact.',
   email: 'hello@example.com',
 };
 
@@ -15,29 +17,16 @@ export const nav = [
   { label: 'About', href: 'about/' },
 ];
 
-export const socials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-  { label: 'GitHub', href: 'https://github.com/deforroservice' },
-];
+export const socials = [{ label: 'LinkedIn', href: 'https://www.linkedin.com/' }];
 
-export const footerColumns = [
-  {
-    title: 'Explore',
-    links: [
-      { label: 'Projects', href: 'projects/' },
-      { label: 'Publications', href: 'publications/' },
-      { label: 'Insights & news', href: 'insights/' },
-      { label: 'Partners', href: 'partners/' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'About', href: 'about/' },
-      { label: 'Careers', href: 'careers/' },
-      { label: 'Contact', href: 'contact/' },
-    ],
-  },
+export const footerLinks = [
+  { label: 'Projects', href: 'projects/' },
+  { label: 'Publications', href: 'publications/' },
+  { label: 'Insights & News', href: 'insights/' },
+  { label: 'Partners', href: 'partners/' },
+  { label: 'About', href: 'about/' },
+  { label: 'Careers', href: 'careers/' },
+  { label: 'Contact', href: 'contact/' },
 ];
 
 export const CATEGORIES = ['Research', 'In development', 'Funded', 'Partnership', 'Idea'] as const;
@@ -125,22 +114,22 @@ export const projects: Project[] = [
   },
 ];
 
-// "What we do" pillars on the home page. icon: research | funding | partners
+// "What we do" pillars on the home page. icon: see src/components/Icon.astro
 export const pillars = [
   {
     icon: 'research',
-    title: 'Research design',
-    text: 'Placeholder: shaping strong research questions, methods and work plans.',
+    title: 'Funding Intelligence',
+    text: 'Identifying and assessing international research and innovation funding opportunities based on programme requirements, scientific relevance, institutional priorities and technical feasibility.',
   },
   {
-    icon: 'funding',
-    title: 'Funding & proposals',
-    text: 'Placeholder: finding the right calls and writing competitive proposals.',
+    icon: 'document',
+    title: 'Project & Proposal Development',
+    text: 'Transforming research concepts into competitive proposals through structured methodologies, work packages, implementation plans, budgets and coordinated partner contributions.',
   },
   {
     icon: 'partners',
-    title: 'Partnerships & consortia',
-    text: 'Placeholder: bringing the right institutions and people together.',
+    title: 'Partnerships & Consortia',
+    text: 'Building international collaborations between universities, research institutes, NGOs, public institutions and technology companies around complementary expertise and shared objectives.',
   },
 ] as const;
 
@@ -163,7 +152,7 @@ export const publications: Publication[] = [
   },
   {
     title: 'Placeholder: title of a policy or technical report',
-    authors: 'Kwarg Lab',
+    authors: 'KWARG',
     venue: 'Placeholder Publisher',
     year: 2025,
     type: 'Report',
@@ -195,36 +184,50 @@ export const partners = [
 
 export type Post = {
   slug: string;
+  topic: string;
   title: string;
   date: string;
   excerpt: string;
   body: string[];
 };
 
+// Article bodies are short drafts; replace with full texts.
 export const posts: Post[] = [
   {
-    slug: 'turning-complexity-into-clarity',
-    title: 'Placeholder: turning complexity into clarity',
+    slug: 'finding-the-right-international-research-opportunities',
+    topic: 'Funding Intelligence',
+    title: 'Finding the right international research opportunities',
     date: '2026-10-01',
-    excerpt: 'Placeholder teaser: a practical framework for human-centred systems.',
+    excerpt:
+      'How research institutions can assess funding programmes, align technical expertise with programme priorities and focus resources on suitable opportunities.',
     body: [
-      'This is placeholder text for the first paragraph of a publication.',
-      'Replace it with your own writing. Each string in this list becomes one paragraph.',
+      'Draft: international funding programmes differ widely in scope, eligibility and expected impact. Reading a call carefully, before committing a team to it, is the first step to a credible application.',
+      'Draft: the strongest opportunities are those where an institution’s existing expertise meets the programme’s priorities directly, rather than through a stretched interpretation.',
     ],
   },
   {
-    slug: 'notes-from-the-field',
-    title: 'Placeholder: notes from the field',
+    slug: 'building-effective-research-consortia',
+    topic: 'International Partnerships',
+    title: 'Building effective research consortia',
     date: '2026-09-15',
-    excerpt: 'Placeholder teaser for a second publication.',
-    body: ['Placeholder paragraph one.', 'Placeholder paragraph two.'],
+    excerpt:
+      'Why complementary expertise, well-defined responsibilities and long-term institutional relationships are essential to successful international collaboration.',
+    body: [
+      'Draft: a consortium is more than a list of partners. Each member should bring something the others cannot, and each role should be clear from the start.',
+      'Draft: partnerships built on long-term institutional relationships tend to outlast a single project and lead to stronger proposals over time.',
+    ],
   },
   {
-    slug: 'funding-playbook',
-    title: 'Placeholder: a funding playbook',
+    slug: 'from-research-concept-to-competitive-proposal',
+    topic: 'Project Development',
+    title: 'From research concept to competitive proposal',
     date: '2026-08-20',
-    excerpt: 'Placeholder teaser for a third publication.',
-    body: ['Placeholder paragraph one.', 'Placeholder paragraph two.'],
+    excerpt:
+      'An examination of how scientific objectives, technical methodologies and implementation planning come together in international research proposals.',
+    body: [
+      'Draft: a competitive proposal turns a research idea into a plan that evaluators can trust: clear objectives, a sound methodology and a realistic implementation path.',
+      'Draft: work packages, budgets and partner contributions should all trace back to the same scientific objectives.',
+    ],
   },
 ];
 

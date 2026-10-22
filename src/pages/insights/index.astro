@@ -5,8 +5,12 @@ import PostCard from '../../components/PostCard.astro';
 import { posts } from '../../data/site';
 ---
 
-<Base title="Insights & news" description="Placeholder description of the insights page.">
-  <Hero eyebrow="Insights" title="Insights & news" subtitle="Placeholder: news, frameworks and notes from our work." />
+<Base title="Insights & perspectives" description="Perspectives on international research collaboration, competitive funding, emerging technologies and multidisciplinary project development.">
+  <Hero
+    eyebrow="Insights & News"
+    title="Insights & perspectives."
+    subtitle="Perspectives on international research collaboration, competitive funding, emerging technologies and the practical development of multidisciplinary projects."
+  />
   <section class="container">
     <ul class="posts">
       {posts.map((p) => <li><PostCard post={p} /></li>)}

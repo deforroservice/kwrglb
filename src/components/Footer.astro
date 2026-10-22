@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { site, socials, footerColumns } from '../data/site';
+import { site, socials, footerLinks } from '../data/site';
 import { url } from '../lib/url';
 import { darkCover } from '../lib/art';
 
@@ -14,22 +14,15 @@ const year = new Date().getFullYear();
         <Logo size={30} />
         <span>{site.name}</span>
       </a>
+      <p class="slogan">{site.slogan}</p>
       <p>{site.tagline}</p>
     </div>
-    {
-      footerColumns.map((col) => (
-        <div>
-          <h2 class="col-title">{col.title}</h2>
-          <ul>
-            {col.links.map((l) => (
-              <li>
-                <a href={url(l.href)}>{l.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
+    <div>
+      <h2 class="col-title">Explore</h2>
+      <ul class="explore">
+        {footerLinks.map((l) => <li><a href={url(l.href)}>{l.label}</a></li>)}
+      </ul>
+    </div>
     <div>
       <h2 class="col-title">Connect</h2>
       <ul>
@@ -63,7 +56,7 @@ const year = new Date().getFullYear();
   }
   @media (min-width: 900px) {
     .top {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 1.4fr 1fr;
     }
     .about {
       grid-column: auto;
@@ -81,8 +74,25 @@ const year = new Date().getFullYear();
     color: #fff;
   }
   .about p {
-    max-width: 32ch;
-    margin: 16px 0 0;
+    max-width: 44ch;
+    margin: 12px 0 0;
+  }
+  .about .slogan {
+    margin-top: 18px;
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .explore {
+    display: block;
+    columns: 2;
+    column-gap: 24px;
+  }
+  .explore li {
+    margin-bottom: 6px;
   }
   .col-title {
     margin: 0 0 12px;
