@@ -12,8 +12,8 @@ Edit it right here on GitHub (pencil icon) and commit.
 | --- | --- |
 | Home | `src/pages/index.astro` |
 | Projects | `src/pages/projects.astro` (cards + filter: `src/components/ProjectsList.tsx`) |
-| One project | `src/pages/projects/[slug].astro` (text comes from `src/data/site.ts`) |
-| About (approach + track record) | `src/pages/about.astro` |
+| One project | `src/pages/projects/[slug].astro` (text, key facts and lists come from `src/data/site.ts`) |
+| About us (approach, team, track record) | `src/pages/about.astro` |
 | Partners (home page section) | `src/pages/index.astro`, data in `src/data/site.ts` |
 | Careers | `src/pages/careers.astro` |
 | Insights & publications | `src/pages/insights/` |

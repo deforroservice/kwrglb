@@ -20,6 +20,18 @@ const { project } = Astro.props as { project: Project };
         <h1>{project.name}</h1>
         <p class="summary">{project.summary}</p>
         <p>{project.intro}</p>
+        {
+          project.facts.length > 0 && (
+            <dl class="facts">
+              {project.facts.map((f) => (
+                <div>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )
+        }
         <div class="ctas">
           <a class="btn btn-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(project.name)}`}>
             Contact the team <span class="arrow">→</span>
@@ -37,7 +49,17 @@ const { project } = Astro.props as { project: Project };
       project.sections.map((s) => (
         <section class="span-7">
           <h2>{s.heading}</h2>
-          {s.paragraphs.map((p) => <p>{p}</p>)}
+          {s.paragraphs?.map((p) => <p>{p}</p>)}
+          {s.bullets && (
+            <ul class="bullets">
+              {s.bullets.map((b) => (
+                <li>
+                  {b.title && <strong>{b.title}</strong>}
+                  <span>{b.text}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
       ))
     }
@@ -51,7 +73,7 @@ const { project } = Astro.props as { project: Project };
   .layout {
     display: grid;
     gap: 32px;
-    align-items: center;
+    align-items: start;
   }
   .art {
     aspect-ratio: 4 / 3;
@@ -73,6 +95,51 @@ const { project } = Astro.props as { project: Project };
   }
   .text > p:not(.summary) {
     margin: 0;
+    color: var(--muted);
+  }
+  .facts {
+    display: grid;
+    gap: 8px;
+    margin: 20px 0 0;
+    padding: 16px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .facts div {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px;
+  }
+  .facts dt {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: var(--slate-teal);
+  }
+  .facts dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--text);
+  }
+  .bullets {
+    list-style: none;
+    margin: 8px 0 16px;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .bullets li {
+    display: grid;
+    gap: 2px;
+    padding-left: 18px;
+    border-left: 3px solid var(--green);
+  }
+  .bullets strong {
+    color: var(--deep-teal);
+  }
+  .bullets span {
     color: var(--muted);
   }
   .ctas {

@@ -2,14 +2,14 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Prose from '../components/Prose.astro';
-import { pillars, contributions } from '../data/site';
+import { pillars, contributions, team } from '../data/site';
 import { url } from '../lib/url';
 ---
 
-<Base title="About" description="KWARG connects scientific expertise, funding opportunities and complementary partners to build international research and innovation projects.">
+<Base title="About us" description="KWARG connects scientific expertise, funding opportunities and complementary partners to build international research and innovation projects.">
   <Hero
-    eyebrow="About"
-    title="About KWARG"
+    eyebrow="About us"
+    title="About us"
     subtitle="We help universities, research organisations and mission-driven institutions build international partnerships and secure competitive funding for research, innovation and development projects."
   />
   <Prose>
@@ -29,6 +29,28 @@ import { url } from '../lib/url';
       their contributions into one coherent proposal.
     </p>
 
+    <h2>Our team</h2>
+    <ul class="team">
+      {
+        team.map((m) => (
+          <li>
+            {m.photo ? (
+              <img class="avatar" src={url(m.photo)} alt={m.name} />
+            ) : (
+              <span class="avatar placeholder" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="24" cy="18" r="8" />
+                  <path d="M9 41c1.5-8 7.5-12 15-12s13.5 4 15 12" />
+                </svg>
+              </span>
+            )}
+            <strong>{m.name}</strong>
+            <span>{m.role}</span>
+          </li>
+        ))
+      }
+    </ul>
+
     <h2>Track record</h2>
     <p>Selected proposals, consortia and tools we have helped bring to life.</p>
     <ul class="track">
@@ -43,6 +65,45 @@ import { url } from '../lib/url';
 </Base>
 
 <style>
+  .team {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  .team li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+  .avatar {
+    width: 128px;
+    height: 128px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .avatar.placeholder {
+    display: grid;
+    place-items: center;
+    background: var(--band);
+    border: 2px solid var(--green);
+    color: var(--slate-teal);
+  }
+  .team strong {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--deep-teal);
+  }
+  .team span {
+    font-size: 14px;
+    color: var(--muted);
+  }
   .track {
     list-style: none;
     margin: 0;
@@ -65,7 +126,7 @@ import { url } from '../lib/url';
   .track span {
     color: var(--muted);
   }
-  .ctas {
+  p.ctas {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;

@@ -185,17 +185,11 @@ h3 {
   border-radius: 50%;
   background: var(--dot, var(--deep-teal));
 }
-.chip[data-cat='In development'] {
+.chip[data-cat='Funded'] {
   --dot: var(--green);
 }
-.chip[data-cat='Funded'] {
-  --dot: var(--mid-gray);
-}
-.chip[data-cat='Partnership'] {
+.chip[data-cat='Technology partnership'] {
   --dot: var(--slate-teal);
-}
-.chip[data-cat='Idea'] {
-  --dot: #c3ccd3;
 }
 
 .sr-only {
