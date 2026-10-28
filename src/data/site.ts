@@ -106,7 +106,7 @@ export const projects: Project[] = [
       {
         label: 'Partners',
         value:
-          'Bahir Dar University (lead), USGS / Famine Early Warning Systems Network (FEWS NET) Ethiopia, Korean Meteorological Agency',
+          'Bahir Dar University (lead), USGS / Famine Early Warning Systems Network (FEWS NET) Ethiopia, Korea Meteorological Administration',
       },
     ],
     intro:
@@ -157,31 +157,31 @@ export const projects: Project[] = [
     seed: 19,
   },
   {
-    slug: 'carbonwatch-digital-infrastructure',
+    slug: 'carbon-market-watch-digital-infrastructure',
     name: 'Digital Infrastructure for Corporate Climate Accountability',
     category: 'Partnership',
     summary:
-      "Upgrading CarbonWatch's research platform through external engineering, project financing and delivery management, without building an in-house development team.",
+      "Upgrading Carbon Market Watch's research platform through external engineering, project financing and delivery management, without building an in-house development team.",
     facts: [
-      { label: 'Partner', value: 'CarbonWatch' },
+      { label: 'Partner', value: 'Carbon Market Watch' },
       {
         label: 'Focus',
         value: 'Climate technology, digital transformation, technology partnerships, project financing, software development',
       },
     ],
     intro:
-      "CarbonWatch is an independent climate accountability organisation that evaluates corporate emissions reduction commitments, climate strategies and environmental claims. KWARG partnered with CarbonWatch to strengthen and scale its digital infrastructure using external development resources, project management and dedicated project financing.",
+      "Carbon Market Watch is an independent climate accountability organisation that evaluates corporate emissions reduction commitments, climate strategies and environmental claims. KWARG partnered with Carbon Market Watch to strengthen and scale its digital infrastructure using external development resources, project management and dedicated project financing.",
     sections: [
       {
         heading: 'The challenge',
         paragraphs: [
-          'Delivering evidence-based insight on corporate climate performance takes more than strong analysis: it needs reliable digital infrastructure for publishing research, making it accessible and engaging stakeholders. Like many research-intensive organisations, CarbonWatch had limited technical resources and competing budget priorities.',
+          'Delivering evidence-based insight on corporate climate performance takes more than strong analysis: it needs reliable digital infrastructure for publishing research, making it accessible and engaging stakeholders. Like many research-intensive organisations, Carbon Market Watch had limited technical resources and competing budget priorities.',
         ],
       },
       {
         heading: 'Our approach',
         paragraphs: [
-          "Rather than building a new platform, the project extended CarbonWatch's existing web infrastructure, preserving continuity while adding new back-end capabilities through a dedicated development engagement.",
+          "Rather than building a new platform, the project extended Carbon Market Watch's existing web infrastructure, preserving continuity while adding new back-end capabilities through a dedicated development engagement.",
         ],
         bullets: [
           {
@@ -198,18 +198,18 @@ export const projects: Project[] = [
           },
           {
             title: 'Delivery management',
-            text: 'Coordinating CarbonWatch and the development team throughout, aligning technical work with organisational priorities.',
+            text: 'Coordinating Carbon Market Watch and the development team throughout, aligning technical work with organisational priorities.',
           },
           {
             title: 'Platform enhancement',
-            text: "Implementing new functionality on CarbonWatch's website to publish and present recurring research outputs.",
+            text: "Implementing new functionality on Carbon Market Watch's website to publish and present recurring research outputs.",
           },
         ],
       },
       {
         heading: 'Results',
         paragraphs: [
-          "The project strengthened the digital engine behind CarbonWatch's corporate climate research. CarbonWatch gained access to software engineering resources without a dedicated internal team, while keeping its existing digital assets and workflows.",
+          "The project strengthened the digital engine behind Carbon Market Watch's corporate climate research. Carbon Market Watch gained access to software engineering resources without a dedicated internal team, while keeping its existing digital assets and workflows.",
           'It showed how targeted technology partnerships and project-backed financing let specialist organisations advance their digital capabilities without large-scale technology investment, a cost-conscious delivery model that can be adapted to similar organisations.',
         ],
       },
@@ -412,18 +412,22 @@ export const contributions = [
   { title: 'Placeholder contribution', text: 'Placeholder: e.g. built an open tool used by partner institutions.' },
 ];
 
-// Home page "Our partners" section. Logos are placeholders until real ones are added
-// (put files in public/partners/ and set logo: 'partners/name.svg').
+// Home page "Our partners & collaborations" section: logo + name, in this order.
+// Logos live in public/partners/.
 export const partnersIntro =
-  'We work with Placeholder University, Placeholder Institute, Placeholder Foundation, Placeholder Company, Placeholder NGO and Placeholder City, bringing together research, industry, funders and the public sector around shared objectives.';
+  'We work with universities, research institutes, public agencies, NGOs and technology companies across Europe, Africa and Asia. These partnerships and collaborations bring research, industry and the public sector together around shared objectives.';
 
-export const partners: { name: string; type: string; text: string; logo?: string }[] = [
-  { name: 'Placeholder University', type: 'University', text: 'Placeholder: what you do together.' },
-  { name: 'Placeholder Institute', type: 'Research institute', text: 'Placeholder: what you do together.' },
-  { name: 'Placeholder Foundation', type: 'Funder', text: 'Placeholder: what you do together.' },
-  { name: 'Placeholder Company', type: 'Industry', text: 'Placeholder: what you do together.' },
-  { name: 'Placeholder NGO', type: 'Non-profit', text: 'Placeholder: what you do together.' },
-  { name: 'Placeholder City', type: 'Public sector', text: 'Placeholder: what you do together.' },
+export const partners: { name: string; logo: string }[] = [
+  { name: 'Tajik Technical University named after Academician M.S. Osimi (TTU)', logo: 'partners/tajik-technical-university.webp' },
+  { name: 'Bahir Dar University', logo: 'partners/bahir-dar-university.webp' },
+  { name: 'Korea Meteorological Administration', logo: 'partners/korea-meteorological-administration.webp' },
+  { name: 'Seoul National University', logo: 'partners/seoul-national-university.webp' },
+  { name: 'The Hong Kong University of Science and Technology (HKUST)', logo: 'partners/hkust.webp' },
+  { name: 'HU University of Applied Sciences Utrecht', logo: 'partners/hu-utrecht.webp' },
+  { name: 'Tech To The Rescue', logo: 'partners/tech-to-the-rescue.webp' },
+  { name: 'Carbon Market Watch', logo: 'partners/carbon-market-watch.webp' },
+  { name: 'Nebo Air Quality Monitoring Services', logo: 'partners/nebo.webp' },
+  { name: 'Deforro EUDR Compliance Monitoring Service', logo: 'partners/deforro.webp' },
 ];
 
 export type Post = {
