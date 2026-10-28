@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Prose from '../components/Prose.astro';
-import { pillars, contributions, team } from '../data/site';
+import { pillars, team } from '../data/site';
 import { url } from '../lib/url';
 ---
 
@@ -35,7 +35,7 @@ import { url } from '../lib/url';
         team.map((m) => (
           <li>
             {m.photo ? (
-              <img class="avatar" src={url(m.photo)} alt={m.name} />
+              <img class="avatar" src={url(m.photo)} alt={`Portrait of ${m.name}`} width="128" height="128" />
             ) : (
               <span class="avatar placeholder" aria-hidden="true">
                 <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -49,12 +49,6 @@ import { url } from '../lib/url';
           </li>
         ))
       }
-    </ul>
-
-    <h2>Track record</h2>
-    <p>Selected proposals, consortia and tools we have helped bring to life.</p>
-    <ul class="track">
-      {contributions.map((c) => <li><strong>{c.title}</strong><span>{c.text}</span></li>)}
     </ul>
 
     <p class="ctas">
@@ -86,6 +80,8 @@ import { url } from '../lib/url';
     margin-bottom: 10px;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--green);
   }
   .avatar.placeholder {
     display: grid;
@@ -102,28 +98,6 @@ import { url } from '../lib/url';
   }
   .team span {
     font-size: 14px;
-    color: var(--muted);
-  }
-  .track {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid var(--line);
-  }
-  .track li {
-    display: grid;
-    gap: 4px;
-    padding: 16px 0 16px 18px;
-    border-bottom: 1px solid var(--line);
-    border-left: 3px solid var(--green);
-  }
-  .track strong {
-    font-family: var(--display);
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--deep-teal);
-  }
-  .track span {
     color: var(--muted);
   }
   p.ctas {

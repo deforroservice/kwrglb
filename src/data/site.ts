@@ -296,13 +296,67 @@ export const projects: Project[] = [
     seed: 7,
   },
   {
-    slug: 'wildfire',
-    name: 'Wildfire project',
+    slug: 'wildfire-policy-environmental-intelligence',
+    name: 'Strengthening Wildfire Policy Through Environmental Intelligence',
     category: 'Project',
-    summary: 'Placeholder: project description coming soon.',
-    facts: [],
-    intro: 'Placeholder: a full description of this project will be added soon.',
-    sections: [],
+    summary:
+      'An internationally funded project, initiated and led by KWARG, that used satellite data to measure how well wildfire policies match real fire risk in post-USSR countries.',
+    facts: [
+      { label: 'Focus', value: 'Environmental risk management, data-driven decision support, public policy' },
+      { label: 'Programme', value: 'Climate Connect initiatives' },
+      { label: 'Region', value: 'Post-USSR countries, including Siberia' },
+      { label: 'Team', value: 'Specialists across three countries, led by KWARG' },
+      { label: 'Published in', value: 'European Journal of Environmental Sciences' },
+    ],
+    intro:
+      'Large-scale wildfires create major economic, environmental and operational challenges for public authorities. Yet decisions on where to intervene, how to allocate firefighting resources and which territories to prioritise are often shaped by fixed administrative rules rather than up-to-date risk information. KWARG initiated and led an internationally funded project to close this gap between environmental risk on the ground and the policies used to manage it.',
+    sections: [
+      {
+        heading: 'The aim',
+        paragraphs: [
+          "Developed under the Climate Connect initiatives, the project focused on using environmental data and intelligence to close gaps in decision-making in emerging economies in wildfire-prone regions.",
+          'Its main aim was to show that environmental intelligence and alternative data can evaluate policy and regulatory decisions independently: here, to make the consequences of existing wildfire management policies measurable, find where they fall short and provide evidence for improving them.',
+        ],
+      },
+      {
+        heading: 'What KWARG delivered',
+        paragraphs: [
+          'KWARG led the project from initial concept to delivery, responsible for project design, international team coordination, methodology development and the core analytical findings. The focus was on getting more decision-making value from information public institutions already have.',
+          'KWARG connected satellite-based wildfire monitoring with official forest inventory records and regulatory frameworks in post-USSR countries. This made it possible to assess how existing intervention policies, such as the new Forest Laws, performed against the actual scale, location and intensity of wildfires.',
+          'The analysis turned complex environmental information into clear management insights: the consequences of current intervention thresholds, gaps in risk coverage and opportunities to prioritise resources better, giving an independent basis for more transparent, risk-informed wildfire policy.',
+        ],
+      },
+      {
+        heading: 'Key findings',
+        paragraphs: [
+          'The project uncovered significant blind spots in forest policy. During major wildfire seasons in Siberia, between 60% and 98% of the reported fire-affected area lay in territories where active firefighting could legally be withheld. At the peak of the anomalous 2020 wildfire season in Eurasia, these zones accounted for more than 95% of the affected area, over three million hectares.',
+          'Given the large share of the world’s forests under post-USSR jurisdiction, the work linked policy choices to disastrous environmental events and their implications for global warming. It turned a governance problem that was hard to quantify into measurable evidence, supporting a review of intervention criteria, management boundaries and the balance between suppression costs and environmental exposure.',
+        ],
+      },
+      {
+        heading: 'Outcomes',
+        bullets: [
+          {
+            title: 'Policy intelligence',
+            text: 'Quantified the consequences of existing wildfire management rules and identified gaps that need policy attention.',
+          },
+          {
+            title: 'Decision-support methodology',
+            text: 'Showed how existing environmental intelligence, official inventory and media monitoring data can support more transparent risk assessment and resource allocation.',
+          },
+          {
+            title: 'International project delivery',
+            text: 'Brought together specialists across three countries, with independently reviewed findings published in the European Journal of Environmental Sciences.',
+          },
+        ],
+      },
+      {
+        heading: 'Strategic value',
+        paragraphs: [
+          'The project shows how targeted international expertise and existing data infrastructure can solve decision-making problems without large-scale investment in new monitoring systems. For KWARG, it underlines our ability to originate, lead and deliver internationally supported projects that turn environmental data into practical evidence for better public policy, institutional accountability and natural resource management.',
+        ],
+      },
+    ],
     seed: 29,
   },
   {
@@ -405,12 +459,6 @@ export const publications: Publication[] = [
   },
 ];
 
-// Things you helped make happen that are not publications: proposals, tools, events.
-export const contributions = [
-  { title: 'Placeholder contribution', text: 'Placeholder: one or two sentences on what was done and why it mattered.' },
-  { title: 'Placeholder contribution', text: 'Placeholder: e.g. co-wrote a successful funding proposal for a consortium.' },
-  { title: 'Placeholder contribution', text: 'Placeholder: e.g. built an open tool used by partner institutions.' },
-];
 
 // Home page "Our partners & collaborations" section: logo + name, in this order.
 // Logos live in public/partners/.
@@ -485,9 +533,9 @@ export const posts: Post[] = [
 
 // About us page team. photo: put an image in public/team/ and set photo: 'team/name.jpg'.
 export const team: { name: string; role: string; photo?: string }[] = [
-  { name: 'Team member', role: 'Role to be added' },
-  { name: 'Team member', role: 'Role to be added' },
-  { name: 'Team member', role: 'Role to be added' },
+  { name: 'Lev Labzovskii', role: 'Technical Director', photo: 'team/lev-labzovskii.webp' },
+  { name: 'Adaobi Ijezie', role: 'Project Management Associate', photo: 'team/adaobi-ijezie.webp' },
+  { name: 'Artem Piatin', role: 'Data Scientist & Digital Developer', photo: 'team/artem-piatin.webp' },
 ];
 
 export const jobs = [
