@@ -8,6 +8,7 @@ import Scroller from '../components/Scroller.astro';
 import Icon from '../components/Icon.astro';
 import { projects, posts, publications, pillars, partners, partnersIntro } from '../data/site';
 import { url } from '../lib/url';
+import { wavesUrl } from '../lib/art';
 
 // Insights and publications together, newest first (publications only have a year).
 const insights = [
@@ -47,7 +48,7 @@ const insights = [
     </Scroller>
   </section>
 
-  <section class="band">
+  <section class="band dark">
     <div class="container">
       <div class="head">
         <div>
@@ -63,9 +64,14 @@ const insights = [
       </div>
       <ul class="pillars">
         {
-          pillars.map((p) => (
+          pillars.map((p, i) => (
             <li>
-              <Icon name={p.icon} />
+              <span
+                class="tile-art"
+                aria-hidden="true"
+                style={`background-image:${wavesUrl(5 + i * 7, { stroke: '#6ED3A4', opacity: 0.45, lines: 18, width: 600, height: 400, fade: true })}`}
+              />
+              <span class="ic"><Icon name={p.icon} size={26} /></span>
               <h3>{p.title}</h3>
               <p>{p.text}</p>
             </li>
@@ -161,30 +167,113 @@ const insights = [
     padding: 56px 0 64px;
     background: var(--band);
   }
+  /* What we do: dark band with tiles that light up on hover (visual only) */
+  .band.dark {
+    background: var(--deep-teal);
+  }
+  .dark .label {
+    color: var(--green);
+  }
+  .dark h2 {
+    color: #fff;
+  }
+  .dark .intro {
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .dark .btn-tertiary {
+    color: #fff;
+  }
   .pillars {
     list-style: none;
-    margin: 0;
+    margin: 8px 0 0;
     padding: 0;
     display: grid;
-    gap: 28px 32px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
   .pillars li {
-    border-top: 2px solid var(--green);
-    padding-top: 20px;
-    color: var(--deep-teal);
+    position: relative;
+    overflow: hidden;
+    padding: 28px 24px 26px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    transition: background 0.35s, border-color 0.35s, transform 0.35s;
+  }
+  .pillars li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 3px;
+    width: 48px;
+    background: var(--green);
+    transition: width 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .tile-art {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: right bottom;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s, transform 0.45s;
+    pointer-events: none;
+  }
+  .pillars li > :not(.tile-art) {
+    position: relative;
+  }
+  .ic {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(110, 211, 164, 0.6);
+    color: var(--green);
+    transition: background 0.35s, color 0.35s, transform 0.35s;
   }
   .pillars h3 {
-    margin: 14px 0 6px;
+    margin: 18px 0 8px;
     font-size: 26px;
     font-weight: 600;
     line-height: 1.05;
+    color: #fff;
   }
   .pillars p {
     margin: 0;
     font-size: 15px;
     line-height: 24px;
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .pillars li:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(110, 211, 164, 0.5);
+    transform: translateY(-4px);
+  }
+  .pillars li:hover::before {
+    width: 100%;
+  }
+  .pillars li:hover .tile-art {
+    opacity: 1;
+    transform: none;
+  }
+  .pillars li:hover .ic {
+    background: var(--green);
+    color: var(--deep-teal);
+    transform: rotate(-8deg) scale(1.05);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pillars li,
+    .pillars li::before,
+    .tile-art,
+    .ic {
+      transition: none;
+    }
+    .pillars li:hover {
+      transform: none;
+    }
   }
   .partners {
     padding-top: 64px;
