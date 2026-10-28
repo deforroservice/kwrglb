@@ -1,0 +1,202 @@
+---
+// Vertical scroller for a card grid: shows the first row plus a peek of the next,
+// with up/down arrows, a position bar and a counter on the right.
+// Usage: <Scroller label="Projects"><ul class="pcard-grid">…</ul></Scroller>
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<div class="scroller" data-scroller>
+  <div class="viewport" tabindex="0" role="region" aria-label={`${label}: scroll for more`}>
+    <slot />
+    <div class="fade" aria-hidden="true"></div>
+  </div>
+  <div class="rail">
+    <button class="arrow up" type="button" aria-label={`Scroll ${label.toLowerCase()} up`}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>
+    </button>
+    <div class="track" aria-hidden="true"><div class="thumb"></div></div>
+    <div class="count" aria-live="polite"></div>
+    <button class="arrow down" type="button" aria-label={`Scroll ${label.toLowerCase()} down`}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const PEEK = 72; // px of the next row left visible under the fade
+
+  document.querySelectorAll<HTMLElement>('[data-scroller]').forEach((el) => {
+    const vp = el.querySelector<HTMLElement>('.viewport')!;
+    const list = vp.querySelector<HTMLElement>('ul')!;
+    const items = [...list.children] as HTMLElement[];
+    const up = el.querySelector<HTMLButtonElement>('.up')!;
+    const down = el.querySelector<HTMLButtonElement>('.down')!;
+    const track = el.querySelector<HTMLElement>('.track')!;
+    const thumb = el.querySelector<HTMLElement>('.thumb')!;
+    const count = el.querySelector<HTMLElement>('.count')!;
+
+    const columns = () => getComputedStyle(list).gridTemplateColumns.split(' ').length || 1;
+    // One row = distance from the first item to the first item of the next row.
+    const rowStep = () => {
+      const next = items[columns()];
+      return next ? next.offsetTop - items[0].offsetTop : vp.clientHeight;
+    };
+
+    const layout = () => {
+      const fits = items.length <= columns();
+      el.classList.toggle('static', fits);
+      vp.style.height = fits ? '' : `${items[0].offsetHeight + PEEK}px`;
+      update();
+    };
+
+    const update = () => {
+      const max = vp.scrollHeight - vp.clientHeight;
+      up.disabled = vp.scrollTop <= 2;
+      down.disabled = vp.scrollTop >= max - 2;
+      vp.classList.toggle('at-end', vp.scrollTop >= max - 2);
+      const th = Math.max(24, track.clientHeight * (vp.clientHeight / vp.scrollHeight));
+      thumb.style.height = `${th}px`;
+      thumb.style.top = `${max > 0 ? (vp.scrollTop / max) * (track.clientHeight - th) : 0}px`;
+      const cols = columns();
+      const lastRow = Math.ceil(items.length / cols) - 1;
+      // At the bottom the last row may not reach the top of the box, so count it as shown.
+      const row = vp.scrollTop >= max - 2 ? lastRow : Math.min(Math.round(vp.scrollTop / rowStep()), lastRow);
+      const from = row * cols + 1;
+      const to = Math.min(items.length, from + cols - 1);
+      count.textContent = `${from}${to > from ? '–' + to : ''} / ${items.length}`;
+    };
+
+    up.addEventListener('click', () => vp.scrollBy({ top: -rowStep() }));
+    down.addEventListener('click', () => vp.scrollBy({ top: rowStep() }));
+    vp.addEventListener('scroll', update, { passive: true });
+    vp.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); down.click(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); up.click(); }
+    });
+    new ResizeObserver(layout).observe(list);
+    layout();
+  });
+</script>
+
+<style>
+  .scroller {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    gap: 12px;
+  }
+  @media (min-width: 900px) {
+    .scroller {
+      grid-template-columns: minmax(0, 1fr) 48px;
+      gap: 20px;
+    }
+  }
+  .viewport {
+    position: relative;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    border-radius: var(--radius);
+  }
+  .viewport::-webkit-scrollbar {
+    display: none;
+  }
+  .viewport:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 4px;
+  }
+  .viewport :global(ul > li) {
+    scroll-snap-align: start;
+  }
+  .fade {
+    position: sticky;
+    bottom: 0;
+    height: 0;
+    pointer-events: none;
+  }
+  .fade::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    transition: opacity 0.2s;
+  }
+  .viewport.at-end .fade::before {
+    opacity: 0;
+  }
+  .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 4px;
+  }
+  .arrow {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1.5px solid var(--deep-teal);
+    background: var(--surface);
+    color: var(--deep-teal);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, opacity 0.15s;
+  }
+  .arrow:hover:not(:disabled) {
+    background: var(--deep-teal);
+    color: #fff;
+  }
+  .arrow:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 2px;
+  }
+  .arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .track {
+    position: relative;
+    flex: 1;
+    width: 2px;
+    margin-block: 10px 6px;
+    border-radius: 2px;
+    background: var(--line);
+  }
+  .thumb {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 2px;
+    background: var(--green);
+    transition: top 0.15s;
+  }
+  .count {
+    margin-bottom: 10px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  /* Everything fits in one row: no arrows needed */
+  .scroller.static {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .scroller.static .rail,
+  .scroller.static .fade {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .viewport {
+      scroll-behavior: auto;
+    }
+  }
+</style>

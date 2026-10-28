@@ -3,12 +3,17 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.tsx';
 import PostCard from '../components/PostCard.astro';
+import PubCard from '../components/PubCard.astro';
+import Scroller from '../components/Scroller.astro';
 import Icon from '../components/Icon.astro';
-import { projects, posts, pillars, partners, partnersIntro } from '../data/site';
+import { projects, posts, publications, pillars, partners, partnersIntro } from '../data/site';
 import { url } from '../lib/url';
 
-const featured = projects.slice(0, 3);
-const latest = posts.slice(0, 3);
+// Insights and publications together, newest first (publications only have a year).
+const insights = [
+  ...posts.map((post) => ({ sort: post.date, post })),
+  ...publications.map((pub) => ({ sort: `${pub.year}-00-00`, pub })),
+].sort((a, b) => b.sort.localeCompare(a.sort));
 ---
 
 <Base>
@@ -35,9 +40,11 @@ const latest = posts.slice(0, 3);
       </div>
       <a class="btn btn-tertiary" href={url('projects/')}>View projects <span class="arrow">→</span></a>
     </div>
-    <ul class="pcard-grid">
-      {featured.map((p) => <li><ProjectCard project={p} /></li>)}
-    </ul>
+    <Scroller label="Projects">
+      <ul class="pcard-grid">
+        {projects.map((p) => <li><ProjectCard project={p} /></li>)}
+      </ul>
+    </Scroller>
   </section>
 
   <section class="band">
@@ -80,9 +87,11 @@ const latest = posts.slice(0, 3);
       </div>
       <a class="btn btn-tertiary" href={url('insights/')}>All insights <span class="arrow">→</span></a>
     </div>
-    <ul class="posts">
-      {latest.map((p) => <li><PostCard post={p} /></li>)}
-    </ul>
+    <Scroller label="Insights">
+      <ul class="posts">
+        {insights.map((it) => <li>{it.post ? <PostCard post={it.post} /> : <PubCard pub={it.pub!} />}</li>)}
+      </ul>
+    </Scroller>
   </section>
 
   <section id="partners" class="container block partners">
@@ -237,7 +246,17 @@ const latest = posts.slice(0, 3);
     padding: 0;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) {
+    .posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .posts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
   @media (min-width: 900px) {
     h2 {
