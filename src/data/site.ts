@@ -26,7 +26,7 @@ export const footerLinks = [
   { label: 'About us', href: 'about/' },
 ];
 
-export const CATEGORIES = ['Funded', 'Research & development', 'Technology partnership'] as const;
+export const CATEGORIES = ['Project', 'Partnership'] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 export type Project = {
@@ -48,7 +48,7 @@ export const projects: Project[] = [
   {
     slug: 'tajikistan-air-quality-monitoring',
     name: 'National Air Quality Monitoring for Tajikistan',
-    category: 'Funded',
+    category: 'Project',
     summary:
       'A consortium led by Tajik Technical University, with KWARG as partner, won the 2026 EPIC Air Quality Fund to build an open national PM2.5 monitoring network.',
     facts: [
@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     slug: 'ethiopia-climate-intelligence',
     name: 'Climate Intelligence & Rainfall Prediction for Ethiopia',
-    category: 'Research & development',
+    category: 'Project',
     summary:
       'Machine-learning rainfall prediction for the Upper Blue Nile Basin, combining satellite observations, atmospheric data and neural networks.',
     facts: [
@@ -159,7 +159,7 @@ export const projects: Project[] = [
   {
     slug: 'carbonwatch-digital-infrastructure',
     name: 'Digital Infrastructure for Corporate Climate Accountability',
-    category: 'Technology partnership',
+    category: 'Partnership',
     summary:
       "Upgrading CarbonWatch's research platform through external engineering, project financing and delivery management, without building an in-house development team.",
     facts: [
@@ -219,7 +219,7 @@ export const projects: Project[] = [
   {
     slug: 'tech-to-the-rescue',
     name: 'International Technology Partnerships for Social Impact',
-    category: 'Technology partnership',
+    category: 'Partnership',
     summary:
       'With Tech To The Rescue, building a portfolio of AI, data and geospatial projects for nonprofits across Europe, Africa, Asia and Latin America.',
     facts: [
@@ -298,7 +298,7 @@ export const projects: Project[] = [
   {
     slug: 'wildfire',
     name: 'Wildfire project',
-    category: 'Research & development',
+    category: 'Project',
     summary: 'Placeholder: project description coming soon.',
     facts: [],
     intro: 'Placeholder: a full description of this project will be added soon.',
@@ -308,7 +308,7 @@ export const projects: Project[] = [
   {
     slug: 'nebo-environmental-monitoring',
     name: 'Scientific R&D Leadership for Nebo Air Quality Monitoring',
-    category: 'Research & development',
+    category: 'Project',
     summary:
       "A long-term scientific partnership that established the credibility of Nebo's low-cost air quality sensors through validation campaigns published in peer-reviewed literature.",
     facts: [

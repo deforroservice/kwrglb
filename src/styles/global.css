@@ -185,11 +185,8 @@ h3 {
   border-radius: 50%;
   background: var(--dot, var(--deep-teal));
 }
-.chip[data-cat='Funded'] {
-  --dot: var(--green);
-}
-.chip[data-cat='Technology partnership'] {
-  --dot: var(--slate-teal);
+.chip[data-cat='Partnership'] {
+  --dot: var(--green-dark);
 }
 
 .sr-only {

@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { projects, site, type Project } from '../../data/site';
-import { cardCover, darkCover } from '../../lib/art';
+import { darkCover } from '../../lib/art';
 import { url } from '../../lib/url';
 
 export function getStaticPaths() {
@@ -12,116 +12,141 @@ const { project } = Astro.props as { project: Project };
 ---
 
 <Base title={project.name} description={project.summary}>
-  <section class="intro">
-    <div class="container layout">
-      <div class="art" style={`background:${cardCover(project.seed)}`} role="img" aria-label={`${project.name} illustration`}></div>
-      <div class="text">
+  <!-- Short dark header: title, summary and buttons on the left, key facts on the right -->
+  <section class="head" style={`background:${darkCover(project.seed)}`}>
+    <div class="container grid">
+      <div>
         <span class="chip" data-cat={project.category}>{project.category}</span>
         <h1>{project.name}</h1>
         <p class="summary">{project.summary}</p>
-        <p>{project.intro}</p>
-        {
-          project.facts.length > 0 && (
-            <dl class="facts">
-              {project.facts.map((f) => (
-                <div>
-                  <dt>{f.label}</dt>
-                  <dd>{f.value}</dd>
-                </div>
-              ))}
-            </dl>
-          )
-        }
         <div class="ctas">
           <a class="btn btn-primary" href={`mailto:${site.email}?subject=${encodeURIComponent(project.name)}`}>
             Contact the team <span class="arrow">→</span>
           </a>
-          <a class="btn btn-secondary" href={url('projects/')}>All projects</a>
+          <a class="btn btn-secondary btn-on-dark" href={url('projects/')}>All projects</a>
         </div>
       </div>
+      {
+        project.facts.length > 0 && (
+          <dl class="facts">
+            {project.facts.map((f) => (
+              <div>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
     </div>
   </section>
 
-  <div class="band" style={`background:${darkCover(project.seed)}`} aria-hidden="true"></div>
-
   <article class="body grid12">
-    {
-      project.sections.map((s) => (
-        <section class="span-7">
-          <h2>{s.heading}</h2>
-          {s.paragraphs?.map((p) => <p>{p}</p>)}
-          {s.bullets && (
-            <ul class="bullets">
-              {s.bullets.map((b) => (
-                <li>
-                  {b.title && <strong>{b.title}</strong>}
-                  <span>{b.text}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      ))
-    }
+    <div class="span-7">
+      <p class="lead">{project.intro}</p>
+      {
+        project.sections.map((s) => (
+          <section>
+            <h2>{s.heading}</h2>
+            {s.paragraphs?.map((p) => <p>{p}</p>)}
+            {s.bullets && (
+              <ul class="bullets">
+                {s.bullets.map((b) => (
+                  <li>
+                    {b.title && <strong>{b.title}</strong>}
+                    <span>{b.text}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))
+      }
+    </div>
   </article>
 </Base>
 
 <style>
-  .intro {
-    padding: 48px 0 56px;
+  .head {
+    padding: 40px 0 44px;
+    color: #fff;
   }
-  .layout {
+  .grid {
     display: grid;
-    gap: 32px;
-    align-items: start;
+    gap: 28px;
   }
-  .art {
-    aspect-ratio: 4 / 3;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
+  .chip {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+  .chip::before {
+    background: var(--green);
   }
   h1 {
-    margin: 16px 0 0;
-    font-size: 48px;
+    margin: 14px 0 0;
+    font-size: 40px;
     font-weight: 700;
-    line-height: 0.95;
+    line-height: 0.98;
     text-transform: uppercase;
+    text-wrap: balance;
+    color: #fff;
   }
   .summary {
-    margin: 16px 0 8px;
+    margin: 14px 0 0;
+    max-width: 60ch;
     font-size: 18px;
+    font-weight: 500;
     line-height: 28px;
-    color: var(--slate-teal);
+    color: var(--green);
   }
-  .text > p:not(.summary) {
-    margin: 0;
-    color: var(--muted);
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
   }
   .facts {
     display: grid;
-    gap: 8px;
-    margin: 20px 0 0;
-    padding: 16px 0 0;
-    border-top: 1px solid var(--line);
+    gap: 12px;
+    margin: 0;
+    padding-left: 24px;
+    border-left: 2px solid rgba(110, 211, 164, 0.5);
   }
   .facts div {
     display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 12px;
+    gap: 1px;
   }
   .facts dt {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.12em;
-    line-height: 24px;
     text-transform: uppercase;
-    color: var(--slate-teal);
+    color: var(--green);
   }
   .facts dd {
     margin: 0;
     font-size: 14px;
-    line-height: 24px;
-    color: var(--text);
+    line-height: 22px;
+    color: #fff;
+  }
+  .body {
+    padding-top: 44px;
+  }
+  .lead {
+    margin: 0 0 8px;
+    font-size: 18px;
+    line-height: 30px;
+    color: var(--deep-teal);
+  }
+  h2 {
+    margin: 36px 0 12px;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+  .body p {
+    margin: 0 0 16px;
   }
   .bullets {
     list-style: none;
@@ -142,38 +167,20 @@ const { project } = Astro.props as { project: Project };
   .bullets span {
     color: var(--muted);
   }
-  .ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-  }
-  .band {
-    height: clamp(180px, 28vw, 380px);
-  }
-  .body {
-    padding-top: 40px;
-  }
-  h2 {
-    margin: 40px 0 12px;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.05;
-    text-transform: uppercase;
-  }
-  .body p {
-    margin: 0 0 16px;
-  }
   @media (min-width: 900px) {
-    .intro {
-      padding: 80px 0;
+    .head {
+      padding: 56px 0 56px;
     }
-    .layout {
-      grid-template-columns: 1fr 1.1fr;
+    .grid {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       gap: 56px;
+      align-items: end;
     }
     h1 {
-      font-size: 72px;
+      font-size: 56px;
+    }
+    .body {
+      padding-top: 56px;
     }
   }
 </style>
