@@ -418,16 +418,16 @@ export const partnersIntro =
   'We work with universities, research institutes, public agencies, NGOs and technology companies across Europe, Africa and Asia. These partnerships and collaborations bring research, industry and the public sector together around shared objectives.';
 
 export const partners: { name: string; logo: string }[] = [
+  { name: 'HU University of Applied Sciences Utrecht', logo: 'partners/hu-utrecht.webp' },
+  { name: 'Nebo Air Quality Monitoring Services', logo: 'partners/nebo.webp' },
   { name: 'Tajik Technical University named after Academician M.S. Osimi (TTU)', logo: 'partners/tajik-technical-university.webp' },
-  { name: 'Bahir Dar University', logo: 'partners/bahir-dar-university.webp' },
+  { name: 'Tech To The Rescue', logo: 'partners/tech-to-the-rescue.webp' },
+  { name: 'The Hong Kong University of Science and Technology (HKUST)', logo: 'partners/hkust.webp' },
+  { name: 'Deforro EUDR Compliance Monitoring Service', logo: 'partners/deforro.webp' },
   { name: 'Korea Meteorological Administration', logo: 'partners/korea-meteorological-administration.webp' },
   { name: 'Seoul National University', logo: 'partners/seoul-national-university.webp' },
-  { name: 'The Hong Kong University of Science and Technology (HKUST)', logo: 'partners/hkust.webp' },
-  { name: 'HU University of Applied Sciences Utrecht', logo: 'partners/hu-utrecht.webp' },
-  { name: 'Tech To The Rescue', logo: 'partners/tech-to-the-rescue.webp' },
+  { name: 'Bahir Dar University', logo: 'partners/bahir-dar-university.webp' },
   { name: 'Carbon Market Watch', logo: 'partners/carbon-market-watch.webp' },
-  { name: 'Nebo Air Quality Monitoring Services', logo: 'partners/nebo.webp' },
-  { name: 'Deforro EUDR Compliance Monitoring Service', logo: 'partners/deforro.webp' },
 ];
 
 export type Post = {
