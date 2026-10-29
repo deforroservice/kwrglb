@@ -433,32 +433,22 @@ export type Publication = {
   year: number;
   type: 'Article' | 'Report' | 'Chapter' | 'Dataset';
   href?: string;
+  // Thumbnail shown on the card (path under public/).
+  cover?: string;
 };
 
+// Peer-reviewed publications. Add more as they come in.
 export const publications: Publication[] = [
   {
-    title: 'Placeholder: title of a peer-reviewed article',
-    authors: 'Placeholder Author, Second Author',
-    venue: 'Placeholder Journal',
-    year: 2026,
+    title: 'Siberian Wildfire Dilemma: Controlling the Uncontrollable?',
+    authors: 'Labzovskii L, Belikov D, Chang DY, Hekman E',
+    venue: 'European Journal of Environmental Sciences 14(2): 72–78',
+    year: 2024,
     type: 'Article',
-  },
-  {
-    title: 'Placeholder: title of a policy or technical report',
-    authors: 'KWARG',
-    venue: 'Placeholder Publisher',
-    year: 2025,
-    type: 'Report',
-  },
-  {
-    title: 'Placeholder: title of an open dataset',
-    authors: 'Placeholder Author et al.',
-    venue: 'Placeholder Repository',
-    year: 2025,
-    type: 'Dataset',
+    href: 'https://doi.org/10.14712/23361964.2024.8',
+    cover: 'insights/siberia-fig2.webp',
   },
 ];
-
 
 // Home page "Our partners & collaborations" section: logo + name, in this order.
 // Logos live in public/partners/.
@@ -485,12 +475,18 @@ export type Post = {
   title: string;
   date: string;
   excerpt: string;
+  // Paragraphs; a line starting with "## " becomes a subheading.
   body: string[];
+  // Thumbnail on cards and the image at the top of the article (path under public/).
+  cover: string;
+  coverAlt: string;
+  // Images placed inside the article, after paragraph number `after` (0-based, counting headings too).
+  figures?: { after: number; src: string; alt: string; caption: string }[];
   // Optional link to the original source (paper, report).
   link?: { label: string; href: string };
 };
 
-// Newest first on the site (sorted by date). Insight bodies are short drafts; replace with full texts.
+// Newest first on the site (sorted by date).
 export const posts: Post[] = [
   {
     slug: 'wmo-report-cites-kwarg-nebo-air-quality-research',
@@ -500,11 +496,27 @@ export const posts: Post[] = [
     date: '2026-10-29',
     excerpt:
       'A World Meteorological Organization report on low-cost sensor networks cites KWARG’s research with Nebo as an example of cost-effective air quality monitoring.',
+    cover: 'insights/air-quality-cover.svg',
+    coverAlt: 'Illustration of a city-wide network of air quality sensors linked to a reference station and a satellite pass',
     body: [
-      'The World Meteorological Organization (WMO) Global Atmosphere Watch programme has published “Integrating low-cost sensor systems and networks to enhance air quality applications”, a report on how affordable sensors can strengthen air quality monitoring and its use worldwide.',
-      'The report cites research from KWARG’s long-term scientific partnership with Nebo (Labzovskii et al., 2023) as an example of cost-effective air quality monitoring networks. Such networks can complement official monitoring and, where government networks have gaps, temporarily take their place.',
-      'In its section on communication and open data, the report also notes that community low-cost sensor networks have sometimes grown in response to a perceived lack of transparency from official sources, and it calls for clear, traceable communication of air quality data so that the public can trust it.',
-      'For KWARG, this recognition reflects years of independent validation work: benchmarking Nebo’s sensors against reference instruments and satellite observations, and publishing the results in peer-reviewed literature.',
+      'Affordable air quality sensors have changed who can measure the air. Cities, communities and companies can now run dense monitoring networks at a fraction of the cost of official stations. But one question has followed this technology from the start: can its data be trusted?',
+      'For nearly a decade, KWARG has worked on exactly that question with Nebo, one of the most established low-cost air quality monitoring initiatives. This month, that work was recognised by the World Meteorological Organization (WMO).',
+      '## Recognition from the WMO',
+      'The WMO Global Atmosphere Watch programme has published “Integrating low-cost sensor systems and networks to enhance air quality applications”, a report on how low-cost sensors can strengthen air quality monitoring and its use worldwide. The report cites research from our partnership with Nebo (Labzovskii et al., 2023) as an example of cost-effective air quality monitoring networks: networks that can complement official monitoring and, where government networks have gaps, temporarily take their place.',
+      'The report also looks at how air quality data reaches the public. In its section on communication and open data, it notes that community low-cost sensor networks have sometimes grown in response to a perceived lack of transparency from official sources, and it calls on data providers to communicate clearly and keep every data product traceable to its original source.',
+      '## How trust was earned',
+      'That recognition rests on evidence. Many low-cost systems have struggled with stability and accuracy, so credibility has to be earned through rigorous calibration, comparison and evaluation. As Nebo’s scientific strategy partner, KWARG brought together experts from leading universities and meteorological research institutions to benchmark Nebo’s sensors independently against reference-grade observations, and to connect ground measurements with satellite data.',
+      'The results showed that Nebo’s sensors deliver stable, accurate data across a wide range of environmental conditions, and they were published in peer-reviewed literature and the technology press. They gave policymakers evidence that low-cost observations can stand alongside official networks, particularly in regions that conventional monitoring does not reach.',
+      '## From evidence to national infrastructure',
+      'The same thinking now underpins our newest project. Together with Tajik Technical University, Nebo and Tajikistan’s Committee for Environmental Protection, KWARG is part of the consortium that won the 2026 EPIC Air Quality Fund to build an open national PM2.5 network of 100 sensors. The WMO report confirms what that project is built on: well-validated low-cost networks can become a trusted part of how countries monitor their air.',
+    ],
+    figures: [
+      {
+        after: 6,
+        src: 'insights/air-quality-method.svg',
+        alt: 'Diagram: low-cost sensor network, reference stations and satellite observations feed independent validation, which produces credible open data that fills monitoring gaps',
+        caption: 'How low-cost air quality networks earn trust: independent validation against reference stations and satellite data. Diagram: KWARG.',
+      },
     ],
     link: {
       label: 'View the WMO report',
@@ -518,12 +530,29 @@ export const posts: Post[] = [
     title: 'Published: machine learning for seasonal rainfall prediction in Ethiopia',
     date: '2026-10-28',
     excerpt:
-      'Our peer-reviewed study on predicting summer rainfall in the Upper Blue Nile Basin with satellite data and neural networks is now published.',
+      'Our peer-reviewed study shows how satellite data and neural networks can sharpen summer rainfall prediction in the Upper Blue Nile Basin.',
+    cover: 'insights/ethiopia-cover.svg',
+    coverAlt: 'Illustration of rainfall over the contour lines of a river basin',
     body: [
-      'Research from our international collaboration on climate intelligence for Ethiopia has been published in a peer-reviewed journal. The study, led by Bahir Dar University with support from USGS / FEWS NET Ethiopia and the Korea Meteorological Administration, presents a machine-learning approach to seasonal rainfall prediction in the Upper Blue Nile Basin.',
-      'The basin is one of East Africa’s most important hydrological and agricultural regions, where rainfall variability drives agricultural planning, water allocation and early warning. Conventional forecasts struggle there because of complex atmospheric interactions and gaps in ground observations.',
-      'The team combined satellite-derived precipitation, atmospheric reanalysis and historical climate data, and used artificial neural networks to link large-scale circulation to regional rainfall. A key driver in the model is the Tropical Easterly Jet, which strongly influences summer rainfall over the basin. Model outputs showed strong agreement with reference precipitation datasets.',
-      'KWARG contributed remote sensing and environmental intelligence expertise on atmospheric observations. The methodology is ready to be handed over to early-warning decision-makers and can be transferred to other regions with high climate variability.',
+      'In the Upper Blue Nile Basin, the summer rains decide a great deal: what farmers plant, how water is allocated downstream and whether early-warning systems need to sound the alarm. Yet predicting those rains a season ahead remains one of the hardest problems in regional climate science.',
+      'Research from our international collaboration on climate intelligence for Ethiopia, now published in a peer-reviewed international journal, shows how machine learning and existing satellite data can help.',
+      '## A forecasting gap with real consequences',
+      'The basin is one of East Africa’s most important hydrological and agricultural regions. Satellite observations and global atmospheric datasets are more available than ever, but turning them into reliable regional forecasts is technically difficult. Conventional approaches struggle to capture how atmospheric circulation, moisture transport and local rainfall interact, and gaps in ground-based observations limit coverage further. This weakens early-warning systems such as the Famine Early Warning Systems Network (FEWS NET).',
+      '## An international team and a data-driven approach',
+      'The study was led by Bahir Dar University, with strong support from USGS / FEWS NET Ethiopia and the Korea Meteorological Administration. KWARG contributed remote sensing and environmental intelligence expertise focused on atmospheric observations.',
+      'Rather than describing past rainfall, the team set out to identify the atmospheric signals that come before it. The framework combines satellite-derived precipitation, atmospheric reanalysis and historical climate records, and uses artificial neural networks to learn the relationships between large-scale circulation and rainfall over the basin.',
+      '## The jet stream that shapes the rainy season',
+      'A key part of the work focused on the Tropical Easterly Jet, a high-altitude wind system that strongly influences summer rainfall across the Upper Blue Nile Basin. Adding this driver gave the model predictive information beyond conventional precipitation indicators, and the resulting predictions showed strong agreement with established reference precipitation datasets.',
+      '## From methodology to decisions',
+      'The study focused on developing and validating the method rather than running it operationally. Its value lies in what comes next: a documented, peer-reviewed approach that early-warning decision-makers can adopt, and that can be transferred to other regions with high climate variability and sparse observations. For agriculture, water management and climate risk assessment, better seasonal rainfall intelligence means earlier, better-informed decisions.',
+    ],
+    figures: [
+      {
+        after: 6,
+        src: 'insights/ethiopia-method.svg',
+        alt: 'Diagram: satellite precipitation, atmospheric reanalysis, historical climate data and the Tropical Easterly Jet feed an artificial neural network that predicts seasonal rainfall, validated against reference data',
+        caption: 'The approach in brief: several existing data sources feed a neural network that predicts seasonal rainfall for the Upper Blue Nile Basin. Diagram: KWARG.',
+      },
     ],
     link: { label: 'Read the article', href: 'https://link.springer.com/article/10.1007/s00704-025-05630-9' },
   },
@@ -535,52 +564,38 @@ export const posts: Post[] = [
     date: '2026-10-27',
     excerpt:
       'Satellite data show that 60–98% of Siberia’s 2019 wildfires burned in “control zones”, where firefighting can legally be withheld.',
+    cover: 'insights/siberia-cover.webp',
+    coverAlt: 'Chart of the area burning in Siberia in summer 2019: most of it in areas left to burn, a small share in areas where fires were tackled',
     body: [
-      'Our open-access paper “Siberian Wildfire Dilemma: Controlling the Uncontrollable?” has been published in the European Journal of Environmental Sciences (Vol. 14, No. 2, 2024). It was written by Lev Labzovskii (KWARG) with Dmitry Belikov (Chiba University), Dongyeong Chang (Seoul National University) and Erik Hekman (HU University of Applied Sciences Utrecht).',
-      'The study examines the intense Siberian wildfires of summer 2019 in light of Russia’s Forest Code-2006, which introduced “control zones”: territories where authorities can legally leave wildfires unfought because they are remote or far from firefighting infrastructure.',
-      'Using remote sensing and open reports, we found that most wildfires in Siberia in 2019 burned inside control zones, between 60% and 98% depending on the day. The share was highest at the most critical moments: 97–98% during the rapid spread in June, and 96% at the peak on 2 August, when 3,012,082 of 3,134,128 burning hectares lay in control zones.',
-      'The decision not to fight these fires met strong public concern online and later civic petitions. Control zones cover 48% of Russia’s forests and 11% of the world’s forest area, so we argue for a more scientific approach to defining them. Otherwise they remain a critical blind spot in climate plans that count on Siberia’s carbon sequestration potential.',
+      'In the summer of 2019, Siberia burned on a scale rarely seen. Estimates of the area destroyed in Russia between June and August range from about 5.5 to 10 million hectares, smoke reached as far as Canada and Antarctica, and at the height of the crisis 95% of available firefighting personnel in the affected regions were deployed and army units were called in. Yet much of the fire was, by law, never meant to be fought.',
+      'Our open-access paper “Siberian Wildfire Dilemma: Controlling the Uncontrollable?”, published in the European Journal of Environmental Sciences (Vol. 14, No. 2, 2024), measures for the first time how much. It was written by Lev Labzovskii (KWARG) with Dmitry Belikov (Chiba University), Dongyeong Chang (Seoul National University) and Erik Hekman (HU University of Applied Sciences Utrecht).',
+      '## The rule behind the fires',
+      'Russia’s Forest Code-2006 introduced “control zones”: forest areas so remote or inaccessible that authorities may legally decide not to fight fires there. Suppression in such areas typically costs around ten times more than in accessible zones. Control zones cover 48% of Russia’s forests and about 11% of the world’s forest area, yet before this study no one had measured how much of a major wildfire season actually burned inside them.',
+      '## What the satellites showed',
+      'We combined fire radiative power from two independent satellite instruments, MODIS and VIIRS, with daily official statistics from Russia’s Aviation Forest Protection service. The result was stark: depending on the day, 60% to 98% of the area on fire lay in control zones. Covering 48% of the forest, these zones accounted for roughly 90% of the area burnt in 2019.',
+      'The share peaked at the most critical moments. During the rapid spread in June, 97–98% of fires were in control zones. On 2 August, at the annual peak, 96% of the 3,134,128 hectares on fire, some 3,012,082 hectares, were in control zones. On that day fewer fires were being fought (116) than a month earlier (160), even though the burning area was four times larger.',
+      '## Decisions, delays and public concern',
+      'The timeline of decisions tells its own story. On 28 July the governor of Krasnoyarsk Region, the worst-affected region, said it was not worth fighting the fires. Three days later, on 31 July, an emergency federal meeting ordered all possible resources into the fight. In between, public concern had surged: searches for Siberian wildfires peaked in Russia in July and spread to the English-speaking internet in August, and 54 wildfire-related petitions followed, one with more than a million signatures.',
+      '## Why it matters beyond Siberia',
+      'Control zones are not wrong in themselves: some forests truly are inaccessible, and suppression is expensive. But their boundaries were drawn without a scientific basis. We argue that they should be defined with data, taking into account risk to nearby communities and infrastructure. Otherwise, a large share of the world’s boreal forest will remain a critical blind spot in climate plans that count on Siberia to store carbon. For KWARG, the study shows how open satellite data and official records can make the real effects of a policy measurable.',
+    ],
+    figures: [
+      {
+        after: 6,
+        src: 'insights/siberia-fig1.webp',
+        alt: 'Charts of the 2019 Siberian wildfires: number of fires tackled and left to burn, area burning in control zones versus fires tackled, and satellite fire radiative power from MODIS and VIIRS',
+        caption:
+          'Siberian wildfires, summer 2019. Top: fires tackled (orange) and left to burn (blue). Middle: area burning where fires were ignored versus tackled; vertical lines mark the 3 July forestry statement (green), the Krasnoyarsk governor’s 28 July statement (blue) and the 31 July federal decision (red). Bottom: satellite fire radiative power. Labzovskii et al. (2024), CC BY 4.0.',
+      },
+      {
+        after: 8,
+        src: 'insights/siberia-fig2.webp',
+        alt: 'Charts comparing monthly Google search interest in forest fires and Siberian fires, in Russian and in English, with satellite fire radiative power in 2019',
+        caption:
+          'Public interest followed the fires: Google searches in Russian (top) peaked in July 2019 with fire intensity, and in English (bottom) a month later. Labzovskii et al. (2024), CC BY 4.0.',
+      },
     ],
     link: { label: 'Read the paper (open access)', href: 'https://doi.org/10.14712/23361964.2024.8' },
-  },
-  {
-    slug: 'finding-the-right-international-research-opportunities',
-    kind: 'Insight',
-    topic: 'Funding Intelligence',
-    title: 'Finding the right international research opportunities',
-    date: '2026-10-01',
-    excerpt:
-      'How research institutions can assess funding programmes, align technical expertise with programme priorities and focus resources on suitable opportunities.',
-    body: [
-      'Draft: international funding programmes differ widely in scope, eligibility and expected impact. Reading a call carefully, before committing a team to it, is the first step to a credible application.',
-      'Draft: the strongest opportunities are those where an institution’s existing expertise meets the programme’s priorities directly, rather than through a stretched interpretation.',
-    ],
-  },
-  {
-    slug: 'building-effective-research-consortia',
-    kind: 'Insight',
-    topic: 'International Partnerships',
-    title: 'Building effective research consortia',
-    date: '2026-09-15',
-    excerpt:
-      'Why complementary expertise, well-defined responsibilities and long-term institutional relationships are essential to successful international collaboration.',
-    body: [
-      'Draft: a consortium is more than a list of partners. Each member should bring something the others cannot, and each role should be clear from the start.',
-      'Draft: partnerships built on long-term institutional relationships tend to outlast a single project and lead to stronger proposals over time.',
-    ],
-  },
-  {
-    slug: 'from-research-concept-to-competitive-proposal',
-    kind: 'Insight',
-    topic: 'Project Development',
-    title: 'From research concept to competitive proposal',
-    date: '2026-08-20',
-    excerpt:
-      'An examination of how scientific objectives, technical methodologies and implementation planning come together in international research proposals.',
-    body: [
-      'Draft: a competitive proposal turns a research idea into a plan that evaluators can trust: clear objectives, a sound methodology and a realistic implementation path.',
-      'Draft: work packages, budgets and partner contributions should all trace back to the same scientific objectives.',
-    ],
   },
 ];
 

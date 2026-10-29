@@ -1,6 +1,7 @@
 ---
 import type { Publication } from '../data/site';
 import Icon from './Icon.astro';
+import { url } from '../lib/url';
 
 interface Props {
   pub: Publication;
@@ -10,36 +11,70 @@ const Tag = pub.href ? 'a' : 'div';
 ---
 
 <Tag class="pub" href={pub.href} target={pub.href ? '_blank' : undefined} rel={pub.href ? 'noopener' : undefined}>
-  <span class="top">
-    <Icon name="document" size={34} />
-    <span class="year">{pub.year}</span>
+  <span class="thumb">
+    {pub.cover ? <img src={url(pub.cover)} alt="" loading="lazy" /> : <span class="ph"><Icon name="document" size={40} /></span>}
   </span>
-  <span class="topic">Publication · {pub.type}</span>
-  <span class="title">{pub.title}</span>
-  <span class="text">{pub.authors} · <em>{pub.venue}</em></span>
-  {pub.href && <span class="more">View publication <span class="arrow">→</span></span>}
+  <span class="body">
+    <span class="top">
+      <span class="topic">Publication · {pub.type}</span>
+      <span class="year">{pub.year}</span>
+    </span>
+    <span class="title">{pub.title}</span>
+    <span class="text">{pub.authors} · <em>{pub.venue}</em></span>
+    {pub.href && <span class="more">View publication <span class="arrow">↗</span></span>}
+  </span>
 </Tag>
 
 <style>
   .pub {
     display: flex;
     flex-direction: column;
-    gap: 12px;
     height: 100%;
-    padding: 22px;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-left: 3px solid var(--slate-teal);
     border-radius: var(--radius);
     text-decoration: none;
+    transition: box-shadow 0.2s;
   }
   a.pub:hover {
     box-shadow: 0 12px 28px rgba(30, 74, 95, 0.12);
   }
+  .thumb {
+    display: block;
+    aspect-ratio: 16 / 9;
+    background: #ffffff;
+    border-bottom: 3px solid var(--slate-teal);
+    overflow: hidden;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    transition: transform 0.4s;
+  }
+  a.pub:hover .thumb img {
+    transform: scale(1.03);
+  }
+  .ph {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background: var(--band);
+    color: var(--slate-teal);
+  }
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 20px 20px;
+  }
   .top {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
     color: var(--mid-gray);
   }
   .year {
@@ -52,7 +87,6 @@ const Tag = pub.href ? 'a' : 'div';
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--slate-teal);
-    margin-bottom: -6px;
   }
   .title {
     font-family: var(--display);

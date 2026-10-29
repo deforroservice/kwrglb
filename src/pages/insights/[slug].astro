@@ -10,24 +10,79 @@ export function getStaticPaths() {
 }
 
 const { post } = Astro.props as { post: Post };
+const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const figuresAfter = (i: number) => (post.figures ?? []).filter((f) => f.after === i);
 ---
 
 <Base title={post.title} description={post.excerpt}>
-  <Hero eyebrow={`${post.topic} · ${post.date}`} title={post.title} subtitle={post.excerpt} />
+  <Hero eyebrow={`${post.kind} · ${post.topic} · ${date}`} title={post.title} subtitle={post.excerpt} />
+
+  <div class="container">
+    <figure class="cover">
+      <img src={url(post.cover)} alt={post.coverAlt} />
+    </figure>
+  </div>
+
   <Prose>
-    {post.body.map((para) => <p>{para}</p>)}
+    {
+      post.body.map((block, i) => (
+        <>
+          {block.startsWith('## ') ? <h2>{block.slice(3)}</h2> : <p>{block}</p>}
+          {figuresAfter(i).map((f) => (
+            <figure class="fig">
+              <img src={url(f.src)} alt={f.alt} loading="lazy" />
+              <figcaption>{f.caption}</figcaption>
+            </figure>
+          ))}
+        </>
+      ))
+    }
     <p class="links">
-      {post.link && (
-        <a class="btn btn-primary" href={post.link.href} target="_blank" rel="noopener">
-          {post.link.label} <span class="arrow">↗</span>
-        </a>
-      )}
+      {
+        post.link && (
+          <a class="btn btn-primary" href={post.link.href} target="_blank" rel="noopener">
+            {post.link.label} <span class="arrow">↗</span>
+          </a>
+        )
+      }
       <a class="btn btn-tertiary" href={url('insights/')}>← All insights</a>
     </p>
   </Prose>
 </Base>
 
 <style>
+  .cover {
+    margin: 0 0 40px;
+    max-width: 960px;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #ffffff;
+  }
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .fig {
+    margin: 28px 0 32px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .fig figcaption {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 20px;
+    color: var(--muted);
+  }
   p.links {
     display: flex;
     flex-wrap: wrap;

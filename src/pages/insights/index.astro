@@ -5,12 +5,14 @@ import PostCard from '../../components/PostCard.astro';
 import PubCard from '../../components/PubCard.astro';
 import { posts, publications } from '../../data/site';
 
-const TABS = ['All', 'Insights', 'News', 'Publications'];
+
 // Newest first across both lists; publications only have a year.
 const items = [
   ...posts.map((p) => ({ kind: p.kind === 'News' ? 'News' : 'Insights', sort: p.date, post: p })),
   ...publications.map((p) => ({ kind: 'Publications', sort: `${p.year}-00-00`, pub: p })),
 ].sort((a, b) => b.sort.localeCompare(a.sort));
+// Only show tabs that have something in them.
+const TABS = ['All', ...['Insights', 'News', 'Publications'].filter((t) => items.some((it) => it.kind === t))];
 ---
 
 <Base title="Insights & publications" description="Insights, news and publications on international research collaboration, competitive funding and multidisciplinary project development.">

@@ -10,39 +10,60 @@ const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', m
 ---
 
 <a class="post" href={url(`insights/${post.slug}/`)}>
-  <span class="top">
-    <svg width="34" height="42" viewBox="0 0 34 42" fill="none" aria-hidden="true">
-      <rect x="1" y="1" width="32" height="40" rx="2" stroke="currentColor" stroke-width="1.5" />
-      <path d="M8 12h18M8 18h18M8 24h18M8 30h10" stroke="currentColor" stroke-width="1.5" />
-    </svg>
-    <time datetime={post.date}>{date}</time>
+  <span class="thumb"><img src={url(post.cover)} alt="" loading="lazy" /></span>
+  <span class="body">
+    <span class="top">
+      <span class="topic">{post.topic}</span>
+      <time datetime={post.date}>{date}</time>
+    </span>
+    <span class="title">{post.title}</span>
+    <span class="text">{post.excerpt}</span>
+    <span class="more">{post.kind === 'News' ? 'Read news' : 'Read insight'} <span class="arrow">→</span></span>
   </span>
-  <span class="topic">{post.topic}</span>
-  <span class="title">{post.title}</span>
-  <span class="text">{post.excerpt}</span>
-  <span class="more">{post.kind === 'News' ? 'Read news' : 'Read insight'} <span class="arrow">→</span></span>
 </a>
 
 <style>
   .post {
     display: flex;
     flex-direction: column;
-    gap: 12px;
     height: 100%;
-    padding: 22px;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     text-decoration: none;
     transition: box-shadow 0.2s;
   }
+  .thumb {
+    display: block;
+    aspect-ratio: 16 / 9;
+    background: var(--band);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .post:hover .thumb img {
+    transform: scale(1.03);
+  }
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 20px 20px;
+  }
   .post:hover {
     box-shadow: 0 12px 28px rgba(30, 74, 95, 0.12);
   }
   .top {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
     color: var(--mid-gray);
   }
   time {
@@ -56,7 +77,6 @@ const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', m
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--green-dark);
-    margin-bottom: -6px;
   }
   .title {
     font-family: var(--display);
