@@ -39,6 +39,9 @@ export type Project = {
   facts: { label: string; value: string }[];
   intro: string;
   sections: { heading: string; paragraphs?: string[]; bullets?: { title?: string; text: string }[] }[];
+  // "Publications & news" block at the end of the project page.
+  // href: full URL for external sources, or a site path such as 'insights/some-news/'.
+  references?: { kind: 'Publication' | 'News' | 'Report'; title: string; source: string; href: string }[];
   // Seed for the generated line-art cover (until real images exist).
   seed: number;
 };
@@ -152,6 +155,20 @@ export const projects: Project[] = [
         paragraphs: [
           'Better seasonal rainfall intelligence supports agricultural planning, water resource management and climate risk assessment. While the work focused on methodology and validation rather than operational deployment, it shows how existing Earth observation infrastructure and machine learning can create higher-value climate intelligence in a region where climate impacts are severe and urgent.',
         ],
+      },
+    ],
+    references: [
+      {
+        kind: 'News',
+        title: 'Published: machine learning for seasonal rainfall prediction in Ethiopia',
+        source: 'KWARG news',
+        href: 'insights/ethiopia-rainfall-prediction-study-published/',
+      },
+      {
+        kind: 'Publication',
+        title: 'Peer-reviewed article',
+        source: 'Springer',
+        href: 'https://link.springer.com/article/10.1007/s00704-025-05630-9',
       },
     ],
     seed: 19,
@@ -357,6 +374,20 @@ export const projects: Project[] = [
         ],
       },
     ],
+    references: [
+      {
+        kind: 'Publication',
+        title: 'Siberian Wildfire Dilemma: Controlling the Uncontrollable?',
+        source: 'Labzovskii L, Belikov D, Chang DY, Hekman E (2024). European Journal of Environmental Sciences 14(2): 72–78. Open access.',
+        href: 'https://doi.org/10.14712/23361964.2024.8',
+      },
+      {
+        kind: 'News',
+        title: 'Siberian wildfire dilemma: our study is published',
+        source: 'KWARG news',
+        href: 'insights/siberian-wildfire-dilemma-published/',
+      },
+    ],
     seed: 29,
   },
   {
@@ -403,6 +434,20 @@ export const projects: Project[] = [
         ],
       },
     ],
+    references: [
+      {
+        kind: 'News',
+        title: 'WMO report features our Nebo air quality research',
+        source: 'KWARG news',
+        href: 'insights/wmo-report-cites-kwarg-nebo-air-quality-research/',
+      },
+      {
+        kind: 'Report',
+        title: 'Integrating low-cost sensor systems and networks to enhance air quality applications',
+        source: 'World Meteorological Organization, Global Atmosphere Watch',
+        href: 'https://library.wmo.int/records/item/68924-integrating-low-cost-sensor-systems-and-networks-to-enhance-air-quality-applications',
+      },
+    ],
     seed: 3,
   },
 ];
@@ -437,18 +482,9 @@ export type Publication = {
   cover?: string;
 };
 
-// Peer-reviewed publications. Add more as they come in.
-export const publications: Publication[] = [
-  {
-    title: 'Siberian Wildfire Dilemma: Controlling the Uncontrollable?',
-    authors: 'Labzovskii L, Belikov D, Chang DY, Hekman E',
-    venue: 'European Journal of Environmental Sciences 14(2): 72–78',
-    year: 2024,
-    type: 'Article',
-    href: 'https://doi.org/10.14712/23361964.2024.8',
-    cover: 'insights/siberia-fig2.webp',
-  },
-];
+// Publication cards on the Insights page. Papers that belong to a project are referenced on that
+// project's page and in its news item instead, so this list is empty for now.
+export const publications: Publication[] = [];
 
 // Home page "Our partners & collaborations" section: logo + name, in this order.
 // Logos live in public/partners/.
@@ -466,6 +502,8 @@ export const partners: { name: string; logo: string }[] = [
   { name: 'Seoul National University', logo: 'partners/seoul-national-university.webp' },
   { name: 'Bahir Dar University', logo: 'partners/bahir-dar-university.webp' },
   { name: 'Carbon Market Watch', logo: 'partners/carbon-market-watch.webp' },
+  // Placeholder badge until the official logo file is added.
+  { name: 'Chiba University (Japan)', logo: 'partners/chiba-university.svg' },
 ];
 
 export type Post = {
@@ -484,12 +522,15 @@ export type Post = {
   figures?: { after: number; src: string; alt: string; caption: string }[];
   // Optional link to the original source (paper, report).
   link?: { label: string; href: string };
+  // Slug of the related project, linked at the end of the article.
+  project?: string;
 };
 
 // Newest first on the site (sorted by date).
 export const posts: Post[] = [
   {
     slug: 'wmo-report-cites-kwarg-nebo-air-quality-research',
+    project: 'nebo-environmental-monitoring',
     kind: 'News',
     topic: 'Air quality monitoring',
     title: 'WMO report features our Nebo air quality research',
@@ -525,6 +566,7 @@ export const posts: Post[] = [
   },
   {
     slug: 'ethiopia-rainfall-prediction-study-published',
+    project: 'ethiopia-climate-intelligence',
     kind: 'News',
     topic: 'Climate intelligence',
     title: 'Published: machine learning for seasonal rainfall prediction in Ethiopia',
@@ -558,6 +600,7 @@ export const posts: Post[] = [
   },
   {
     slug: 'siberian-wildfire-dilemma-published',
+    project: 'wildfire-policy-environmental-intelligence',
     kind: 'News',
     topic: 'Environmental intelligence',
     title: 'Siberian wildfire dilemma: our study is published',
