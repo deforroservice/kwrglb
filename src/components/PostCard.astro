@@ -20,7 +20,7 @@ const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', m
   <span class="topic">{post.topic}</span>
   <span class="title">{post.title}</span>
   <span class="text">{post.excerpt}</span>
-  <span class="more">Read insight <span class="arrow">→</span></span>
+  <span class="more">{post.kind === 'News' ? 'Read news' : 'Read insight'} <span class="arrow">→</span></span>
 </a>
 
 <style>

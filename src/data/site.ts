@@ -486,10 +486,63 @@ export type Post = {
   date: string;
   excerpt: string;
   body: string[];
+  // Optional link to the original source (paper, report).
+  link?: { label: string; href: string };
 };
 
-// Article bodies are short drafts; replace with full texts.
+// Newest first on the site (sorted by date). Insight bodies are short drafts; replace with full texts.
 export const posts: Post[] = [
+  {
+    slug: 'wmo-report-cites-kwarg-nebo-air-quality-research',
+    kind: 'News',
+    topic: 'Air quality monitoring',
+    title: 'WMO report features our Nebo air quality research',
+    date: '2026-10-29',
+    excerpt:
+      'A World Meteorological Organization report on low-cost sensor networks cites KWARG’s research with Nebo as an example of cost-effective air quality monitoring.',
+    body: [
+      'The World Meteorological Organization (WMO) Global Atmosphere Watch programme has published “Integrating low-cost sensor systems and networks to enhance air quality applications”, a report on how affordable sensors can strengthen air quality monitoring and its use worldwide.',
+      'The report cites research from KWARG’s long-term scientific partnership with Nebo (Labzovskii et al., 2023) as an example of cost-effective air quality monitoring networks. Such networks can complement official monitoring and, where government networks have gaps, temporarily take their place.',
+      'In its section on communication and open data, the report also notes that community low-cost sensor networks have sometimes grown in response to a perceived lack of transparency from official sources, and it calls for clear, traceable communication of air quality data so that the public can trust it.',
+      'For KWARG, this recognition reflects years of independent validation work: benchmarking Nebo’s sensors against reference instruments and satellite observations, and publishing the results in peer-reviewed literature.',
+    ],
+    link: {
+      label: 'View the WMO report',
+      href: 'https://library.wmo.int/records/item/68924-integrating-low-cost-sensor-systems-and-networks-to-enhance-air-quality-applications',
+    },
+  },
+  {
+    slug: 'ethiopia-rainfall-prediction-study-published',
+    kind: 'News',
+    topic: 'Climate intelligence',
+    title: 'Published: machine learning for seasonal rainfall prediction in Ethiopia',
+    date: '2026-10-28',
+    excerpt:
+      'Our peer-reviewed study on predicting summer rainfall in the Upper Blue Nile Basin with satellite data and neural networks is now published.',
+    body: [
+      'Research from our international collaboration on climate intelligence for Ethiopia has been published in a peer-reviewed journal. The study, led by Bahir Dar University with support from USGS / FEWS NET Ethiopia and the Korea Meteorological Administration, presents a machine-learning approach to seasonal rainfall prediction in the Upper Blue Nile Basin.',
+      'The basin is one of East Africa’s most important hydrological and agricultural regions, where rainfall variability drives agricultural planning, water allocation and early warning. Conventional forecasts struggle there because of complex atmospheric interactions and gaps in ground observations.',
+      'The team combined satellite-derived precipitation, atmospheric reanalysis and historical climate data, and used artificial neural networks to link large-scale circulation to regional rainfall. A key driver in the model is the Tropical Easterly Jet, which strongly influences summer rainfall over the basin. Model outputs showed strong agreement with reference precipitation datasets.',
+      'KWARG contributed remote sensing and environmental intelligence expertise on atmospheric observations. The methodology is ready to be handed over to early-warning decision-makers and can be transferred to other regions with high climate variability.',
+    ],
+    link: { label: 'Read the article', href: 'https://link.springer.com/article/10.1007/s00704-025-05630-9' },
+  },
+  {
+    slug: 'siberian-wildfire-dilemma-published',
+    kind: 'News',
+    topic: 'Environmental intelligence',
+    title: 'Siberian wildfire dilemma: our study is published',
+    date: '2026-10-27',
+    excerpt:
+      'Satellite data show that 60–98% of Siberia’s 2019 wildfires burned in “control zones”, where firefighting can legally be withheld.',
+    body: [
+      'Our open-access paper “Siberian Wildfire Dilemma: Controlling the Uncontrollable?” has been published in the European Journal of Environmental Sciences (Vol. 14, No. 2, 2024). It was written by Lev Labzovskii (KWARG) with Dmitry Belikov (Chiba University), Dongyeong Chang (Seoul National University) and Erik Hekman (HU University of Applied Sciences Utrecht).',
+      'The study examines the intense Siberian wildfires of summer 2019 in light of Russia’s Forest Code-2006, which introduced “control zones”: territories where authorities can legally leave wildfires unfought because they are remote or far from firefighting infrastructure.',
+      'Using remote sensing and open reports, we found that most wildfires in Siberia in 2019 burned inside control zones, between 60% and 98% depending on the day. The share was highest at the most critical moments: 97–98% during the rapid spread in June, and 96% at the peak on 2 August, when 3,012,082 of 3,134,128 burning hectares lay in control zones.',
+      'The decision not to fight these fires met strong public concern online and later civic petitions. Control zones cover 48% of Russia’s forests and 11% of the world’s forest area, so we argue for a more scientific approach to defining them. Otherwise they remain a critical blind spot in climate plans that count on Siberia’s carbon sequestration potential.',
+    ],
+    link: { label: 'Read the paper (open access)', href: 'https://doi.org/10.14712/23361964.2024.8' },
+  },
   {
     slug: 'finding-the-right-international-research-opportunities',
     kind: 'Insight',

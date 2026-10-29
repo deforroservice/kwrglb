@@ -16,6 +16,23 @@ const { post } = Astro.props as { post: Post };
   <Hero eyebrow={`${post.topic} · ${post.date}`} title={post.title} subtitle={post.excerpt} />
   <Prose>
     {post.body.map((para) => <p>{para}</p>)}
-    <p><a class="btn btn-tertiary" href={url('insights/')}>← All insights</a></p>
+    <p class="links">
+      {post.link && (
+        <a class="btn btn-primary" href={post.link.href} target="_blank" rel="noopener">
+          {post.link.label} <span class="arrow">↗</span>
+        </a>
+      )}
+      <a class="btn btn-tertiary" href={url('insights/')}>← All insights</a>
+    </p>
   </Prose>
 </Base>
+
+<style>
+  p.links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    margin-top: 32px;
+  }
+</style>
