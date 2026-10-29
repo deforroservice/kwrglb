@@ -502,8 +502,7 @@ export const partners: { name: string; logo: string }[] = [
   { name: 'Seoul National University', logo: 'partners/seoul-national-university.webp' },
   { name: 'Bahir Dar University', logo: 'partners/bahir-dar-university.webp' },
   { name: 'Carbon Market Watch', logo: 'partners/carbon-market-watch.webp' },
-  // Placeholder badge until the official logo file is added.
-  { name: 'Chiba University (Japan)', logo: 'partners/chiba-university.svg' },
+  { name: 'Chiba University (Japan)', logo: 'partners/chiba-university.webp' },
 ];
 
 export type Post = {
