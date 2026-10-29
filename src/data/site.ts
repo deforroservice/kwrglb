@@ -329,7 +329,7 @@ export const projects: Project[] = [
       {
         heading: 'Key findings',
         paragraphs: [
-          'The project uncovered significant blind spots in forest policy. During major wildfire seasons in Siberia, between 60% and 98% of the reported fire-affected area lay in territories where active firefighting could legally be withheld. At the peak of the anomalous 2020 wildfire season in Eurasia, these zones accounted for more than 95% of the affected area, over three million hectares.',
+          'The project uncovered significant blind spots in forest policy. During the major 2019 wildfire season in Siberia, between 60% and 98% of the reported fire-affected area, depending on the day, lay in territories where active firefighting could legally be withheld. At the peak of the season on 2 August 2019, these zones accounted for 96% of the area on fire: 3,012,082 of 3,134,128 hectares.',
           'Given the large share of the world’s forests under post-USSR jurisdiction, the work linked policy choices to disastrous environmental events and their implications for global warming. It turned a governance problem that was hard to quantify into measurable evidence, supporting a review of intervention criteria, management boundaries and the balance between suppression costs and environmental exposure.',
         ],
       },
