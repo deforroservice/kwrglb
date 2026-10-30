@@ -37,6 +37,17 @@
 .pcard-art {
   display: block;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.pcard-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.pcard:hover .pcard-art img {
+  transform: scale(1.04);
 }
 .pcard-body {
   position: relative;

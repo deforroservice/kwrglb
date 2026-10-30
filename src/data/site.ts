@@ -42,8 +42,11 @@ export type Project = {
   // "Publications & news" block at the end of the project page.
   // href: full URL for external sources, or a site path such as 'insights/some-news/'.
   references?: { kind: 'Publication' | 'News' | 'Report'; title: string; source: string; href: string }[];
-  // Seed for the generated line-art cover (until real images exist).
+  // Seed for the generated line-art cover, used when there is no image.
   seed: number;
+  // Illustration in public/projects/: '<name>' uses <name>.webp on the page and <name>-thumb.webp on cards.
+  image?: string;
+  imageAlt?: string;
 };
 
 // Newest first. The home page shows the first three.
@@ -95,6 +98,8 @@ export const projects: Project[] = [
       },
     ],
     seed: 41,
+    image: 'tajikistan-air-quality',
+    imageAlt: 'Illustrated air pollution map of Central Asia around the Caspian and Aral Seas',
   },
   {
     slug: 'ethiopia-climate-intelligence',
@@ -172,6 +177,8 @@ export const projects: Project[] = [
       },
     ],
     seed: 19,
+    image: 'ethiopia-rainfall',
+    imageAlt: 'Illustration of high-altitude winds and rain over a river canyon in the Ethiopian highlands',
   },
   {
     slug: 'carbon-market-watch-digital-infrastructure',
@@ -232,6 +239,8 @@ export const projects: Project[] = [
       },
     ],
     seed: 11,
+    image: 'carbon-market-watch',
+    imageAlt: 'Illustration of scattered corporate climate data being organised into a research platform',
   },
   {
     slug: 'tech-to-the-rescue',
@@ -311,6 +320,8 @@ export const projects: Project[] = [
       },
     ],
     seed: 7,
+    image: 'tech-to-the-rescue',
+    imageAlt: 'Illustration of two hands reaching across a globe',
   },
   {
     slug: 'wildfire-policy-environmental-intelligence',
@@ -389,6 +400,8 @@ export const projects: Project[] = [
       },
     ],
     seed: 29,
+    image: 'wildfire',
+    imageAlt: 'Illustration of a wildfire front spreading through a boreal forest along a river',
   },
   {
     slug: 'nebo-environmental-monitoring',
@@ -449,6 +462,8 @@ export const projects: Project[] = [
       },
     ],
     seed: 3,
+    image: 'nebo-air-quality',
+    imageAlt: 'Illustration of a person in a face mask looking at a smoky city skyline',
   },
 ];
 
