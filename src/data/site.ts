@@ -97,6 +97,14 @@ export const projects: Project[] = [
         ],
       },
     ],
+    references: [
+      {
+        kind: 'News',
+        title: 'EPIC Air Quality Fund backs a national monitoring network for Tajikistan',
+        source: 'KWARG news',
+        href: 'insights/epic-air-quality-fund-tajikistan/',
+      },
+    ],
     seed: 41,
     image: 'tajikistan-air-quality',
     imageAlt: 'Illustrated air pollution map of Central Asia around the Caspian and Aral Seas',
@@ -545,17 +553,38 @@ export type Post = {
 // Newest first on the site (sorted by date).
 export const posts: Post[] = [
   {
+    slug: 'epic-air-quality-fund-tajikistan',
+    project: 'tajikistan-air-quality-monitoring',
+    kind: 'News',
+    topic: 'Air quality monitoring',
+    title: 'EPIC Air Quality Fund backs a national monitoring network for Tajikistan',
+    date: '2026-10-15',
+    excerpt:
+      'A consortium led by Tajik Technical University, with KWARG as partner, has won funding from the University of Chicago’s EPIC Air Quality Fund to build an open national PM2.5 network.',
+    cover: 'projects/tajikistan-air-quality-thumb.webp',
+    coverAlt: 'Illustrated air pollution map of Central Asia around the Caspian and Aral Seas',
+    body: [
+      'We are pleased to share that a consortium led by Tajik Technical University (TTU), with KWARG as a project partner, has been awarded funding from the University of Chicago’s EPIC Air Quality Fund. The award will support national air quality monitoring and evidence-based environmental policy in Tajikistan.',
+      '## Why Tajikistan needs better air quality data',
+      'Tajikistan faces significant air pollution challenges, but reliable, publicly accessible monitoring data are scarce. That gap limits research, environmental management and regulation. Closing it takes more than extra measurements: it needs a coordinated national infrastructure that turns data into evidence people can act on.',
+      '## 100 sensors, open to everyone',
+      'Over 18 months, the project will establish an open national PM2.5 monitoring network, with 100 ground-level sensors planned across major cities and population centres. The measurements will be continuous and published through a national digital platform, so researchers, public authorities and citizens can all use them.',
+      '## From data to policy',
+      'Working with Tajikistan’s Committee for Environmental Protection, the consortium will build an evidence base for assessing population exposure, finding pollution hotspots and reviewing national PM2.5 standards. Nebo joins as a technical partner, bringing the low-cost monitoring approach that KWARG has helped validate for nearly a decade, work recently cited by the World Meteorological Organization.',
+      'For TTU and KWARG, the award is an important milestone: a chance to lay the foundation for sustained national air quality observation and better-informed clean-air policy.',
+    ],
+  },
+  {
     slug: 'wmo-report-cites-kwarg-nebo-air-quality-research',
     project: 'nebo-environmental-monitoring',
     kind: 'News',
     topic: 'Air quality monitoring',
     title: 'WMO report features our Nebo air quality research',
-    date: '2026-10-29',
+    date: '2025-12-15',
     excerpt:
       'A World Meteorological Organization report on low-cost sensor networks cites KWARG’s research with Nebo as an example of cost-effective air quality monitoring.',
-    cover: 'insights/wmo-gaw-293-cover.webp',
-    coverAlt: 'Cover of WMO GAW Report No. 293, Integrating Low-cost Sensor Systems and Networks to Enhance Air Quality Applications',
-    coverPosition: 'top',
+    cover: 'insights/wmo-city-cover.webp',
+    coverAlt: 'Aerial view of a dense coastal city under a hazy sky, from the cover of WMO GAW Report No. 293',
     body: [
       'Affordable air quality sensors have changed who can measure the air. Cities, communities and companies can now run dense monitoring networks at a fraction of the cost of official stations. But one question has followed this technology from the start: can its data be trusted?',
       'For nearly a decade, KWARG has worked on exactly that question with Nebo, one of the most established low-cost air quality monitoring initiatives. This month, that work was recognised by the World Meteorological Organization (WMO).',
@@ -566,7 +595,7 @@ export const posts: Post[] = [
       'That recognition rests on evidence. Many low-cost systems have struggled with stability and accuracy, so credibility has to be earned through rigorous calibration, comparison and evaluation. As Nebo’s scientific strategy partner, KWARG brought together experts from leading universities and meteorological research institutions to benchmark Nebo’s sensors independently against reference-grade observations, and to connect ground measurements with satellite data.',
       'The results showed that Nebo’s sensors deliver stable, accurate data across a wide range of environmental conditions, and they were published in peer-reviewed literature and the technology press. They gave policymakers evidence that low-cost observations can stand alongside official networks, particularly in regions that conventional monitoring does not reach.',
       '## From evidence to national infrastructure',
-      'The same thinking now underpins our newest project. Together with Tajik Technical University, Nebo and Tajikistan’s Committee for Environmental Protection, KWARG is part of the consortium that won the 2026 EPIC Air Quality Fund to build an open national PM2.5 network of 100 sensors. The WMO report confirms what that project is built on: well-validated low-cost networks can become a trusted part of how countries monitor their air.',
+      'The same thinking now shapes our next steps: taking well-validated low-cost networks to national scale in countries where official monitoring is sparse. The WMO report confirms what that ambition is built on: low-cost networks, properly validated, can become a trusted part of how countries monitor their air.',
     ],
     figures: [
       {
@@ -587,7 +616,7 @@ export const posts: Post[] = [
     kind: 'News',
     topic: 'Climate intelligence',
     title: 'Published: machine learning for seasonal rainfall prediction in Ethiopia',
-    date: '2026-10-28',
+    date: '2025-07-15',
     excerpt:
       'Our peer-reviewed study shows how satellite data and neural networks can sharpen summer rainfall prediction in the Upper Blue Nile Basin.',
     cover: 'insights/ethiopia-basin-cover.webp',
@@ -621,7 +650,7 @@ export const posts: Post[] = [
     kind: 'News',
     topic: 'Environmental intelligence',
     title: 'Siberian wildfire dilemma: our study is published',
-    date: '2026-10-27',
+    date: '2025-01-15',
     excerpt:
       'Satellite data show that 60–98% of Siberia’s 2019 wildfires burned in “control zones”, where firefighting can legally be withheld.',
     cover: 'insights/siberia-cover.webp',

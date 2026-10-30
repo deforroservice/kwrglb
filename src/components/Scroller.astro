@@ -17,7 +17,7 @@ const { label } = Astro.props;
     <button class="arrow up" type="button" aria-label={`Scroll ${label.toLowerCase()} up`}>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>
     </button>
-    <div class="track" aria-hidden="true"><div class="thumb"></div></div>
+    <div class="track" aria-hidden="true"><div class="bar-thumb"></div></div>
     <div class="count" aria-live="polite"></div>
     <button class="arrow down" type="button" aria-label={`Scroll ${label.toLowerCase()} down`}>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
@@ -35,7 +35,7 @@ const { label } = Astro.props;
     const up = el.querySelector<HTMLButtonElement>('.up')!;
     const down = el.querySelector<HTMLButtonElement>('.down')!;
     const track = el.querySelector<HTMLElement>('.track')!;
-    const thumb = el.querySelector<HTMLElement>('.thumb')!;
+    const thumb = el.querySelector<HTMLElement>('.bar-thumb')!;
     const count = el.querySelector<HTMLElement>('.count')!;
 
     const columns = () => getComputedStyle(list).gridTemplateColumns.split(' ').length || 1;
@@ -169,7 +169,7 @@ const { label } = Astro.props;
     border-radius: 2px;
     background: var(--line);
   }
-  .thumb {
+  .bar-thumb {
     position: absolute;
     left: 0;
     right: 0;
