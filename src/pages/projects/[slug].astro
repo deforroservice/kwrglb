@@ -43,13 +43,6 @@ const { project } = Astro.props as { project: Project };
 
   <article class="body grid12">
     <div class="span-7">
-      {
-        project.image && (
-          <figure class="pic">
-            <img src={url(`projects/${project.image}.webp`)} alt={project.imageAlt ?? ''} />
-          </figure>
-        )
-      }
       <p class="lead">{project.intro}</p>
       {
         project.sections.map((s) => (
@@ -160,19 +153,6 @@ const { project } = Astro.props as { project: Project };
   }
   .body {
     padding-top: 44px;
-  }
-  .pic {
-    margin: 0 0 32px;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--line);
-  }
-  .pic img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
   .lead {
     margin: 0 0 8px;

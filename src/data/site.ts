@@ -44,7 +44,7 @@ export type Project = {
   references?: { kind: 'Publication' | 'News' | 'Report'; title: string; source: string; href: string }[];
   // Seed for the generated line-art cover, used when there is no image.
   seed: number;
-  // Illustration in public/projects/: '<name>' uses <name>.webp on the page and <name>-thumb.webp on cards.
+  // Card thumbnail only (not shown on the project page): public/projects/<name>-thumb.webp
   image?: string;
   imageAlt?: string;
 };
