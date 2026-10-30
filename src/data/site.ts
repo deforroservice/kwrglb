@@ -532,6 +532,8 @@ export type Post = {
   // Thumbnail on cards and the image at the top of the article (path under public/).
   cover: string;
   coverAlt: string;
+  // Which part of the cover stays visible when it is cropped (CSS object-position), e.g. 'top'.
+  coverPosition?: string;
   // Images placed inside the article, after paragraph number `after` (0-based, counting headings too).
   figures?: { after: number; src: string; alt: string; caption: string }[];
   // Optional link to the original source (paper, report).
@@ -551,13 +553,14 @@ export const posts: Post[] = [
     date: '2026-10-29',
     excerpt:
       'A World Meteorological Organization report on low-cost sensor networks cites KWARG’s research with Nebo as an example of cost-effective air quality monitoring.',
-    cover: 'insights/air-quality-cover.svg',
-    coverAlt: 'Illustration of a city-wide network of air quality sensors linked to a reference station and a satellite pass',
+    cover: 'insights/wmo-gaw-293-cover.webp',
+    coverAlt: 'Cover of WMO GAW Report No. 293, Integrating Low-cost Sensor Systems and Networks to Enhance Air Quality Applications',
+    coverPosition: 'top',
     body: [
       'Affordable air quality sensors have changed who can measure the air. Cities, communities and companies can now run dense monitoring networks at a fraction of the cost of official stations. But one question has followed this technology from the start: can its data be trusted?',
       'For nearly a decade, KWARG has worked on exactly that question with Nebo, one of the most established low-cost air quality monitoring initiatives. This month, that work was recognised by the World Meteorological Organization (WMO).',
       '## Recognition from the WMO',
-      'The WMO Global Atmosphere Watch programme has published “Integrating low-cost sensor systems and networks to enhance air quality applications”, a report on how low-cost sensors can strengthen air quality monitoring and its use worldwide. The report cites research from our partnership with Nebo (Labzovskii et al., 2023) as an example of cost-effective air quality monitoring networks: networks that can complement official monitoring and, where government networks have gaps, temporarily take their place.',
+      'The WMO Global Atmosphere Watch programme has published “Integrating Low-cost Sensor Systems and Networks to Enhance Air Quality Applications” (GAW Report No. 293), a report on how low-cost sensors can strengthen air quality monitoring and its use worldwide. The report cites research from our partnership with Nebo (Labzovskii et al., 2023) as an example of cost-effective air quality monitoring networks: networks that can complement official monitoring and, where government networks have gaps, temporarily take their place.',
       'The report also looks at how air quality data reaches the public. In its section on communication and open data, it notes that community low-cost sensor networks have sometimes grown in response to a perceived lack of transparency from official sources, and it calls on data providers to communicate clearly and keep every data product traceable to its original source.',
       '## How trust was earned',
       'That recognition rests on evidence. Many low-cost systems have struggled with stability and accuracy, so credibility has to be earned through rigorous calibration, comparison and evaluation. As Nebo’s scientific strategy partner, KWARG brought together experts from leading universities and meteorological research institutions to benchmark Nebo’s sensors independently against reference-grade observations, and to connect ground measurements with satellite data.',
@@ -587,8 +590,8 @@ export const posts: Post[] = [
     date: '2026-10-28',
     excerpt:
       'Our peer-reviewed study shows how satellite data and neural networks can sharpen summer rainfall prediction in the Upper Blue Nile Basin.',
-    cover: 'insights/ethiopia-cover.svg',
-    coverAlt: 'Illustration of rainfall over the contour lines of a river basin',
+    cover: 'insights/ethiopia-basin-cover.webp',
+    coverAlt: 'Illustrated map of Ethiopia with the Upper Blue Nile Basin outlined and shown enlarged',
     body: [
       'In the Upper Blue Nile Basin, the summer rains decide a great deal: what farmers plant, how water is allocated downstream and whether early-warning systems need to sound the alarm. Yet predicting those rains a season ahead remains one of the hardest problems in regional climate science.',
       'Research from our international collaboration on climate intelligence for Ethiopia, now published in a peer-reviewed international journal, shows how machine learning and existing satellite data can help.',

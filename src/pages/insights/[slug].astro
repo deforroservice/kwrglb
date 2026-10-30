@@ -20,7 +20,7 @@ const figuresAfter = (i: number) => (post.figures ?? []).filter((f) => f.after =
 
   <div class="container">
     <figure class="cover">
-      <img src={url(post.cover)} alt={post.coverAlt} />
+      <img src={url(post.cover)} style={post.coverPosition ? `object-position:${post.coverPosition}` : undefined} alt={post.coverAlt} />
     </figure>
   </div>
 

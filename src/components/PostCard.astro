@@ -10,7 +10,7 @@ const date = new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', m
 ---
 
 <a class="post" href={url(`insights/${post.slug}/`)}>
-  <span class="thumb"><img src={url(post.cover)} alt="" loading="lazy" /></span>
+  <span class="thumb"><img src={url(post.cover)} style={post.coverPosition ? `object-position:${post.coverPosition}` : undefined} alt="" loading="lazy" /></span>
   <span class="body">
     <span class="top">
       <span class="topic">{post.topic}</span>
