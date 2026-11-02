@@ -179,12 +179,11 @@ const { project } = Astro.props as { project: Project };
     display: grid;
     gap: 12px;
   }
-  /* Bullet marker: one wavy stripe from the logo */
   .bullets li {
     display: grid;
     gap: 2px;
-    padding-left: 34px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 8'%3E%3Cpath d='M2 5 C7 1 12 1 20 4' fill='none' stroke='%235ede81' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 8px / 22px 8px;
+    padding-left: 18px;
+    border-left: 3px solid var(--green);
   }
   .bullets strong {
     color: var(--deep-teal);

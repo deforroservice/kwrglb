@@ -1,6 +1,5 @@
 ---
 import { darkCover } from '../lib/art';
-import Logo from './Logo.astro';
 
 interface Props {
   title: string;
@@ -8,27 +7,17 @@ interface Props {
   eyebrow?: string;
   dark?: boolean;
   seed?: number;
-  // Home page: large faint logo mark behind the text and a wavy logo stripe along the bottom edge.
-  brand?: boolean;
 }
-const { title, subtitle, eyebrow, dark = false, seed = 2, brand = false } = Astro.props;
+const { title, subtitle, eyebrow, dark = false, seed = 2 } = Astro.props;
 ---
 
-<section class:list={['hero', { dark, brand }]} style={dark ? `background:${brand ? '#254657' : darkCover(seed)}` : undefined}>
-  {brand && <Logo variant="mark" height={520} class="watermark" />}
+<section class:list={['hero', { dark }]} style={dark ? `background:${darkCover(seed)}` : undefined}>
   <div class="grid12">
     {eyebrow && <p class="label span-8">{eyebrow}</p>}
     <h1 class="span-8">{title}</h1>
     {subtitle && <p class="subtitle span-6">{subtitle}</p>}
     <div class="span-8 extra"><slot /></div>
   </div>
-  {
-    brand && (
-      <svg class="stripe" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 14 C150 4 300 4 450 12 S750 22 900 12 S1100 4 1200 10" />
-      </svg>
-    )
-  }
 </section>
 
 <style>
@@ -56,36 +45,6 @@ const { title, subtitle, eyebrow, dark = false, seed = 2, brand = false } = Astr
   }
   .extra {
     margin-top: 28px;
-  }
-  .brand {
-    position: relative;
-    overflow: hidden;
-  }
-  .brand .grid12 {
-    position: relative;
-  }
-  .brand :global(.watermark) {
-    position: absolute;
-    right: -6%;
-    top: 50%;
-    width: auto;
-    height: 140%;
-    transform: translateY(-50%);
-    opacity: 0.09;
-    pointer-events: none;
-  }
-  .stripe {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 18px;
-    fill: none;
-    stroke: #5ede81;
-    stroke-width: 3;
-    stroke-linecap: round;
-    vector-effect: non-scaling-stroke;
-    filter: drop-shadow(0 0 6px rgba(94, 222, 129, 0.7));
   }
   .dark {
     padding: 44px 0 48px;
