@@ -22,13 +22,6 @@ import { url } from '../lib/url';
     <h2>What we do</h2>
     {pillars.map((p) => <p><strong>{p.title}.</strong> {p.text}</p>)}
 
-    <h2>Our approach</h2>
-    <p>
-      We support the full journey from initial project concept to coordinated proposal submission: finding the right
-      opportunity, shaping the scientific and technical case, bringing complementary partners together, and coordinating
-      their contributions into one coherent proposal.
-    </p>
-
     <h2>Our team</h2>
     <ul class="team">
       {
@@ -46,6 +39,7 @@ import { url } from '../lib/url';
             )}
             <strong>{m.name}</strong>
             <span>{m.role}</span>
+            {m.alumni && <span class="tag">Alumni</span>}
           </li>
         ))
       }
@@ -53,7 +47,6 @@ import { url } from '../lib/url';
 
     <p class="ctas">
       <a class="btn btn-primary" href={url('contact/')}>Get in touch <span class="arrow">→</span></a>
-      <a class="btn btn-secondary" href={url('careers/')}>Careers</a>
     </p>
   </Prose>
 </Base>
@@ -98,6 +91,17 @@ import { url } from '../lib/url';
   }
   .team span {
     font-size: 14px;
+    color: var(--muted);
+  }
+  .team .tag {
+    margin-top: 6px;
+    padding: 2px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--muted);
   }
   p.ctas {

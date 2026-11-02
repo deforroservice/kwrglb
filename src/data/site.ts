@@ -72,7 +72,9 @@ export const projects: Project[] = [
       {
         heading: 'The challenge',
         paragraphs: [
-          'Tajikistan faces significant air pollution challenges, while the limited availability of reliable, publicly accessible monitoring data constrains research, environmental management and regulatory decision-making.',
+          'Tajikistan has the most polluted air in Central Asia. A 2023 World Bank assessment estimated annual population-weighted PM2.5 at about 36 µg/m³: the highest in the region, above the EU limit of 25 µg/m³ and more than seven times the WHO guideline of 5 µg/m³. Around 4,800 deaths a year are attributed to ambient air pollution, mostly from heart disease and stroke, and the health costs are estimated at about 4% of GDP.',
+          'The problem is sharpest in Dushanbe, home to 12% of the population. Ringed by mountains in the Gissar valley and with generally low wind speeds, the city traps pollution. Modelled PM2.5 rose from 17.8 µg/m³ in 1998 to 32.7 µg/m³ in 2021, peaking in autumn and winter when coal is burned for heating. Windblown dust (33%) and household heating (31%) are the largest sources, followed by power generation, including the coal-fired combined heat and power plant (9%).',
+          'Yet the evidence base is thin. Automatic measurements come from just two stations, one run by the national hydrometeorological agency and one at the U.S. Embassy, and in 2021 they disagreed by a factor of four (13.8 versus 58.1 µg/m³). Without reliable, publicly accessible ground data, the scale of the problem cannot be confirmed, and research, environmental management and regulation have little to build on.',
           'Closing this gap takes more than additional measurements. It requires a coordinated national monitoring infrastructure that turns environmental data into actionable scientific and policy evidence.',
         ],
       },
@@ -689,10 +691,11 @@ export const posts: Post[] = [
 ];
 
 // About us page team. photo: put an image in public/team/ and set photo: 'team/name.jpg'.
-export const team: { name: string; role: string; photo?: string }[] = [
+// alumni: past team member, shown with a small grey "Alumni" tag.
+export const team: { name: string; role: string; photo?: string; alumni?: boolean }[] = [
   { name: 'Lev Labzovskii', role: 'Technical Director', photo: 'team/lev-labzovskii.webp' },
   { name: 'Adaobi Ijezie', role: 'Project Management Associate', photo: 'team/adaobi-ijezie.webp' },
-  { name: 'Artem Piatin', role: 'Data Scientist & Digital Developer', photo: 'team/artem-piatin.webp' },
+  { name: 'Artem Piatin', role: 'Data Scientist & Digital Developer', photo: 'team/artem-piatin.webp', alumni: true },
 ];
 
 export const jobs = [
