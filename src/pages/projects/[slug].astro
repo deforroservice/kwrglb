@@ -69,13 +69,15 @@ const { project } = Astro.props as { project: Project };
             <ul>
               {project.references.map((r) => {
                 const external = r.href.startsWith('http');
+                // External links and PDFs open in a new tab.
+                const newTab = external || r.href.endsWith('.pdf');
                 return (
                   <li>
-                    <a href={external ? r.href : url(r.href)} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+                    <a href={external ? r.href : url(r.href)} target={newTab ? '_blank' : undefined} rel={newTab ? 'noopener' : undefined}>
                       <span class="kind">{r.kind}</span>
                       <span class="rtitle">{r.title}</span>
                       <span class="src">{r.source}</span>
-                      <span class="go" aria-hidden="true">{external ? '↗' : '→'}</span>
+                      <span class="go" aria-hidden="true">{newTab ? '↗' : '→'}</span>
                     </a>
                   </li>
                 );

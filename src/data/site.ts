@@ -106,6 +106,12 @@ export const projects: Project[] = [
         source: 'KWARG news',
         href: 'insights/epic-air-quality-fund-tajikistan/',
       },
+      {
+        kind: 'Report',
+        title: 'Air Quality Management in Tajikistan',
+        source: 'The World Bank, August 2023 (PDF)',
+        href: 'reports/world-bank-2023-air-quality-management-tajikistan.pdf',
+      },
     ],
     seed: 41,
     image: 'tajikistan-air-quality',
