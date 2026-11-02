@@ -1,0 +1,11 @@
+---
+# cPanel deploy: take the finished site from the `deploy` branch
+# (built by GitHub Actions) and copy it into public_html.
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/kwarlqvu/public_html/
+    - export GIT=/usr/local/cpanel/3rdparty/bin/git
+    - $GIT fetch origin deploy
+    - $GIT archive --format=tar -o /home/kwarlqvu/site-build.tar FETCH_HEAD
+    - /bin/tar -xf /home/kwarlqvu/site-build.tar -C $DEPLOYPATH
+    - /bin/rm -f /home/kwarlqvu/site-build.tar
