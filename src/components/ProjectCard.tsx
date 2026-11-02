@@ -1,5 +1,5 @@
 import type { Project } from '../data/site';
-import { cardCover } from '../lib/art';
+import { markPath } from '../lib/logo';
 import { url } from '../lib/url';
 
 // Shared by the static home page and the interactive projects list. Styles live in src/styles/cards.css.
@@ -11,7 +11,11 @@ export default function ProjectCard({ project }: { project: Project }) {
           <img src={url(`projects/${project.image}-thumb.webp`)} alt="" loading="lazy" />
         </span>
       ) : (
-        <span class="pcard-art" style={{ background: cardCover(project.seed) }} />
+        <span class="pcard-art pcard-mark">
+          <svg viewBox="4 4 540 376" aria-hidden="true">
+            <path fill-rule="evenodd" d={markPath} />
+          </svg>
+        </span>
       )}
       <span class="pcard-body">
         <span class="chip" data-cat={project.category}>

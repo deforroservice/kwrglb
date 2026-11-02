@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import Logo from '../components/Logo.astro';
 import ProjectCard from '../components/ProjectCard.tsx';
 import PostCard from '../components/PostCard.astro';
 import PubCard from '../components/PubCard.astro';
@@ -50,6 +51,7 @@ const insights = [
   </section>
 
   <section class="band dark">
+    <svg class="rings" viewBox="0 0 900 400" aria-hidden="true"><circle cx="330" cy="200" r="190" /><circle cx="570" cy="200" r="190" /></svg>
     <div class="container">
       <div class="head">
         <div>
@@ -105,7 +107,7 @@ const insights = [
     <div class="head">
       <div>
         <p class="label">Partners</p>
-        <h2>Our partners &amp; collaborations</h2>
+        <h2 class="with-mark"><Logo variant="mark" height={34} />Our partners &amp; collaborations</h2>
         <p class="intro">{partnersIntro}</p>
       </div>
       <div class="hnav" aria-label="Scroll partners">
@@ -191,7 +193,33 @@ const insights = [
   }
   /* What we do: dark band with tiles that light up on hover (visual only) */
   .band.dark {
+    position: relative;
+    overflow: hidden;
     background: var(--deep-teal);
+  }
+  .band.dark .container {
+    position: relative;
+  }
+  /* The logo's two rings, very faint behind What we do */
+  .rings {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(1100px, 160%);
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .rings circle {
+    fill: none;
+    stroke: var(--green);
+    stroke-width: 6;
+  }
+  h2.with-mark {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
   }
   .dark .label {
     color: var(--green);
