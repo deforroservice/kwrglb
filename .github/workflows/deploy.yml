@@ -1,4 +1,8 @@
-name: Deploy to GitHub Pages
+name: Build site for cPanel
+
+# On every push to main: build the Astro site and put the finished files
+# on the `deploy` branch. cPanel (Git Version Control) pulls that branch
+# and copies it into public_html using .cpanel.yml.
 
 on:
   push:
@@ -6,12 +10,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: deploy
   cancel-in-progress: false
 
 jobs:
@@ -25,16 +27,23 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Add cPanel deploy instructions
+        run: |
+          cat > dist/.cpanel.yml <<'EOF'
+          ---
+          deployment:
+            tasks:
+              - export DEPLOYPATH=/home/kwarlqvu/public_html/
+              - /bin/cp -R * $DEPLOYPATH
+          EOF
+
+      - name: Push built site to deploy branch
+        run: |
+          cd dist
+          git init -q -b deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Build from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" deploy
