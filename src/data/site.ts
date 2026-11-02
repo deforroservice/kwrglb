@@ -697,7 +697,7 @@ export const posts: Post[] = [
 ];
 
 // About us page team. photo: put an image in public/team/ and set photo: 'team/name.jpg'.
-// alumni: past team member, shown with a small grey "Alumni" tag.
+// alumni: past team member, shown with a small grey "Alumni member" tag.
 export const team: { name: string; role: string; photo?: string; alumni?: boolean }[] = [
   { name: 'Lev Labzovskii', role: 'Technical Director', photo: 'team/lev-labzovskii.webp' },
   { name: 'Adaobi Ijezie', role: 'Project Management Associate', photo: 'team/adaobi-ijezie.webp' },

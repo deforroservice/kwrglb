@@ -39,7 +39,7 @@ import { url } from '../lib/url';
             )}
             <strong>{m.name}</strong>
             <span>{m.role}</span>
-            {m.alumni && <span class="tag">Alumni</span>}
+            {m.alumni && <span class="tag">Alumni member</span>}
           </li>
         ))
       }
@@ -48,6 +48,8 @@ import { url } from '../lib/url';
     <p class="ctas">
       <a class="btn btn-primary" href={url('contact/')}>Get in touch <span class="arrow">→</span></a>
     </p>
+
+    {team.some((m) => m.alumni) && <p class="note">Alumni members: founding and former members</p>}
   </Prose>
 </Base>
 
@@ -102,6 +104,12 @@ import { url } from '../lib/url';
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    color: var(--muted);
+  }
+  p.note {
+    margin-top: 48px;
+    font-size: 11px;
+    line-height: 16px;
     color: var(--muted);
   }
   p.ctas {
