@@ -416,7 +416,7 @@ export const projects: Project[] = [
       },
     ],
     seed: 29,
-    image: 'wildfire',
+    image: 'wildfire-chart',
     imageAlt: 'Chart of fire activity in 2019 seen by the MODIS and VIIRS satellites, peaking in July',
   },
   {
