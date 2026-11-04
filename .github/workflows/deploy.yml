@@ -1,8 +1,9 @@
 name: Build site for cPanel
 
-# On every push to main: build the Astro site and put the finished files
-# on the `deploy` branch. cPanel (Git Version Control) pulls that branch
-# and copies it into public_html using .cpanel.yml.
+# On every push to main: build the Astro site, upload it to kwarg.co over FTP
+# (public_html on the Namecheap cPanel host), and keep a copy of the build on
+# the `deploy` branch as a backup for cPanel's Git Version Control.
+# FTP login: repository secrets FTP_SERVER, FTP_USERNAME, FTP_PASSWORD.
 
 on:
   push:
@@ -37,6 +38,20 @@ jobs:
               - export DEPLOYPATH=/home/kwarlqvu/public_html/
               - /bin/cp -R * $DEPLOYPATH
           EOF
+
+      - name: Upload to kwarg.co (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .cpanel.yml
 
       - name: Push built site to deploy branch
         run: |
