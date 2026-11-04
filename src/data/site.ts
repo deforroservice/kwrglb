@@ -198,7 +198,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'carbon-market-watch-digital-infrastructure',
-    name: 'Digital Infrastructure for Corporate Climate Accountability',
+    name: 'Digital Infrastructure for Big Business Climate Accountability',
     category: 'Partnership',
     summary:
       "Upgrading Carbon Market Watch's research platform through external engineering, project financing and delivery management, without building an in-house development team.",
@@ -417,7 +417,7 @@ export const projects: Project[] = [
     ],
     seed: 29,
     image: 'wildfire',
-    imageAlt: 'Illustration of a wildfire front spreading through a boreal forest along a river',
+    imageAlt: 'Chart of fire activity in 2019 seen by the MODIS and VIIRS satellites, peaking in July',
   },
   {
     slug: 'nebo-environmental-monitoring',
