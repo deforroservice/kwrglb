@@ -1,0 +1,429 @@
+{
+    "description": "DO NOT DELETE THIS FILE. This file is used to keep track of which files have been synced in the most recent deployment. If you delete this file a resync will need to be done (which can take a while) - read more: https://github.com/SamKirkland/FTP-Deploy-Action",
+    "version": "1.0.0",
+    "generatedTime": 1793957553291,
+    "data": [
+        {
+            "type": "file",
+            "name": "404.html",
+            "size": 43963,
+            "hash": "6504b12c49bc8872255124285ed4c799e56e7ea429bce570d5a54e399ffde4ad"
+        },
+        {
+            "type": "folder",
+            "name": "_astro"
+        },
+        {
+            "type": "folder",
+            "name": "about"
+        },
+        {
+            "type": "folder",
+            "name": "careers"
+        },
+        {
+            "type": "folder",
+            "name": "contact"
+        },
+        {
+            "type": "file",
+            "name": "favicon.svg",
+            "size": 236,
+            "hash": "e83e1e36fd0aa7e584861d6f6fda742279ace6db229670792a20e59b68b7e7db"
+        },
+        {
+            "type": "file",
+            "name": "index.html",
+            "size": 130087,
+            "hash": "00458338d9ac262d8ac23f3c78832d7d14d1f8dfbfa8564b815fa66f7ced72ec"
+        },
+        {
+            "type": "folder",
+            "name": "insights"
+        },
+        {
+            "type": "folder",
+            "name": "partners"
+        },
+        {
+            "type": "folder",
+            "name": "projects"
+        },
+        {
+            "type": "folder",
+            "name": "reports"
+        },
+        {
+            "type": "folder",
+            "name": "team"
+        },
+        {
+            "type": "file",
+            "name": "_astro/Base.DBTPPBKt.css",
+            "size": 8069,
+            "hash": "3e7138ad82eb16b7ce6fc9876efdbddc56b75aafb76b59f4dd30e0b032265c23"
+        },
+        {
+            "type": "file",
+            "name": "_astro/ProjectsList.CMl4QzoH.js",
+            "size": 3274,
+            "hash": "8e1b37ba47b37625054279e05918fdb760d5c6b63f2ab9636b92c9db01b09127"
+        },
+        {
+            "type": "file",
+            "name": "_astro/Search.Ho3eW3_E.js",
+            "size": 2676,
+            "hash": "ce47303b2bf21efc3a77f1ea1ada1cacfdf478e3e8608bb0724f4fd96e5324a8"
+        },
+        {
+            "type": "file",
+            "name": "_astro/hooks.module.BNbONuGS.js",
+            "size": 2597,
+            "hash": "1d78933dcd2ba89576a0abc44ed8e716d56cc7417b3741cd70d2a6bd5a2b4dd4"
+        },
+        {
+            "type": "file",
+            "name": "_astro/client.DYjMW_Ib.js",
+            "size": 3039,
+            "hash": "550d12e307316b3f269ff50526b96734f676447eb1b04c365b06cd5bd529d68d"
+        },
+        {
+            "type": "file",
+            "name": "_astro/index.CtRCHYr4.css",
+            "size": 8028,
+            "hash": "9708e7aebc1ac0fb96c230cee1cdef7eec57085b70b623f293fb15343deef766"
+        },
+        {
+            "type": "file",
+            "name": "_astro/jsxRuntime.module.Bfdc-KV3.js",
+            "size": 430,
+            "hash": "e53e6c0da7da5de23f92c67d3bfd6c702c4f9dc34037c9f70d24825a060ea7d7"
+        },
+        {
+            "type": "file",
+            "name": "_astro/preact.module.Bl7PEaKa.js",
+            "size": 10470,
+            "hash": "939c4dbc74210db259cef14ba3fd5403c3ee370b7ea52c0e114df520760f3ffe"
+        },
+        {
+            "type": "file",
+            "name": "_astro/signals.module.SWa5gZfk.js",
+            "size": 7808,
+            "hash": "9fe87e3f87f95d8ba51338d0ee1baed181af32f5e6074312d94a86498b6580c4"
+        },
+        {
+            "type": "file",
+            "name": "about/index.html",
+            "size": 48169,
+            "hash": "89eb8f2605d97d96347e31dfe5ca2b7ecb25874db86908cb4d555ecf681eb9ab"
+        },
+        {
+            "type": "file",
+            "name": "contact/index.html",
+            "size": 45928,
+            "hash": "66133fcf90361c4240b7eacb21c7479329a63ecbaa1d329a744e49b2e9a50462"
+        },
+        {
+            "type": "file",
+            "name": "careers/index.html",
+            "size": 45196,
+            "hash": "614439d608fed96db09872dbe7c9df59dca4b5c4d58cf531c850588238024137"
+        },
+        {
+            "type": "file",
+            "name": "insights/air-quality-method.svg",
+            "size": 3385,
+            "hash": "51542ea79addfbd591a1ee458fb6bd8f0aa6c366edb2106a99dce58a7fa3e2b4"
+        },
+        {
+            "type": "file",
+            "name": "insights/dust-storm-cover.webp",
+            "size": 128018,
+            "hash": "9ae23ee562fd7483946fed0f7a29f099db7275c699edde1fd713e5da09e93dca"
+        },
+        {
+            "type": "folder",
+            "name": "insights/epic-air-quality-fund-tajikistan"
+        },
+        {
+            "type": "file",
+            "name": "insights/ethiopia-basin-cover.webp",
+            "size": 89564,
+            "hash": "4596e4ae0206de7fef18107fd4307abb130fd20256bc1feaf5440ca43a89b56a"
+        },
+        {
+            "type": "file",
+            "name": "insights/ethiopia-method.svg",
+            "size": 3890,
+            "hash": "cd337f981fcc26b53925d460882534cf1e85311b384ec0a33b2d229c9b11f03c"
+        },
+        {
+            "type": "folder",
+            "name": "insights/ethiopia-rainfall-prediction-study-published"
+        },
+        {
+            "type": "file",
+            "name": "insights/index.html",
+            "size": 54076,
+            "hash": "37937cf4b269b90a359cc42d479b22cbd2b3647b8f0876ebf5066e1dbda2729e"
+        },
+        {
+            "type": "folder",
+            "name": "insights/extreme-dust-storms-central-asia"
+        },
+        {
+            "type": "file",
+            "name": "insights/siberia-cover.webp",
+            "size": 13460,
+            "hash": "826b087338936ef43a4885370e8e93908daf1e583aad8ffd5218b8f0c0ad1c7c"
+        },
+        {
+            "type": "file",
+            "name": "insights/siberia-fig1.webp",
+            "size": 76466,
+            "hash": "2f06fda2e8c9666293e79f98dd62ea6f89f645f2ac2639f6daea2ef867788057"
+        },
+        {
+            "type": "file",
+            "name": "insights/siberia-fig2.webp",
+            "size": 94010,
+            "hash": "b6bfd0fbe87d82f5ef88986c91d6625c49636a47894eaf950239be8376996d62"
+        },
+        {
+            "type": "folder",
+            "name": "insights/siberian-wildfire-dilemma-published"
+        },
+        {
+            "type": "file",
+            "name": "insights/wmo-city-cover.webp",
+            "size": 61316,
+            "hash": "f619f2586b6eacb8c0bdacaf30f9c8bf5631185ca02937e47ee5fee73f177ac3"
+        },
+        {
+            "type": "folder",
+            "name": "insights/wmo-report-cites-kwarg-nebo-air-quality-research"
+        },
+        {
+            "type": "file",
+            "name": "partners/bahir-dar-university.webp",
+            "size": 29712,
+            "hash": "67e5ebfa21c534646c420f94e62644c23b41055bafdbac14447be53eb9a64b18"
+        },
+        {
+            "type": "file",
+            "name": "partners/carbon-market-watch.webp",
+            "size": 5198,
+            "hash": "181b2686de74ffd7cbb2e30febb39cfd5f198c563ba14cc1c8e0d0ac8e39ea56"
+        },
+        {
+            "type": "file",
+            "name": "partners/chiba-university.webp",
+            "size": 5752,
+            "hash": "4b833eb48bb11ae316aaba08b4c01273c37d28d0b1a3628ca3a52ecde2a6c2ac"
+        },
+        {
+            "type": "file",
+            "name": "partners/deforro.webp",
+            "size": 16866,
+            "hash": "639ac4471b14d106e5f27d494dbf37e621f9bd7e72fecb5acbdf4334c36dcdb5"
+        },
+        {
+            "type": "file",
+            "name": "partners/hkust.webp",
+            "size": 21862,
+            "hash": "e803cd18b91bb0fe6f54dd5dffdc1ee76a5d993c636722c6a775c2617bba7b10"
+        },
+        {
+            "type": "file",
+            "name": "partners/hu-utrecht.webp",
+            "size": 1624,
+            "hash": "dea2d818b979cc25d7c02c44638a613839ef914993319332fe6ebc8dd78982f8"
+        },
+        {
+            "type": "file",
+            "name": "partners/korea-meteorological-administration.webp",
+            "size": 23606,
+            "hash": "ba404807d02ba1d19ada63fce51d2c1cbe2107fa319e5cc40051c5e6da8130ab"
+        },
+        {
+            "type": "file",
+            "name": "partners/nebo.webp",
+            "size": 4414,
+            "hash": "064bff243ebde3cff8fd041f4e6f9ac62da65dc2f8a9c65709b6b077daa550f3"
+        },
+        {
+            "type": "file",
+            "name": "partners/seoul-national-university.webp",
+            "size": 14636,
+            "hash": "7a1d76fb0ddac326a6492fb324ab8aaabefe9c1aa38ee403b75f0e10841661e8"
+        },
+        {
+            "type": "file",
+            "name": "partners/tech-to-the-rescue.webp",
+            "size": 19056,
+            "hash": "b2e467f0a086d5ffe9787115344de7edee7471da14e8360c2f0e517cc22aa7e9"
+        },
+        {
+            "type": "file",
+            "name": "partners/tajik-technical-university.webp",
+            "size": 29466,
+            "hash": "3f5165b8f66ce22ae9236918a8bb80a3be2831f9b77165cd35e781e39fa9e92c"
+        },
+        {
+            "type": "folder",
+            "name": "projects/carbon-market-watch-digital-infrastructure"
+        },
+        {
+            "type": "folder",
+            "name": "projects/ethiopia-climate-intelligence"
+        },
+        {
+            "type": "file",
+            "name": "projects/carbon-market-watch-thumb.webp",
+            "size": 39646,
+            "hash": "66bf5cd55ac7c712ae39f84eb2a3c75974e8ac0d37ee57f5c7bba011761361d0"
+        },
+        {
+            "type": "file",
+            "name": "projects/ethiopia-rainfall-thumb.webp",
+            "size": 39494,
+            "hash": "856ab79703ab0ee27f08944b34b51f0e12df177d2bdf7de1879c2ab1967230ed"
+        },
+        {
+            "type": "file",
+            "name": "projects/index.html",
+            "size": 79831,
+            "hash": "268cde8a1e7658ab3c1261a5408fd017fc3c6809e1831de49161b1478ff0afa5"
+        },
+        {
+            "type": "file",
+            "name": "projects/nebo-air-quality-thumb.webp",
+            "size": 37486,
+            "hash": "fdeb3373ccfa0e59333d4ccaaeb5d5281188e817bbbbe982a62d9e87d72ff994"
+        },
+        {
+            "type": "folder",
+            "name": "projects/nebo-environmental-monitoring"
+        },
+        {
+            "type": "folder",
+            "name": "projects/tajikistan-air-quality-monitoring"
+        },
+        {
+            "type": "file",
+            "name": "projects/tajikistan-air-quality-thumb.webp",
+            "size": 116012,
+            "hash": "6fde5d87a5e0da3b51a022a5e9b5f314cbb30a3a5650c8ea402d0d6d968e3aae"
+        },
+        {
+            "type": "folder",
+            "name": "projects/tech-to-the-rescue"
+        },
+        {
+            "type": "file",
+            "name": "projects/tech-to-the-rescue-thumb.webp",
+            "size": 29200,
+            "hash": "38be59f49d9cfa25ec2d2584319d5e874a8eb988e3a3467c68e6939d49b86cc6"
+        },
+        {
+            "type": "file",
+            "name": "projects/wildfire-chart-thumb.webp",
+            "size": 36964,
+            "hash": "e919adcb73c05ffb23b8a1cc243058460ba55c47cd3a35432bcb1c5002927432"
+        },
+        {
+            "type": "folder",
+            "name": "projects/wildfire-policy-environmental-intelligence"
+        },
+        {
+            "type": "file",
+            "name": "reports/world-bank-2023-air-quality-management-tajikistan.pdf",
+            "size": 4122567,
+            "hash": "49a5e9efcdfc2f047640e87d961015dc943a06024cec268db808c7f6b455de70"
+        },
+        {
+            "type": "file",
+            "name": "team/adaobi-ijezie.webp",
+            "size": 16018,
+            "hash": "e22fa288a97b59b5c3a51b3bbcfb5a35ac259582007a1fb2e14719feb55313c8"
+        },
+        {
+            "type": "file",
+            "name": "team/artem-piatin.webp",
+            "size": 21360,
+            "hash": "f0e91f87a5bdc3422cf3d1959375134c5c3da01665bd281714fcd40dc2b1512b"
+        },
+        {
+            "type": "file",
+            "name": "team/lev-labzovskii.webp",
+            "size": 11474,
+            "hash": "1d3609bb757b48f0ed946f174b9995d2c161ad67439ed6205ae563c54ce77caf"
+        },
+        {
+            "type": "file",
+            "name": "insights/epic-air-quality-fund-tajikistan/index.html",
+            "size": 47906,
+            "hash": "c39de96f4dfadecc54d18a0f8c9c4955ce99cdd7e818b1a195319fa557e8624e"
+        },
+        {
+            "type": "file",
+            "name": "insights/ethiopia-rainfall-prediction-study-published/index.html",
+            "size": 49610,
+            "hash": "eba14903a8e96d2070bfb3ea85251781c30d3806d58c8a364c0aac213c5f919c"
+        },
+        {
+            "type": "file",
+            "name": "insights/extreme-dust-storms-central-asia/index.html",
+            "size": 49760,
+            "hash": "1a080e24ba43d6b4edb40fb507c2b5f14b9df8a80d73587794962ea69c5d85c3"
+        },
+        {
+            "type": "file",
+            "name": "insights/wmo-report-cites-kwarg-nebo-air-quality-research/index.html",
+            "size": 49626,
+            "hash": "ac877b87f47d96256c7cb5dca07e65eeaba8cd138948eae6545e2fb7653bbdf3"
+        },
+        {
+            "type": "file",
+            "name": "insights/siberian-wildfire-dilemma-published/index.html",
+            "size": 50891,
+            "hash": "9d1f55cc5b85ee6c8e70925eb9e5c57ff39d8689e9b709b374efdcf77d0314d8"
+        },
+        {
+            "type": "file",
+            "name": "projects/carbon-market-watch-digital-infrastructure/index.html",
+            "size": 73458,
+            "hash": "8816eb9bbe61d65ce903fe8659881dbad360c882c44269c3e4355e2ead937d94"
+        },
+        {
+            "type": "file",
+            "name": "projects/ethiopia-climate-intelligence/index.html",
+            "size": 74979,
+            "hash": "62a8aabb4a4c8280a96006ce5714653e45ca699b488b1faaa8e457c51ae90af7"
+        },
+        {
+            "type": "file",
+            "name": "projects/nebo-environmental-monitoring/index.html",
+            "size": 74445,
+            "hash": "218f2b16fbea6ebea5efd7add934d5d3519edde8608bed7083d36611ec7789dc"
+        },
+        {
+            "type": "file",
+            "name": "projects/tajikistan-air-quality-monitoring/index.html",
+            "size": 75167,
+            "hash": "5e503f9efad22db171418a8f273be0d987095f03da6d7c9c3d0fdd05567da7ad"
+        },
+        {
+            "type": "file",
+            "name": "projects/tech-to-the-rescue/index.html",
+            "size": 74815,
+            "hash": "6ed8c2c47efb45c1dd5a478380b8b8792579ddd22e0167abf4f163ef78a9c08d"
+        },
+        {
+            "type": "file",
+            "name": "projects/wildfire-policy-environmental-intelligence/index.html",
+            "size": 76488,
+            "hash": "7f1cf9f8becce182bf06018247683959e1802bfb6e4118f0320597e6aabaea6d"
+        }
+    ]
+}

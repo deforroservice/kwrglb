@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3f6b7a"/></marker></defs>
+<rect width="960" height="420" fill="#ffffff"/>
+<rect x="30" y="30" width="250" height="70" rx="8" fill="#f8faf9" stroke="#dce5ea" stroke-width="1.5"/>
+<text x="155.0" y="56.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1e4a5f">Satellite precipitation</text>
+<text x="155.0" y="82.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#5b6b77">observed rainfall</text>
+<path d="M282 65L368 210" stroke="#3f6b7a" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="30" y="122" width="250" height="70" rx="8" fill="#f8faf9" stroke="#dce5ea" stroke-width="1.5"/>
+<text x="155.0" y="148.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1e4a5f">Atmospheric reanalysis</text>
+<text x="155.0" y="174.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#5b6b77">circulation, moisture</text>
+<path d="M282 157L368 210" stroke="#3f6b7a" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="30" y="214" width="250" height="70" rx="8" fill="#f8faf9" stroke="#dce5ea" stroke-width="1.5"/>
+<text x="155.0" y="240.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1e4a5f">Historical climate data</text>
+<text x="155.0" y="266.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#5b6b77">long-term records</text>
+<path d="M282 249L368 210" stroke="#3f6b7a" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="30" y="306" width="250" height="70" rx="8" fill="#f8faf9" stroke="#dce5ea" stroke-width="1.5"/>
+<text x="155.0" y="332.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1e4a5f">Tropical Easterly Jet</text>
+<text x="155.0" y="358.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#5b6b77">key summer driver</text>
+<path d="M282 341L368 210" stroke="#3f6b7a" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="350" y="160" width="270" height="100" rx="8" fill="#1e4a5f" stroke="#1e4a5f" stroke-width="1.5"/>
+<text x="485.0" y="201.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#ffffff">Artificial neural network</text>
+<text x="485.0" y="227.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#d7ece3">learns circulation → rainfall</text>
+<path d="M602 210L668 210" stroke="#3f6b7a" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="670" y="120" width="260" height="80" rx="8" fill="#f8faf9" stroke="#dce5ea" stroke-width="1.5"/>
+<text x="800.0" y="151.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1e4a5f">Seasonal rainfall prediction</text>
+<text x="800.0" y="177.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#5b6b77">Upper Blue Nile Basin</text>
+<rect x="670" y="222" width="260" height="80" rx="8" fill="#f8faf9" stroke="#dce5ea" stroke-width="1.5"/>
+<text x="800.0" y="253.0" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, Arial, sans-serif" font-size="19" font-weight="600" fill="#1e4a5f">Validated</text>
+<text x="800.0" y="279.0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="13" fill="#5b6b77">vs. reference precipitation data</text>
+
+</svg>
