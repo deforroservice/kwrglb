@@ -694,6 +694,33 @@ export const posts: Post[] = [
     ],
     link: { label: 'Read the paper (open access)', href: 'https://doi.org/10.14712/23361964.2024.8' },
   },
+  {
+    slug: 'extreme-dust-storms-central-asia',
+    kind: 'Insight',
+    topic: 'Atmospheric science',
+    title: 'Extreme Dust Storms in Central Asia: What Satellite Data Reveals About Emerging Climate Risks',
+    date: '2024-06-15',
+    excerpt:
+      'A peer-reviewed study in Scientific Reports reconstructs the extreme dust storm of 4 November 2021, when PM10 in Tashkent exceeded 18,000 µg/m³.',
+    cover: 'insights/dust-storm-cover.webp',
+    coverAlt: 'Map of Central Asia showing climate anomalies, with cities from Astana to Tashkent, Khujand and Andijan marked',
+    body: [
+      'A peer-reviewed study published in Scientific Reports (Nature Portfolio), with contributions from our research team, reconstructs one of the most severe dust storms recorded in Central Asia. On 4 November 2021, an extreme atmospheric event swept across Uzbekistan, severely affecting Tashkent and the Fergana Valley. The research examines how exceptional climatic conditions, regional atmospheric circulation and land surface processes combined to produce an environmental disaster of unprecedented intensity.',
+      '## A region under growing pressure',
+      'Uzbekistan and Central Asia represent an increasingly important region in the global air quality and environmental agenda. The region faces a complex combination of accelerating aridity, land degradation, water scarcity and atmospheric pollution, further intensified by climate change and the long-term environmental consequences of the Aral Sea crisis. Uzbekistan is particularly exposed to these interconnected pressures, making it an important setting for understanding how environmental changes translate into public health risks and economic vulnerabilities. At the same time, substantial gaps in environmental monitoring infrastructure create a growing demand for accessible observation technologies, reliable environmental data and regional scientific cooperation.',
+      '## Reconstructing the storm',
+      'The investigation integrated high-resolution satellite observations from TROPOMI, ground-based air quality measurements, meteorological reanalysis and atmospheric transport modelling using HYSPLIT. This multi-source analytical approach made it possible to reconstruct the storm’s evolution, identify its geographical origins and trace the movement of two major dust plumes across the region. The findings demonstrate the value of combining Earth observation technologies with environmental monitoring networks to investigate complex atmospheric events, particularly in regions with limited ground-based measurement infrastructure.',
+      '## Extraordinary pollution levels',
+      'The results revealed extraordinary pollution levels. In Tashkent, PM10 concentrations exceeded 18,000 µg/m³, approximately 260 times the local long-term average, while PM2.5 concentrations remained above 300 µg/m³ for nearly ten days. The study also linked the event to preceding extreme heat and drought conditions in southern Kazakhstan, where summer temperatures reached 46.5°C. These findings highlight how climate extremes can amplify atmospheric hazards across national borders, with implications for public health, infrastructure and regional economic resilience.',
+      '## From observations to climate-risk intelligence',
+      'Beyond the scientific reconstruction, the publication illustrates the growing importance of satellite analytics, environmental data integration and atmospheric modelling for climate-risk assessment. As Central Asia faces increasing aridity, scalable observation systems and stronger analytical capabilities will be essential for understanding emerging hazards and informing adaptation strategies. The research contributes to the evidence base needed to transform fragmented environmental observations into actionable intelligence for governments, research institutions and organisations operating in climate-vulnerable regions.',
+      'Publication: Nishonov, B. E., et al. (2023). Study of the strongest dust storm occurred in Uzbekistan in November 2021. Scientific Reports, 13, 20042.',
+    ],
+    link: {
+      label: 'Read the original publication',
+      href: 'https://www.nature.com/search?q=Study+of+the+strongest+dust+storm+occurred+in+Uzbekistan+in+November+2021&journal=srep',
+    },
+  },
 ];
 
 // About us page team. photo: put an image in public/team/ and set photo: 'team/name.jpg'.
