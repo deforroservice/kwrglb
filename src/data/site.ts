@@ -718,7 +718,7 @@ export const posts: Post[] = [
     ],
     link: {
       label: 'Read the original publication',
-      href: 'https://www.nature.com/search?q=Study+of+the+strongest+dust+storm+occurred+in+Uzbekistan+in+November+2021&journal=srep',
+      href: 'https://www.nature.com/articles/s41598-023-42256-1',
     },
   },
 ];
